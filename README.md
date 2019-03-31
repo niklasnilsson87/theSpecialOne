@@ -2,4 +2,4 @@
 
 Niklas Nilsson
 
-[Projekt vision](wiki/projekt-vision)
+[Projekt vision](https://github.com/1dv430/nn222ia-project/wiki/Projekt-Vision)
