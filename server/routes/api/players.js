@@ -1,14 +1,14 @@
 const router = require('express').Router()
-
+const chance = require('chance').Chance()
 // Player model
-const Player = require('../../models/Player')
+// const Player = require('../../models/Player')
+const PlayerAttribut = require('../../models/PlayerAttribut')
 
 // @Route  GET api/players
 // @desc   Get all players
 // access  Public
 router.get('/', (req, res) => {
-  Player.find()
-    .sort({ date: -1 })
+  PlayerAttribut.find()
     .then(players => res.json(players))
 })
 
@@ -16,11 +16,18 @@ router.get('/', (req, res) => {
 // @desc   Create a player
 // access  Public
 router.post('/', (req, res) => {
-  console.log(req.body)
-  const newPlayer = new Player({
-    name: req.body.name,
-    age: req.body.age,
-    city: req.body.city
+  const firstName = chance.first({ gender: 'male' })
+  const lastName = chance.last()
+  const birthday = chance.birthday({ year: chance.year({ min: 1979, max: 2004 }) })
+  const country = chance.country({ full: true })
+  // const value = chance.integer({ min: 1, max: 20 })
+
+  const newPlayer = new PlayerAttribut({
+    firstname: firstName,
+    lastname: lastName,
+    age: new Date().getFullYear() - birthday.toString().substring(11, 15),
+    birthday: birthday,
+    country: country
   })
 
   newPlayer.save().then(player => res.json(player))
