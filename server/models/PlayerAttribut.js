@@ -5,7 +5,16 @@ const playerAttributSchema = new mongoose.Schema({
   lastname: { type: String },
   age: { type: Number },
   country: { type: String },
-  birthday: { type: String }
+  birthday: { type: String },
+  egenskaper: {
+    tecnival: {
+      speed: Number,
+      agility: Number
+    },
+    behaviour: {
+      courage: Number
+    }
+  }
 })
 
 // Creates model

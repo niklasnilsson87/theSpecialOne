@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import uuid from 'uuid'
 import { Container, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { connect } from 'react-redux'
@@ -13,11 +12,24 @@ class Player extends Component {
   }
   render () {
     const { players } = this.props.player
+    const playerCard = this.props.player ? (
+      players.map(player => {
+        return (
+          <div className='card mb-5' style={{ backgroundColor: 'lightBlue' }} key={player._id}>
+            <h4 className='.bg-info'>{player.firstname} {player.lastname}</h4>
+            <p>Age: {player.age}</p>
+            <p>Birthday: {player.birthday.substring(0, 10)}</p>
+            <p>Country: {player.country}</p>
+          </div>
+        )
+      })
+    ) : (
+      <div className='center'>No Posts</div>
+    )
     return (
       <Container>
-        {players.map(({ id, name }) => (
-          <h4 className='card' key={id}>{name}</h4>
-        ))}
+        <h1 className='mb-5'>Players</h1>
+        {playerCard}
       </Container>
     )
   }

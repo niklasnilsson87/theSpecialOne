@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 
 class Home extends Component {
   render () {
     return (
-      <div>
+      <Container>
         <h3>Welcome to the game!</h3>
-      </div>
+      </Container>
     )
   }
 }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 
 class Manager extends Component {
   render () {
     return (
-      <div>
+      <Container>
         <h1>Manager</h1>
-      </div>
+      </Container>
     )
   }
 }

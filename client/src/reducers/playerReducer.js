@@ -1,20 +1,22 @@
-import uuid from 'uuid'
-import { GET_PLAYER } from '../actions/types'
+import { GET_PLAYER, PLAYER_LOADING } from '../actions/types'
 
 const initialState = {
-  players: [
-    { id: uuid(), name: 'Alex Nilsson' },
-    { id: uuid(), name: 'Niklas' },
-    { id: uuid(), name: 'Kalle' },
-    { id: uuid(), name: 'Hampus' }
-  ]
+  players: [],
+  loading: false
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_PLAYER:
       return {
-        ...state
+        ...state,
+        players: action.payload,
+        loading: false
+      }
+    case PLAYER_LOADING:
+      return {
+        ...state,
+        loading: true
       }
     default:
       return state

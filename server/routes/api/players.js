@@ -27,7 +27,16 @@ router.post('/', (req, res) => {
     lastname: lastName,
     age: new Date().getFullYear() - birthday.toString().substring(11, 15),
     birthday: birthday,
-    country: country
+    country: country,
+    egenskaper: {
+      tecnival: {
+        speed: 300,
+        agility: 234
+      },
+      behaviour: {
+        courage: 12
+      }
+    }
   })
 
   newPlayer.save().then(player => res.json(player))

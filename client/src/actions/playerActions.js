@@ -1,7 +1,18 @@
-import { GET_PLAYER } from './types'
+import { GET_PLAYER, PLAYER_LOADING } from './types'
+import axios from 'axios'
 
-export const getPlayers = () => {
+export const getPlayers = () => dispatch => {
+  dispatch(setPlayerLoading())
+
+  axios.get('/api/players')
+    .then(res => dispatch({
+      type: GET_PLAYER,
+      payload: res.data
+    }))
+}
+
+export const setPlayerLoading = () => {
   return {
-    type: GET_PLAYER
+    type: PLAYER_LOADING
   }
 }

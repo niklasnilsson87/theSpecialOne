@@ -1,1 +1,2 @@
 export const GET_PLAYER = 'GET_PLAYER'
+export const PLAYER_LOADING = 'PLAYER_LOADING'
