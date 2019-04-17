@@ -25,13 +25,13 @@ class Login extends Component {
     const { error, isAuthenticated } = this.props
     if(error !== prevProps.error) {
       // Check for register error
-      if(error.id === 'LOGIN_FAIL'){
+      if (error.id === 'LOGIN_FAIL'){
         this.setState({ msg: error.msg.msg})
       } else {
         this.setState({ msg: null })
       }
     }
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       this.props.history.push('/')
     }
   }
@@ -58,9 +58,9 @@ class Login extends Component {
   render () {
     return (
       <Container className='form-div'>
-        <h2>Login to your account</h2>
+        <h2 className="text-center mb-2">Login</h2>
         { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
-        <Form className='mb-5'expand='sm' onSubmit={this.onSubmit}>
+        <Form expand='sm' onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for='exampleEmail'>Email</Label>
             <Input type='email' name='email' className='login-form' onChange={this.onChange} placeholder='Enter your username here...' />
@@ -71,7 +71,7 @@ class Login extends Component {
           </FormGroup>
           <button type='submit' className='btn-color'>Login</button>
         </Form>
-        <button type='submit' className='btn-color'><NavLink to="/register">Register a team</NavLink></button>
+        <button type='submit' className='btn-color text-dec'><NavLink to="/register">Register a team</NavLink></button>
       </Container>
     )
   }

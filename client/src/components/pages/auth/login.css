@@ -13,15 +13,27 @@
 
 .btn-color {
   margin-top: 10px;
-  background-color: #827191;
+  background-color: #8a25e2;
   border-radius: 5px;
   color: white;
   padding: 8px;
+  width: 150px;
+  margin-left: 50px;
 }
 
 .form-div {
+  font-family: sans-serif;
   padding: 20px;
   width: 300px;
-  border-radius: 2px;
+  border-radius: 20px;
   background-color: #b5d99c;
+}
+
+.text-dec {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }

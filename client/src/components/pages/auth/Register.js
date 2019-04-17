@@ -24,7 +24,7 @@ class Register extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error } = this.props
+    const { error, isAuthenticated } = this.props
     if(error !== prevProps.error) {
       // Check for register error
       if(error.id === 'REGISTER_FAIL'){
@@ -33,11 +33,9 @@ class Register extends Component {
         this.setState({ msg: null })
       }
     }
-  }
 
-  auth = (auth) => {
-    if(auth) {
-      this.props.history.push(`/`)
+    if (isAuthenticated) {
+      this.props.history.push('/')
     }
   }
 
@@ -69,7 +67,7 @@ class Register extends Component {
       <Container className='form-div'>
         <h2>Register new team</h2>
         { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
-        <Form className='mb-5'expand='sm' onSubmit={this.onSubmit}>
+        <Form expand='sm' onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for='name'>Full name</Label>
             <Input type='name' name='name' className='login-form' onChange={this.onChange} placeholder='Enter your username here...' />
@@ -86,7 +84,7 @@ class Register extends Component {
             <Label for='teamName'>Team Name</Label>
             <Input type='text' name='teamName' className='mb-1' onChange={this.onChange} placeholder='Enter your password here...' />
           </FormGroup>
-          <button type='submit' className='btn-color'>Login</button>
+          <button type='submit' className='btn-color'>Register</button>
         </Form>
         <button type='submit' className='btn-color'><NavLink to="/login">login</NavLink></button>
       </Container>

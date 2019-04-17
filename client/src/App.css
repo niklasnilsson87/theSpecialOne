@@ -2,3 +2,7 @@
   display: inline !important;
   margin-right: 10px !important;
 }
+
+a {
+  text-decoration: none;
+}
