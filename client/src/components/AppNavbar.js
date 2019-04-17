@@ -11,6 +11,7 @@ import {
   NavLink,
   Container
 } from 'reactstrap'
+import Logout from './pages/auth/Logout'
 
 class AppNavbar extends Component {
   state = {
@@ -31,12 +32,25 @@ class AppNavbar extends Component {
           <NavbarBrand href="/">The Special One</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <RRNavLink className="nav-link inline" to="/">Home</RRNavLink>
-                <RRNavLink className="nav-link inline" to="/manager">Manager</RRNavLink>
-                <RRNavLink className="nav-link inline" to="/player">Player</RRNavLink>
-              </NavItem>
+            <Nav className="ml-auto inline menu" navbar>
+                <NavItem>
+                <RRNavLink className="nav-link" to="/">Home</RRNavLink>
+                </NavItem>
+                <NavItem>
+                <RRNavLink className="nav-link" to="/login">Login</RRNavLink>
+                </NavItem>
+                <NavItem>
+                <RRNavLink className="nav-link" to="/register">Register</RRNavLink>
+                </NavItem>
+                <NavItem>
+                <RRNavLink className="nav-link" to="/manager">Manager</RRNavLink>
+                </NavItem>
+                <NavItem>
+                <RRNavLink className="nav-link" to="/player">Player</RRNavLink>
+                </NavItem>
+                <NavItem>
+                <Logout />
+                </NavItem>
             </Nav>
           </Collapse>
         </Container>

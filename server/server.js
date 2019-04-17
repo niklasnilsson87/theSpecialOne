@@ -5,6 +5,7 @@ require('dotenv').config()
 
 const app = express()
 
+// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // connect to the database
@@ -14,6 +15,8 @@ mongoose.connect().catch(error => {
 })
 
 app.use('/api/players', require('./routes/api/players'))
+app.use('/api/signup', require('./routes/api/signup'))
+app.use('/api/login', require('./routes/api/login'))
 
 const port = process.env.PORT
 

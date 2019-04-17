@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { Container, Button } from 'reactstrap'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import { getPlayers } from '../../actions/playerActions'
 import PropTypes from 'prop-types'
@@ -18,7 +16,7 @@ class Player extends Component {
           <div className='card mb-5' style={{ backgroundColor: 'lightBlue' }} key={player._id}>
             <h4 className='.bg-info'>{player.firstname} {player.lastname}</h4>
             <p>Age: {player.age}</p>
-            <p>Birthday: {player.birthday.substring(0, 10)}</p>
+            <span>Birthday: {player.birthday.substring(0, 10)}</span>
             <p>Country: {player.country}</p>
           </div>
         )
@@ -42,7 +40,6 @@ Player.propTypes = {
 
 const mapStateToProps = (state) => ({
   player: state.player
-
 })
 
 export default connect(mapStateToProps, { getPlayers })(Player)

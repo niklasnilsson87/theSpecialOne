@@ -1,0 +1,27 @@
+.login-form {
+  margin-bottom: 5px;
+}
+
+.menu > li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.menu > li:last-child {
+  margin-right: 0;
+}
+
+.btn-color {
+  margin-top: 10px;
+  background-color: #827191;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+}
+
+.form-div {
+  padding: 20px;
+  width: 300px;
+  border-radius: 2px;
+  background-color: #b5d99c;
+}
