@@ -31,18 +31,18 @@ class AppNavbar extends Component {
 
   }
   render () {
-    const { isAuthenticated, user } = this.props.auth
+    const { isAuthenticated } = this.props.auth
 
     const privateLinks = (
       <Fragment>
         <NavItem>
-          <RRNavLink className="nav-link" to="/">Home</RRNavLink>
+          <RRNavLink className="nav-link" to="/home">Home</RRNavLink>
         </NavItem>
         <NavItem>
           <RRNavLink className="nav-link" to="/manager">Manager</RRNavLink>
         </NavItem>
         <NavItem>
-          <RRNavLink className="nav-link" to="/player">Player</RRNavLink>
+          <RRNavLink className="nav-link" to="/player">Players</RRNavLink>
         </NavItem>
         <NavItem>
           <Logout />
@@ -61,11 +61,18 @@ class AppNavbar extends Component {
       </Fragment>
     )
 
+    const office = (
+      <Fragment>
+        <NavItem className="office">Office</NavItem>
+      </Fragment>
+    )
+
     return (
     <div>
       <Navbar color="dark" dark expand="sm" className="mb-5">
         <Container>
-          <NavbarBrand href="/">The Special One <span>{ user ? `Welcome ${user.name}` : '' }</span></NavbarBrand>
+          <NavbarBrand href="/">The Special One</NavbarBrand>
+          { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto inline menu" navbar>

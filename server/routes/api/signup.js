@@ -2,6 +2,7 @@ const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
+const { player } = require('../playerSchema')
 // User Model
 const User = require('../../models/User')
 
@@ -34,6 +35,9 @@ router.post('/', (res, req) => {
           newUser.password = hash
           newUser.save()
             .then(user => {
+              for (let i = 0; i < 19; i++) {
+                player(user.id, user.teamName)
+              }
               jwt.sign(
                 { id: user.id },
                 process.env.JWT_SECRET,

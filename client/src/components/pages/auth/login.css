@@ -4,7 +4,7 @@
 
 .menu > li {
   display: inline-block;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .menu > li:last-child {
@@ -37,3 +37,10 @@ a {
   text-decoration: none;
   color: white;
 }
+
+.office {
+  color: white;
+  list-style-type: none;
+  margin-left: 112px;
+  padding: 0;
+} 
