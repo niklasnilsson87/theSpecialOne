@@ -31,7 +31,7 @@ describe('Calling api/players', () => {
   })
 })
 
-describe('Post /login', () => {
+describe('1.2 Testfall M.1 Login', () => {
   it('Should send status 200 if login success', (done) => {
     backend
       .post('/api/login')
