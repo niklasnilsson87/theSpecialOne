@@ -6,19 +6,21 @@ import PropTypes from 'prop-types'
 
 class Player extends Component {
   componentDidMount () {
-    this.props.getPlayers()
+    if (this.props.auth.isAuthenticated) {
+      this.props.getPlayers(this.props.auth.user)
+    }
   }
   render () {
     const { players } = this.props.player
     const playerCard = this.props.player ? (
       players.map(player => {
-        console.log(player)
         return (
           <div className='card mb-5' style={{ backgroundColor: 'lightBlue' }} key={player._id}>
             <h4 className='.bg-info'>{player.firstname} {player.lastname}</h4>
             <p>Age: {player.age}</p>
             <span>Birthday: {player.birthday.substring(0, 10)}</span>
             <p>Country: {player.country}</p>
+            <p>Team: {player.owner}</p>
           </div>
         )
       })
@@ -36,10 +38,12 @@ class Player extends Component {
 
 Player.propTypes = {
   getPlayers: PropTypes.func.isRequired,
-  player: PropTypes.object.isRequired
+  player: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   player: state.player
 })
 

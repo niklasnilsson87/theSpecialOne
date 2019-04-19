@@ -32,7 +32,7 @@ class Login extends Component {
       }
     }
     if (isAuthenticated) {
-      this.props.history.push('/')
+      this.props.history.push('/home')
     }
   }
 

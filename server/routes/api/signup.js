@@ -35,7 +35,7 @@ router.post('/', (res, req) => {
           newUser.password = hash
           newUser.save()
             .then(user => {
-              for (let i = 0; i < 19; i++) {
+              for (let i = 0; i < 1; i++) {
                 player(user.id, user.teamName)
               }
               jwt.sign(

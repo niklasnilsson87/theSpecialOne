@@ -35,7 +35,7 @@ class Register extends Component {
     }
 
     if (isAuthenticated) {
-      this.props.history.push('/')
+      this.props.history.push('/home')
     }
   }
 
@@ -86,7 +86,7 @@ class Register extends Component {
           </FormGroup>
           <button type='submit' className='btn-color'>Register</button>
         </Form>
-        <button type='submit' className='btn-color'><NavLink to="/login">login</NavLink></button>
+        <button type='submit' className='btn-color'><NavLink to="/">login</NavLink></button>
       </Container>
     )
   }

@@ -9,6 +9,7 @@ import Manager from './components/pages/Manager'
 import Players from './components/pages/Players'
 import Login from './components/pages/auth/Login'
 import Register from './components/pages/auth/Register'
+import PrivateRoutes from './privateRoutes/PrivateRoutes'
 import { loadUser } from './actions/authActions'
 
 class App extends Component {
@@ -19,16 +20,14 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <div className='App'>
-          <AppNavbar />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/manager' component={Manager} />
-            <Route path='/player' component={Players} />
-            <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
-          </Switch>
-        </div>
+        <AppNavbar />
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route path='/register' component={Register} />
+          <PrivateRoutes path='/manager' component={Manager} />
+          <PrivateRoutes path='/player' component={Players} />
+          <PrivateRoutes path='/home' component={Home} />
+        </Switch>
       </BrowserRouter>
     )
   }

@@ -53,7 +53,7 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-          <RRNavLink className="nav-link" to="/login">Login</RRNavLink>
+          <RRNavLink className="nav-link" to="/">Login</RRNavLink>
         </NavItem>
         <NavItem>
           <RRNavLink className="nav-link" to="/register">Register</RRNavLink>
@@ -69,7 +69,7 @@ class AppNavbar extends Component {
 
     return (
     <div>
-      <Navbar color="dark" dark expand="sm" className="mb-5">
+      <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
         <Container>
           <NavbarBrand href="/">The Special One</NavbarBrand>
           { isAuthenticated ? office : ''}

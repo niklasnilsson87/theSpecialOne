@@ -13,8 +13,6 @@ class Home extends Component {
   render () {
 
     const { user } = this.props.auth
-
-    console.log(this.props.auth)
     return (
       <Container>
         <h3>Welcome to the game {user ? user.name : ''}!</h3>
