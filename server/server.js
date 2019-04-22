@@ -17,6 +17,7 @@ mongoose.connect().catch(error => {
 app.use('/api/players', require('./routes/api/players'))
 app.use('/api/signup', require('./routes/api/signup'))
 app.use('/api/login', require('./routes/api/login'))
+app.use('/api/edit', require('./routes/api/edit'))
 
 const port = process.env.PORT
 

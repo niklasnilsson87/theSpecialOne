@@ -25,7 +25,7 @@ class Player extends Component {
         )
       })
     ) : (
-      <div className='center'>No Posts</div>
+      <div className='center'>No Players</div>
     )
     return (
       <Container>

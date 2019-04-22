@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 
-class Manager extends Component {
+class Training extends Component {
   render () {
     return (
       <Container>
-        <h1>Manager</h1>
+        <h1>Training</h1>
       </Container>
     )
   }
 }
 
-export default Manager
+export default Training

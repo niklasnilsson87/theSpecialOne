@@ -3,6 +3,7 @@
   margin-right: 10px !important;
 }
 
-a {
+.nav-item.a {
   text-decoration: none;
+  cursor: pointer;
 }

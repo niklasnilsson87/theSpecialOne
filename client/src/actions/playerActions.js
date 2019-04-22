@@ -2,16 +2,6 @@ import { GET_PLAYER, PLAYER_LOADING, GET_ERRORS } from './types'
 import { returnErrors } from './errorActions'
 import axios from 'axios'
 
-// export const getPlayers = () => dispatch => {
-//   dispatch(setPlayerLoading())
-
-//   axios.get('/api/players')
-//     .then(res => dispatch({
-//       type: GET_PLAYER,
-//       payload: res.data
-//     }))
-// }
-
 export const getPlayers = ({ id }) => dispatch => {
   dispatch(setPlayerLoading())
 

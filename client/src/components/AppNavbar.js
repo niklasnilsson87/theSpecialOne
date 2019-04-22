@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import '../App.css'
 import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
@@ -10,7 +10,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   Container
 } from 'reactstrap'
 import Logout from './pages/auth/Logout'
@@ -45,6 +44,15 @@ class AppNavbar extends Component {
           <RRNavLink className="nav-link" to="/player">Players</RRNavLink>
         </NavItem>
         <NavItem>
+          <RRNavLink className="nav-link" to="/matches">Matches</RRNavLink>
+        </NavItem>
+        <NavItem>
+          <RRNavLink className="nav-link" to="/training">Training</RRNavLink>
+        </NavItem>
+        <NavItem style={{color: "white"}}>
+          |
+        </NavItem>
+        <NavItem>
           <Logout />
         </NavItem>
       </Fragment>
@@ -75,7 +83,7 @@ class AppNavbar extends Component {
           { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto inline menu" navbar>
+            <Nav className="ml-auto inline menu nav" navbar>
               { isAuthenticated ? privateLinks : guestLinks}
             </Nav>
           </Collapse>
