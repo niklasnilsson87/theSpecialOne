@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  favPlayer: {
+    type: String
+  },
+  favTeam: {
+    type: String
+  },
   register_date: {
     type: Date,
     default: Date.now

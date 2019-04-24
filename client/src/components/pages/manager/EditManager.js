@@ -7,7 +7,9 @@ import { updateDescription } from '../../../actions/editActions'
 class Manager extends Component {
   state = {
     modal: false,
-    name: ''
+    description: '',
+    favPlayer: '',
+    favTeam: ''
   }
 
   toggle = () => {
@@ -22,10 +24,10 @@ class Manager extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    const { name } = this.state
+    const { description, favPlayer, favTeam } = this.state
     const { email } = this.props.auth
 
-    this.props.updateDescription(name, email)
+    this.props.updateDescription(description, favPlayer, favTeam, email)
 
     this.toggle()
   }
@@ -38,7 +40,7 @@ class Manager extends Component {
         style={{marginBottom: '2rem'}}
         onClick={this.toggle} 
       >
-      Add description
+      Edit profile
       </Button>
 
       <Modal
@@ -48,23 +50,41 @@ class Manager extends Component {
         <ModalHeader
           toggle={this.toggle}
         >
-          Add description about yourself
+          Edit profile
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.onSubmit}>
             <FormGroup>
+            <Label for="favTeam">Favorit Team</Label>
+            <Input
+                type="text"
+                name="favTeam"
+                id="favTeam"
+                placeholder="Add favorit Team..."
+                onChange={this.onChange}
+              />
+            <Label for="favPlayer">Favorit Player</Label>
+            <Input
+                type="text"
+                name="favPlayer"
+                id="favPlayer"
+                placeholder="Add favorit player..."
+                onChange={this.onChange}
+              />
+              <Label for="description">Description</Label>
               <Input
                 type="textarea"
-                name="name"
-                id="name"
+                name="description"
+                id="description"
                 placeholder="Add description..."
                 onChange={this.onChange}
+                // value={this.props.auth.description}
               />
               <Button
                 color="success"
                 style={{marginTop: '2rem'}}
                 block
-              >Submit description</Button>
+              >Submit</Button>
             </FormGroup>
           </Form>
         </ModalBody>

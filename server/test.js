@@ -21,9 +21,13 @@ describe(`Calling root ('/')`, () => {
 describe('Calling api/players', () => {
   it('Get 200 response on api/players', (done) => {
     backend
-      .get('/api/players')
+      .post('/api/players')
       .expect(200)
+      .send({
+        id: '5cbdc374734115161445abbf'
+      })
       .end((err, res) => {
+        // console.log(res)
         if (err) console.log('api/players:', err)
         expect(res.status).to.equal(200)
         done()
@@ -117,11 +121,12 @@ describe('1.2 Testfall M.1 Login', () => {
       .set('Accept', 'application/json')
       .end((err, res) => {
         if (err) console.log('failing login: ', err)
+        delete res.body.user.description
         expect(res.body.user).to.deep.equal(
-          { 'id': '5cb76338217e925f1c835055',
-            'name': 'niklas',
+          { 'id': '5cbdc374734115161445abbf',
+            'name': 'Niklas Nilsson',
             'email': 'niklas@gmail.com',
-            'teamName': 'janglers' })
+            'teamName': 'Janglers IF' })
         done()
       })
   })

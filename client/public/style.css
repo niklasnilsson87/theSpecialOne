@@ -1,0 +1,67 @@
+.progress {
+  margin-top: 5px;
+  width: 53%;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex span {
+  width: 33%;
+  font-size: 85%;
+}
+
+.flex span:last-child {
+  text-align: right;
+  width: 10%;
+}
+
+.progress-bar {
+  background-color: #007C01 !important;
+}
+
+.player-contact {
+  font-size: 10px;
+  font-style: italic;
+}
+
+.player-contact > * {
+  margin-right: 6px
+}
+
+.player-name {
+  border-bottom: 1px solid lightgray;
+  padding: 6px;
+}
+
+.manager-info > * {
+  margin-left: 7px;
+  margin-bottom: 0px;
+}
+
+.manager-card {
+  background-color: lightblue;
+  border-radius: 4px;
+}
+
+.modal-content {
+  background-color: #b5d99c !important;
+}
+.stats {
+  margin: 5px 0;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  font-weight: 600;
+}
+
+.card {
+  padding: 15px;
+}
+
+label {
+  margin: 5px 0;
+  font-weight: 700;
+}

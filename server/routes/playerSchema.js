@@ -40,6 +40,12 @@ function player (owner, team) {
     }
   })
 
+  const tecnicalValues = Object.values(newPlayer.attributes.tecnical).reduce((a, b) => a + b)
+  const mentalValues = Object.values(newPlayer.attributes.mental).reduce((a, b) => a + b)
+  const physicalValues = Object.values(newPlayer.attributes.physical).reduce((a, b) => a + b)
+
+  newPlayer.totalValue = tecnicalValues + mentalValues + physicalValues
+
   return newPlayer.save()
 }
 

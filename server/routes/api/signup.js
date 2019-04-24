@@ -26,7 +26,9 @@ router.post('/', (res, req) => {
         email,
         password,
         teamName,
-        description: 'no description'
+        description: 'no description',
+        favPlayer: 'N/A',
+        favTeam: 'N/A'
       })
 
       bcrypt.genSalt(10, (err, salt) => {

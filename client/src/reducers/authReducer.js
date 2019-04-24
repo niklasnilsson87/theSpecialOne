@@ -31,7 +31,9 @@ export default function (state = initialState, action) {
         user: action.payload
       }
     case DESCRIPTION_SUCCESS:
-      state.user.description = action.payload
+      state.user.description = action.payload.description
+      state.user.favPlayer = action.payload.favPlayer
+      state.user.favTeam = action.payload.favTeam
       return {
         ...state
       }

@@ -20,20 +20,18 @@ class Manager extends Component {
 
   }
   render () {
-    const { name, email, teamName, description } = this.props.auth.user
-    console.log(description)
+    const { name, email, teamName, description, favPlayer, favTeam } = this.props.auth.user
     return (
       <Container>
-        <div style={{ width: '96%', border: '2px solid', borderRadius: '20px', backgroundColor: '#b5d99c' }}>
-          <h2 className='text-center'>{name}</h2>
-          <hr />
+        <div className='manager-card' >
+          <h2 className='player-name'>{name}</h2>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>
             <div className='img' style={{ display: 'inline-block', width: '100px', border: '2px solid', textAlign: 'center', borderRadius: '6px', height: '150px' }}>Image</div>
-            <div>
-              <p className='ml-2 mb-0'>Email: {email}</p>
-              <p className='ml-2 mb-0'>Team: {teamName}</p>
-              <p className='ml-2 mb-0'>Favorite team: non specified </p>
-              <p className='ml-2 mb-0'>Favorite player: non specified </p>
+            <div className='manager-info'>
+              <p>Email: {email}</p>
+              <p>Team: {teamName}</p>
+              <p>Favorite team: {favTeam} </p>
+              <p>Favorite player: {favPlayer} </p>
             </div>
           </div>
           <hr />
@@ -46,8 +44,8 @@ class Manager extends Component {
 
         <div className='button' style={{ textAlign: 'center', marginTop: '20px' }}>
           <EditManager>Change profile</EditManager>
-          <input type='file' onChange={this.fileSelectorHandler}/>
-          <Button className='btn' onClick={this.fileUploadHandler}>Edit profile</Button>
+          {/* <input type='file' onChange={this.fileSelectorHandler}/>
+          <Button className='btn' onClick={this.fileUploadHandler}>Change Profile pic</Button> */}
         </div>
       </Container>
     )

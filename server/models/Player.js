@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const playerSchema = new mongoose.Schema({
   owner: { type: String },
+  team: { type: String },
   firstname: { type: String },
   lastname: { type: String },
   age: { type: Number },
@@ -33,6 +34,9 @@ const playerSchema = new mongoose.Schema({
       stamina: Number,
       strength: Number
     }
+  },
+  totalValue: {
+    type: Number
   }
 })
 
