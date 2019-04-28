@@ -5,7 +5,6 @@ const router = require('express').Router()
 const User = require('../../models/User')
 
 router.post('/', async (req, res) => {
-  console.log(req.body)
   const { desc, favPlayer, favTeam, email } = req.body
 
   const userUpdate = await User.findOne({ email }).select('-password')

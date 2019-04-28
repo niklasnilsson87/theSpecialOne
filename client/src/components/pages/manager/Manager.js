@@ -3,10 +3,19 @@ import { Container, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import EditManager from './EditManager'
+import Comments from './Comments'
+import { getComments } from '../../../actions/CommentAction'
 
 class Manager extends Component {
   state = {
     selectedFile: null
+  }
+
+  // componentDidUpdate() {
+  //   this.props.getComments(this.props.auth.user.id)
+  // }
+  componentDidMount() {
+    this.props.getComments(this.props.auth.user.id)
   }
 
   fileSelectorHandler = e => {
@@ -21,6 +30,16 @@ class Manager extends Component {
   }
   render () {
     const { name, email, teamName, description, favPlayer, favTeam } = this.props.auth.user
+    const { comments } = this.props.comment
+    console.log(this.props.comment.comments)
+    const commentCard = this.props.comment.comments ? (
+      comments.map(comment => {
+        return (
+          <h1 key={comment._id}>{comment.comment}</h1>
+          )
+        })
+        ) : 
+        <p className='center'>no comments yet</p>
     return (
       <Container>
         <div className='manager-card' >
@@ -30,8 +49,8 @@ class Manager extends Component {
             <div className='manager-info'>
               <p>Email: {email}</p>
               <p>Team: {teamName}</p>
-              <p>Favorite team: {favTeam} </p>
-              <p>Favorite player: {favPlayer} </p>
+              <p>Favorite team: {favTeam}</p>
+              <p>Favorite player: {favPlayer}</p>
             </div>
           </div>
           <hr />
@@ -47,17 +66,24 @@ class Manager extends Component {
           {/* <input type='file' onChange={this.fileSelectorHandler}/>
           <Button className='btn' onClick={this.fileUploadHandler}>Change Profile pic</Button> */}
         </div>
+        <div className="comments">
+          {commentCard}
+        </div>
+        <Comments />
       </Container>
     )
   }
 }
 
 Manager.propTypes = {
-  auth: PropTypes.object.isRequired
+  getComments: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  comment: state.comment
 })
 
-export default connect(mapStateToProps, null)(Manager)
+export default connect(mapStateToProps, { getComments })(Manager)

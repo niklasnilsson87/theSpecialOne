@@ -40,7 +40,9 @@ router.post('/', (res, req) => {
                   name: user.name,
                   email: user.email,
                   teamName: user.teamName,
-                  description: user.description
+                  description: user.description,
+                  favTeam: user.favTeam,
+                  favPlayer: user.favPlayer
                 } })
             }
           )
