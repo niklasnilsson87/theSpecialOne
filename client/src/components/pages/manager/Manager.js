@@ -11,9 +11,6 @@ class Manager extends Component {
     selectedFile: null
   }
 
-  // componentDidUpdate() {
-  //   this.props.getComments(this.props.auth.user.id)
-  // }
   componentDidMount() {
     this.props.getComments(this.props.auth.user.id)
   }
@@ -31,11 +28,20 @@ class Manager extends Component {
   render () {
     const { name, email, teamName, description, favPlayer, favTeam } = this.props.auth.user
     const { comments } = this.props.comment
-    console.log(this.props.comment.comments)
     const commentCard = this.props.comment.comments ? (
       comments.map(comment => {
         return (
-          <h1 key={comment._id}>{comment.comment}</h1>
+          <div className='manager-card comment' key={comment._id}>
+            <h3 className='player-name'>{comment.user}</h3>
+            <div className="player-contact">
+              <span>{comment.date.substring(0, 10)}</span>
+              <span>{comment.date.substring(11, 16)}</span>
+              <span>{comment.teamName}</span>
+            </div>
+            <div className='padd'>
+              <p>{comment.comment}</p>
+            </div>
+          </div>
           )
         })
         ) : 

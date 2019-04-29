@@ -1,3 +1,16 @@
+#root {
+  background-color: rgb(67, 161, 67);
+  min-height: 100vh;
+}
+
+#root.backImg {
+  background-image: url('./img/football-161132_1280.png');
+  background-repeat: no-repeat;
+  background-position-x: -800px;
+  background-position-y: 100px;
+  background-attachment: fixed;
+}
+
 .progress {
   margin-top: 5px;
   width: 53%;
@@ -25,6 +38,7 @@
 .player-contact {
   font-size: 10px;
   font-style: italic;
+  margin-left: 10px;
 }
 
 .player-contact > * {
@@ -44,6 +58,7 @@
 .manager-card {
   background-color: lightblue;
   border-radius: 4px;
+  box-shadow: 3px 2px 9px #aaaaa3;
 }
 
 .modal-content {
@@ -64,4 +79,42 @@
 label {
   margin: 5px 0;
   font-weight: 700;
+}
+
+.comment {
+  margin: 15px 2px;
+}
+
+.padd {
+  padding: 10px;
+}
+
+#comment {
+  width: 95%;
+  margin: auto;
+}
+
+.visit-player {
+  border-radius: 20px;
+  background-color: darkgreen;
+}
+
+.home-player {
+  padding: 10px;
+}
+
+.footer {
+  background-color: #8a25e2;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: rgb(214, 213, 213);
+  margin-top: 10px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
 }

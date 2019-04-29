@@ -7,9 +7,9 @@ import { updateDescription } from '../../../actions/editActions'
 class Manager extends Component {
   state = {
     modal: false,
-    description: '',
-    favPlayer: '',
-    favTeam: ''
+    description: this.props.auth.description,
+    favPlayer: this.props.auth.favPlayer,
+    favTeam: this.props.auth.favTeam
   }
 
   toggle = () => {
@@ -18,8 +18,16 @@ class Manager extends Component {
     })
   }
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
+  descChange = (e) => {
+    this.setState({ description: e.target.value })
+  }
+
+  playerChange = (e) => {
+    this.setState({ favPlayer: e.target.value })
+  }
+
+  teamChange = (e) => {
+    this.setState({ favTeam: e.target.value })
   }
 
   onSubmit = (e) => {
@@ -61,7 +69,8 @@ class Manager extends Component {
                 name="favTeam"
                 id="favTeam"
                 placeholder="Add favorit Team..."
-                onChange={this.onChange}
+                onChange={this.teamChange}
+                value={this.state.favTeam}
               />
             <Label for="favPlayer">Favorit Player</Label>
             <Input
@@ -69,7 +78,8 @@ class Manager extends Component {
                 name="favPlayer"
                 id="favPlayer"
                 placeholder="Add favorit player..."
-                onChange={this.onChange}
+                onChange={this.playerChange}
+                value={this.state.favPlayer}
               />
               <Label for="description">Description</Label>
               <Input
@@ -77,8 +87,8 @@ class Manager extends Component {
                 name="description"
                 id="description"
                 placeholder="Add description..."
-                onChange={this.onChange}
-                // value={this.props.auth.description}
+                onChange={this.descChange}
+                value={this.state.description}
               />
               <Button
                 color="success"

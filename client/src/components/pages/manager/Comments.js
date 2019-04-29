@@ -24,8 +24,8 @@ class Comments extends Component {
   render () {
     return (
 
-      <div>
-        <h3>Hello Comments</h3>
+      <div className='manager-card'>
+        <h3 className='padd'>Send message</h3>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
             <Input
@@ -34,13 +34,12 @@ class Comments extends Component {
               id='comment'
               placeholder='Add message...'
               onChange={this.onChange}
-              // value={this.props.auth.description}
             />
             <Button
               color='success'
               style={{ marginTop: '2rem' }}
               block
-            >Comment</Button>
+            >Send</Button>
           </FormGroup>
         </Form>
       </div>

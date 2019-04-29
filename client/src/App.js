@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar'
+import Footer from './components/Footer'
 import Home from './components/pages/Home'
 import Manager from './components/pages/manager/Manager'
 import Matches from './components/pages/Matches'
@@ -32,6 +33,7 @@ class App extends Component {
           <PrivateRoutes path='/player' component={Players} />
           <PrivateRoutes path='/home' component={Home} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     )
   }
