@@ -34,11 +34,12 @@ class Home extends Component {
           <p>You have taken over some players that you can get to know</p>
           <button className='visit-player'><NavLink className="home-player" to="/player">Visit players</NavLink></button>
         </div>
-
+        <div className="divider">
         <div className="mb-4 manager-card padd">
           <h3>Training</h3>
           <p>You can train your players stats to help them perform better for you in games</p>
           <button className='visit-player'><NavLink className="home-player" to="/training">Visit Training</NavLink></button>
+        </div>
         </div>
       </Container>
     )

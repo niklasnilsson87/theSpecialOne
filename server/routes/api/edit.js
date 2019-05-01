@@ -15,4 +15,14 @@ router.post('/', async (req, res) => {
   res.json(userUpdate)
 })
 
+router.get('/', async (req, res) => {
+  try {
+    const allUsers = await User.find({}).select('-password')
+
+    res.json(allUsers)
+  } catch (err) {
+    res.status(500).json({ msg: 'Could not find any users' })
+  }
+})
+
 module.exports = router

@@ -5,6 +5,38 @@ const { expect } = require('chai')
 const server = request.agent('http://localhost:3000')
 const backend = request.agent('http://localhost:5000')
 
+describe('Calling api/getComment', () => {
+  it('Get 200 response on api/getComment', (done) => {
+    backend
+      .post('/api/getComment')
+      .expect(200)
+      .send({
+        id: '5cbf2d6f4175170e483fee9a'
+      })
+      .end((err, res) => {
+        console.log(res.body)
+        if (err) console.log('api/getComment:', err)
+        expect(res.status).to.equal(200)
+        done()
+      })
+  })
+
+  // it('should include ID "5cbf2d6f4175170e483fee9a"', (done) => {
+  //   backend
+  //     .post('/api/getComment')
+  //     .expect(200)
+  //     .send({
+  //       id: '5cbf2d6f4175170e483fee9a'
+  //     })
+  //     .end((err, res) => {
+  //       console.log(res.body)
+  //       if (err) console.log('api/getComment:', err)
+  //       expect(res.body).to.contain()
+  //       done()
+  //     })
+  // })
+})
+
 describe(`Calling root ('/')`, () => {
   it('GET 200 response on root', (done) => {
     server
@@ -123,10 +155,12 @@ describe('1.2 Testfall M.1 Login', () => {
         if (err) console.log('failing login: ', err)
         delete res.body.user.description
         expect(res.body.user).to.deep.equal(
-          { 'id': '5cbdc374734115161445abbf',
+          { 'id': '5cbf1df9430c070d80cb5c0b',
             'name': 'Niklas Nilsson',
             'email': 'niklas@gmail.com',
-            'teamName': 'Janglers IF' })
+            'teamName': 'Janglers IF',
+            'favTeam': '',
+            'favPlayer': '' })
         done()
       })
   })

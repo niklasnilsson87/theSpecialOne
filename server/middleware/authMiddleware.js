@@ -3,7 +3,6 @@ require('dotenv').config()
 
 function auth (req, res, next) {
   const token = req.headers['x-auth-token']
-  console.log(token)
 
   // Check for token
   if (!token) return res.status(401).json({ msg: 'No token, authorazation denied' })

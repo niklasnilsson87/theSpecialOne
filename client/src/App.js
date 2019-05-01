@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import store from './store'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import AppNavbar from './components/AppNavbar'
-import Footer from './components/Footer'
+import AppNavbar from './components/partials/AppNavbar'
+import Footer from './components/partials/Footer'
 import Home from './components/pages/Home'
 import Manager from './components/pages/manager/Manager'
 import Matches from './components/pages/Matches'
@@ -17,7 +16,7 @@ import { loadUser } from './actions/authActions'
 
 class App extends Component {
   componentDidMount () {
-    store.dispatch(loadUser)
+    store.dispatch(loadUser())
   }
 
   render () {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Form, Label, FormGroup, Input, Alert } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
-import './login.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { login } from '../../../actions/authActions'

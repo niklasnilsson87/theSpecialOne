@@ -2,7 +2,7 @@ import { GET_PLAYER, PLAYER_LOADING, GET_ERRORS } from './types'
 import { returnErrors } from './errorActions'
 import axios from 'axios'
 
-export const getPlayers = ({ id }) => dispatch => {
+export const getPlayers = ({ _id }) => dispatch => {
   dispatch(setPlayerLoading())
 
   // Headers
@@ -13,7 +13,7 @@ export const getPlayers = ({ id }) => dispatch => {
   }
 
   // Request body
-  const body = JSON.stringify({ id })
+  const body = JSON.stringify({ _id })
 
   return axios.post('/api/players', body, config)
     .then(res => {

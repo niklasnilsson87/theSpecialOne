@@ -1,6 +1,7 @@
 #root {
   background-color: rgb(67, 161, 67);
   min-height: 100vh;
+  padding-bottom: 40px;
 }
 
 #root.backImg {
@@ -15,6 +16,17 @@
   margin-top: 5px;
   width: 53%;
 }
+
+.inline {
+  display: inline !important;
+  margin-right: 10px !important;
+}
+
+.nav-item.a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 .flex {
   display: flex;
@@ -86,7 +98,7 @@ label {
 }
 
 .padd {
-  padding: 10px;
+  padding: 20px;
 }
 
 #comment {
@@ -117,4 +129,71 @@ label {
 html {
   position: relative;
   min-height: 100%;
+}
+
+.login-form {
+  margin-bottom: 5px;
+}
+
+.menu > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.menu > li:last-child {
+  margin-right: 0;
+}
+
+.btn-color {
+  margin-top: 10px;
+  background-color: #8a25e2;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  max-width: 150px;
+  margin: 8px auto;
+}
+
+.form-div {
+  padding: 20px;
+  width: 300px;
+  border-radius: 20px;
+  background-color: #b5d99c;
+}
+
+.text-dec {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.office {
+  color: white;
+  list-style-type: none;
+  margin-left: 60px;
+  padding: 0;
+} 
+
+@media (min-width: 480px) {
+  .office {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-div.container {
+    width: 80% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 600px !important;
+  }
 }

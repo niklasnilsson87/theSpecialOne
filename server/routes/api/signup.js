@@ -38,7 +38,7 @@ router.post('/', (res, req) => {
           newUser.password = hash
           newUser.save()
             .then(user => {
-              for (let i = 0; i < 1; i++) {
+              for (let i = 0; i < 3; i++) {
                 player(user.id, user.teamName)
               }
               jwt.sign(
@@ -50,7 +50,7 @@ router.post('/', (res, req) => {
                   res.res.json({
                     token,
                     user: {
-                      id: user.id,
+                      _id: user.id,
                       name: user.name,
                       email: user.email,
                       teamName: user.teamName

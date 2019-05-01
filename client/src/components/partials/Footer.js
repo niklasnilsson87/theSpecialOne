@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 class Footer extends Component {
   render () {
     return (
-      <footer class='footer'>
+      <footer className='footer'>
 
-        <div class='footer-info'>
+        <div className='footer-info'>
           <span>© 2019 Niklas Nilsson</span>
           <span className='ml-3'>The Special One</span>
         </div>

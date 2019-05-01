@@ -4,7 +4,6 @@ import axios from 'axios'
 
 export const getComments = (id) => dispatch => {
   // Headers
-  console.log(id)
   const config = {
     headers: {
       'Content-Type': 'application/json'

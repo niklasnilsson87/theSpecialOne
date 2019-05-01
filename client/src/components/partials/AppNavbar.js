@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import '../App.css'
 import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
@@ -12,7 +11,7 @@ import {
   NavItem,
   Container
 } from 'reactstrap'
-import Logout from './pages/auth/Logout'
+import Logout from '../pages/auth/Logout'
 
 class AppNavbar extends Component {
   state = {
@@ -71,23 +70,22 @@ class AppNavbar extends Component {
 
     const office = (
       <Fragment>
-        <NavItem className="office">Office</NavItem>
+        <NavItem className="office hidden-md">Office</NavItem>
       </Fragment>
     )
 
     return (
     <div>
       <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
-        <Container>
           <NavbarBrand href="/">The Special One</NavbarBrand>
           { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
+          
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto inline menu nav" navbar>
               { isAuthenticated ? privateLinks : guestLinks}
             </Nav>
           </Collapse>
-        </Container>
       </Navbar> 
     </div>
     )}

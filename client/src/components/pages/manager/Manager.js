@@ -12,7 +12,7 @@ class Manager extends Component {
   }
 
   componentDidMount() {
-    this.props.getComments(this.props.auth.user.id)
+    this.props.getComments(this.props.auth.user._id)
   }
 
   fileSelectorHandler = e => {

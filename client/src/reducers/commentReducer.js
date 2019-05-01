@@ -14,7 +14,6 @@ export default function (state = initialState, action) {
         loading: false
       }
     case ADD_COMMENTS:
-      console.log(action.payload)
       return {
         ...state,
         comments: [action.payload, ...state.comments],

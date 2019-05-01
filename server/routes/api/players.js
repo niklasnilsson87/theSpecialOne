@@ -15,9 +15,9 @@ const Player = require('../../models/Player')
 // access  Public
 
 router.post('/', async (req, res) => {
-  const { id } = req.body
+  const { _id } = req.body
 
-  const players = await Player.find({ owner: id })
+  const players = await Player.find({ owner: _id })
 
   res.json(players)
 })
