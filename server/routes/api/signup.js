@@ -1,8 +1,7 @@
 const router = require('express').Router()
-const bcrypt = require('bcryptjs')
 require('dotenv').config()
-const jwt = require('jsonwebtoken')
-const { player } = require('../playerSchema')
+const { sign, saltAndHash } = require('../../config/helper/jwt')
+const { generatePlayer } = require('../generatePlayers')
 // User Model
 const User = require('../../models/User')
 
@@ -31,35 +30,28 @@ router.post('/', (res, req) => {
         favTeam: 'N/A'
       })
 
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) console.log(err)
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) console.log(err)
-          newUser.password = hash
+      saltAndHash(newUser)
+        .then(() => {
+          console.log('row 36', newUser)
           newUser.save()
-            .then(user => {
-              for (let i = 0; i < 3; i++) {
-                player(user.id, user.teamName)
-              }
-              jwt.sign(
-                { id: user.id },
-                process.env.JWT_SECRET,
-                { expiresIn: 3600 },
-                (err, token) => {
-                  if (err) console.log(err)
-                  res.res.json({
-                    token,
-                    user: {
-                      _id: user.id,
-                      name: user.name,
-                      email: user.email,
-                      teamName: user.teamName
-                    } })
-                }
-              )
-            })
         })
-      })
+      for (let i = 0; i < 3; i++) {
+        generatePlayer(newUser.id, newUser.teamName)
+      }
+      sign(newUser)
+        .then(token => {
+          res.res.json({
+            token,
+            user: {
+              _id: newUser.id,
+              name: newUser.name,
+              email: newUser.email,
+              teamName: newUser.teamName,
+              description: newUser.description,
+              favTeam: newUser.favTeam,
+              favPlayer: newUser.favPlayer
+            } })
+        })
     })
 })
 

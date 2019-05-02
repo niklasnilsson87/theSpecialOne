@@ -16,9 +16,10 @@ class Comments extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const { comment } = this.state
-    const { id, teamName, name } = this.props.auth
+    const { _id, teamName, name } = this.props.auth
 
-    this.props.sendComments(id, comment, teamName, name)
+    this.props.sendComments(_id, comment, teamName, name)
+    this.setState({ comment: ''})
 
   }
   render () {
@@ -34,6 +35,7 @@ class Comments extends Component {
               id='comment'
               placeholder='Add message...'
               onChange={this.onChange}
+              value={this.state.comment}
             />
             <Button
               color='success'

@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
-const jwt = require('jsonwebtoken')
 const auth = require('../../middleware/authMiddleware')
+const { sign } = require('../../config/helper/jwt')
 
 // User Model
 const User = require('../../models/User')
@@ -26,13 +26,9 @@ router.post('/', (res, req) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (!isMatch) return res.res.status(400).json({ msg: 'Invalid credentials' })
-
-          jwt.sign(
-            { id: user.id },
-            process.env.JWT_SECRET,
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) console.log(err)
+          // Cancells
+          sign(user)
+            .then(token => {
               res.res.json({
                 token,
                 user: {
@@ -44,8 +40,7 @@ router.post('/', (res, req) => {
                   favTeam: user.favTeam,
                   favPlayer: user.favPlayer
                 } })
-            }
-          )
+            })
         })
     })
 })

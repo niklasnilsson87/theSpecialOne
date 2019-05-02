@@ -1,7 +1,7 @@
 const Player = require('../models/Player')
 const chance = require('chance').Chance()
 
-function player (owner, team) {
+function generatePlayer (owner, team) {
   const birthday = chance.birthday({ year: chance.year({ min: 1979, max: 2004 }) })
   const newPlayer = new Player({
     team: team,
@@ -50,5 +50,5 @@ function player (owner, team) {
 }
 
 module.exports = {
-  player
+  generatePlayer
 }

@@ -12,7 +12,6 @@ export const getComments = (id) => dispatch => {
 
   // Request body
   const body = JSON.stringify({ id })
-  // console.log(id)
 
   axios.post('/api/getComment', body, config)
     .then(res => {
@@ -34,6 +33,5 @@ export const sendComments = (userid, comment, teamName, user) => dispatch => {
   axios.post('/api/comment', body, config)
     .then(res => {
       dispatch({ type: ADD_COMMENTS, payload: res.data })
-      console.log(res)
     })
 }

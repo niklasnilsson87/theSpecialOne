@@ -13,7 +13,6 @@ router.post('/', async (req, res) => {
     comment,
     teamName
   })
-  console.log(newComment)
   await newComment.save()
   res.json(newComment)
 })

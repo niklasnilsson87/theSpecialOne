@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { getPlayers } from '../../actions/playerActions'
 import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
@@ -8,13 +8,20 @@ import axios from 'axios'
 
 class Matches extends Component {
   state = {
+    modal: false,
     homeTeamValue: '',
     awayTeamValue: '',
     users: []
   }
 
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    })
+  }
 
   componentDidMount(){
+    console.log(this.props.auth.user._id)
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
@@ -27,7 +34,7 @@ class Matches extends Component {
 
   loadUsers() {
     axios.get('/api/edit').then(res => {
-      this.setState({ users: res.data})
+      this.setState({ users: res.data.filter(user => user._id !== this.props.auth.user._id)})
     })
   }
 
@@ -64,26 +71,47 @@ class Matches extends Component {
 
     this.setState({ awayTeamValue: value})
       })
+    this.toggle()
+  }
+
+  scoreCard = (decider) => {
+    return (
+      <Modal
+      isOpen={this.state.modal}
+      toggle={this.toggle}
+    >
+      <ModalHeader
+        toggle={this.toggle}
+      >
+        Score
+      </ModalHeader>
+      <ModalBody>
+      <div className="manager-card">
+        <h3 className="decider text-center">{decider}</h3>
+      </div>
+      </ModalBody>
+    </Modal>
+    )
   }
 
    winLose = () => {
     if (this.state.awayTeamValue !== '') {
     if (this.state.homeTeamValue > this.state.awayTeamValue) {
       return (
-        <p className="win">You Win!</p>
+        this.scoreCard('You Win!')
       )
     } else if (this.state.homeTeamValue === this.state.awayTeamValue) {
       return (
-        <p className="draw">It´s a Draw!</p>
+        this.scoreCard('It`s a Draw!')
       )
     } else {
       return (
-        <p className="lose">You Lose!</p>
+        this.scoreCard('You Lose!')
         )
     }
   } else {
     return (
-    <p className="no">nothing</p>
+    <p className="no"></p>
     )
   }
 }
@@ -105,14 +133,14 @@ class Matches extends Component {
           )
         })
       ) : (
-        <div className='center'>No Players</div>
+        <div className='center'>No Users found</div>
       )
     return (
       <Container>
         <h1>Matches</h1>
         <p>{this.state.homeTeam}</p>
-        <div className='manager'>{userCard}</div>
-        <div className="winLose">{this.winLose()}</div>
+        {userCard}
+        {this.winLose()}
       </Container>
     )
   }
