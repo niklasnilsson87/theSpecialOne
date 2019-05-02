@@ -32,12 +32,11 @@ router.post('/', (res, req) => {
 
       saltAndHash(newUser)
         .then(() => {
-          console.log('row 36', newUser)
           newUser.save()
         })
-      for (let i = 0; i < 3; i++) {
-        generatePlayer(newUser.id, newUser.teamName)
-      }
+      // for (let i = 0; i < 3; i++) {
+      //   generatePlayer(newUser.id, newUser.teamName)
+      // }
       sign(newUser)
         .then(token => {
           res.res.json({
