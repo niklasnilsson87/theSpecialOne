@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
-import { getPlayers } from '../../actions/playerActions'
+import { getPlayers } from '../../../actions/playerActions'
 import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+// import MatchesModal from './MatchesModal'
+import Counter from './Counter'
+
 
 class Matches extends Component {
   state = {
@@ -21,7 +24,6 @@ class Matches extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.auth.user._id)
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
@@ -38,14 +40,18 @@ class Matches extends Component {
     })
   }
 
-  countValues = () => {
-    const { players } = this.props.player
+  setValue = (val) => {
     const arr = []
-    players.map(v => arr.push(v.totalValue))
+    val.map(v => arr.push(v.totalValue))
 
     const value = arr.reduce((a, b) => a + b, 0)
+    return value
+  }
 
-    this.setState({ homeTeamValue: value})
+  countValues = () => {
+    const { players } = this.props.player
+
+    this.setState({ homeTeamValue: this.setValue(players)})
   }
 
   onClick = (e) => {
@@ -64,17 +70,13 @@ class Matches extends Component {
 
     axios.post('/api/players', body, config)
       .then(res => {
-    const arr = []
-    res.data.map(v => arr.push(v.totalValue))
-
-    const value = arr.reduce((a, b) => a + b, 0)
-
-    this.setState({ awayTeamValue: value})
+        this.setState({ awayTeamValue: this.setValue(res.data)})
       })
     this.toggle()
   }
 
   scoreCard = (decider) => {
+    
     return (
       <Modal
       isOpen={this.state.modal}
@@ -117,6 +119,7 @@ class Matches extends Component {
 }
 
   render () {
+    // dont tuch
     const { users } = this.state
     const userCard = this.state.users ? (
       users.map(user => {
@@ -138,9 +141,10 @@ class Matches extends Component {
     return (
       <Container>
         <h1>Matches</h1>
-        <p>{this.state.homeTeam}</p>
         {userCard}
         {this.winLose()}
+        {/* <MatchesModal /> */}
+        <Counter />
       </Container>
     )
   }

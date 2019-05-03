@@ -1,9 +1,21 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('./config/mongoose')
+const helmet = require('helmet')
 require('dotenv').config()
 
 const app = express()
+
+app.use(helmet())
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    formAction: ["'self'"]
+  }
+}))
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

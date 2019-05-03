@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Button } from 'reactstrap'
+import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import EditManager from './EditManager'
@@ -15,16 +15,16 @@ class Manager extends Component {
     this.props.getComments(this.props.auth.user._id)
   }
 
-  fileSelectorHandler = e => {
-    console.log(e.target.files[0])
-    this.setState({
-      selectedFile: e.target.files[0]
-    })
-  }
+  // fileSelectorHandler = e => {
+  //   console.log(e.target.files[0])
+  //   this.setState({
+  //     selectedFile: e.target.files[0]
+  //   })
+  // }
 
-  fileUploadHandler = () => {
+  // fileUploadHandler = () => {
 
-  }
+  // }
   render () {
     const { name, email, teamName, description, favPlayer, favTeam } = this.props.auth.user
     const { comments } = this.props.comment
