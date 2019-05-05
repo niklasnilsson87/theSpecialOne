@@ -15,6 +15,7 @@ class Matches extends Component {
     modal: false,
     homeTeamValue: '',
     awayTeamValue: '',
+    decider: '',
     users: []
   }
 
@@ -30,10 +31,6 @@ class Matches extends Component {
       this.countValues()
     })
      this.loadUsers()
-  }
-
-  componentDidUpdate() {
-      this.winLose()
   }
 
   loadUsers() {
@@ -74,46 +71,30 @@ class Matches extends Component {
       .then(res => {
         this.setState({ awayTeamValue: this.setValue(res.data)})
       })
-  
+      .then(() => {
+        this.winLose()
+      })
       this.toggle()
-  
-  }
-
-  scoreCard = (decider) => {
-    return (
-      <Modal
-      isOpen={this.state.modal}
-      toggle={this.toggle}
-    >
-      <ModalHeader
-        toggle={this.toggle}
-      >
-        Score
-      </ModalHeader>
-      <ModalBody>
-      <div className="manager-card">
-        <h3 className="decider text-center">{decider}</h3>
-      </div>
-      </ModalBody>
-    </Modal>
-    )
   }
 
    winLose = () => {
     if (this.state.awayTeamValue !== '') {
     if (this.state.homeTeamValue > this.state.awayTeamValue) {
       this.props.updatePoints(3, this.props.auth.user)
-      return (
-        this.scoreCard('You Win!')
-      )
+      this.setState({
+        awayTeamValue: '', 
+        decider: 'You Win!'
+      })
     } else if (this.state.homeTeamValue === this.state.awayTeamValue) {
-      return (
-        this.scoreCard('It`s a Draw!')
-      )
+      this.setState({ 
+        awayTeamValue: '',
+        decider: 'Its a Draw!'
+      })
     } else {
-      return (
-        this.scoreCard('You Lose!')
-        )
+      this.setState({
+        awayTeamValue: '', 
+        decider: 'You Lose!',
+      })
     }
   } else {
     return (
@@ -146,9 +127,21 @@ class Matches extends Component {
       <Container>
         <h1>Matches</h1>
         {userCard}
-        {this.scoreCard()}
-        {/* <MatchesModal /> */}
-        {/* <Counter /> */}
+      <Modal
+        isOpen={this.state.modal}
+        toggle={this.toggle}
+      >
+        <ModalHeader
+          toggle={this.toggle}
+        >
+          Score
+        </ModalHeader>
+        <ModalBody>
+        <div className="manager-card">
+          <h3 className="decider text-center">{this.state.decider}</h3>
+        </div>
+        </ModalBody>
+      </Modal>
       </Container>
     )
   }

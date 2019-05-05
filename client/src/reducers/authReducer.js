@@ -7,7 +7,8 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   DESCRIPTION_SUCCESS,
-  REGISTER_FAIL } from '../actions/types'
+  REGISTER_FAIL,
+  UPDATEPOINT_SUCCESS } from '../actions/types'
 
 const initialState = {
   token: window.localStorage.getItem('token'),
@@ -31,6 +32,8 @@ export default function (state = initialState, action) {
         user: action.payload
       }
     case DESCRIPTION_SUCCESS:
+    case UPDATEPOINT_SUCCESS:
+      state.user.totalPoints = action.payload.totalPoints
       state.user.description = action.payload.description
       state.user.favPlayer = action.payload.favPlayer
       state.user.favTeam = action.payload.favTeam

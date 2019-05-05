@@ -35,8 +35,8 @@ export const updatePoints = (point, { _id }) => dispatch => {
   return axios.post('/api/edit/points', body, config)
     .then(res => {
       console.log(res.data)
-      // dispatch({ type: UPDATEPOINT_SUCCESS, payload: res.data })
-    })// .catch(err => {
-  // (dispatch({ type: UPDATEPOINT_FAIL, payload: err }))
-    // })
+      dispatch({ type: UPDATEPOINT_SUCCESS, payload: res.data })
+    }).catch(err => {
+      (dispatch({ type: UPDATEPOINT_FAIL, payload: err }))
+    })
 }

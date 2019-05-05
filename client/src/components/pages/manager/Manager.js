@@ -26,7 +26,7 @@ class Manager extends Component {
 
   // }
   render () {
-    const { name, email, teamName, description, favPlayer, favTeam, totalPoint } = this.props.auth.user
+    const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.props.auth.user
     const { comments } = this.props.comment
     const commentCard = this.props.comment.comments ? (
       comments.map(comment => {
@@ -57,7 +57,7 @@ class Manager extends Component {
               <p>Team: {teamName}</p>
               <p>Favorite team: {favTeam}</p>
               <p>Favorite player: {favPlayer}</p>
-              <p>My total points is: {totalPoint}</p>
+              <p>My total points is: {totalPoints}</p>
             </div>
           </div>
           <hr />
