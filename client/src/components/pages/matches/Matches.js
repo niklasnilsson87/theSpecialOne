@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 import { getPlayers } from '../../../actions/playerActions'
+import { updatePoints } from '../../../actions/editActions'
 import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 // import MatchesModal from './MatchesModal'
-import Counter from './Counter'
+// import Counter from './Counter'
 
 
 class Matches extends Component {
@@ -19,7 +20,8 @@ class Matches extends Component {
 
   toggle = () => {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      awayTeamValue: ''
     })
   }
 
@@ -31,7 +33,7 @@ class Matches extends Component {
   }
 
   componentDidUpdate() {
-    this.winLose()
+      this.winLose()
   }
 
   loadUsers() {
@@ -72,11 +74,12 @@ class Matches extends Component {
       .then(res => {
         this.setState({ awayTeamValue: this.setValue(res.data)})
       })
-    this.toggle()
+  
+      this.toggle()
+  
   }
 
   scoreCard = (decider) => {
-    
     return (
       <Modal
       isOpen={this.state.modal}
@@ -99,6 +102,7 @@ class Matches extends Component {
    winLose = () => {
     if (this.state.awayTeamValue !== '') {
     if (this.state.homeTeamValue > this.state.awayTeamValue) {
+      this.props.updatePoints(3, this.props.auth.user)
       return (
         this.scoreCard('You Win!')
       )
@@ -142,15 +146,16 @@ class Matches extends Component {
       <Container>
         <h1>Matches</h1>
         {userCard}
-        {this.winLose()}
+        {this.scoreCard()}
         {/* <MatchesModal /> */}
-        <Counter />
+        {/* <Counter /> */}
       </Container>
     )
   }
 }
 
 Matches.propTypes = {
+  updatePoints: PropTypes.func.isRequired,
   getPlayers: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -161,4 +166,4 @@ const mapStateToProps = state => ({
   player: state.player
 })
 
-export default connect(mapStateToProps, { getPlayers })(Matches)
+export default connect(mapStateToProps, { getPlayers, updatePoints })(Matches)

@@ -15,6 +15,16 @@ router.post('/', async (req, res) => {
   res.json(userUpdate)
 })
 
+router.post('/points', async (req, res) => {
+  const { point, _id } = req.body
+
+  const userUpdate = await User.findById({ _id }).select('-password')
+  userUpdate.totalPoints = userUpdate.totalPoints + point
+  console.log(userUpdate)
+  await userUpdate.save()
+  res.json(userUpdate)
+})
+
 router.get('/', async (req, res) => {
   try {
     const allUsers = await User.find({}).select('-password')

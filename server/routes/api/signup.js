@@ -27,16 +27,17 @@ router.post('/', (res, req) => {
         teamName,
         description: 'no description',
         favPlayer: 'N/A',
-        favTeam: 'N/A'
+        favTeam: 'N/A',
+        totalPoints: 0
       })
 
       saltAndHash(newUser)
         .then(() => {
           newUser.save()
         })
-      // for (let i = 0; i < 3; i++) {
-      //   generatePlayer(newUser.id, newUser.teamName)
-      // }
+      for (let i = 0; i < 4; i++) {
+        generatePlayer(newUser.id, newUser.teamName)
+      }
       sign(newUser)
         .then(token => {
           res.res.json({
@@ -48,7 +49,8 @@ router.post('/', (res, req) => {
               teamName: newUser.teamName,
               description: newUser.description,
               favTeam: newUser.favTeam,
-              favPlayer: newUser.favPlayer
+              favPlayer: newUser.favPlayer,
+              totalPoints: newUser.totalPoints
             } })
         })
     })
