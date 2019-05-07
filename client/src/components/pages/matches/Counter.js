@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 class Counter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       counter : 0 ,
       countend : 90,
@@ -43,7 +43,7 @@ class Counter extends Component {
   render() {
     return (
       <div>
-        <h1>
+        <h1 className='text-center'>
           {this.state.counter}
         </h1>
       </div>

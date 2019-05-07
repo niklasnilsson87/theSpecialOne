@@ -7,17 +7,20 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 // import MatchesModal from './MatchesModal'
-// import Counter from './Counter'
+import Counter from './Counter'
 
 
 class Matches extends Component {
-  state = {
-    modal: false,
-    homeTeamValue: '',
-    awayTeamValue: '',
-    decider: '',
-    users: []
-  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      modal: false,
+      homeTeamValue: '',
+      awayTeamValue: '',
+      decider: '',
+      users: []
+    }
+}
 
   toggle = () => {
     this.setState({
@@ -72,6 +75,7 @@ class Matches extends Component {
         this.setState({ awayTeamValue: this.setValue(res.data)})
       })
       .then(() => {
+        console.log(_id)
         this.winLose()
       })
       this.toggle()
@@ -138,6 +142,7 @@ class Matches extends Component {
         </ModalHeader>
         <ModalBody>
         <div className="manager-card">
+        <Counter onUpdate={this.state} />
           <h3 className="decider text-center">{this.state.decider}</h3>
         </div>
         </ModalBody>
