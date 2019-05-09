@@ -26,102 +26,102 @@ class Player extends Component {
 
             <p className='stats'>Mental</p>
             <div className='flex'>
-              <span>Aggression</span>
-              <Progress value={player.attributes.mental.aggression} max={20} />
-              <span>{player.attributes.mental.aggression}</span>
+              <span className='col-4'>Aggression</span>
+              <Progress className='col-6' value={player.attributes.mental.aggression} max={20} />
+              <span className='col-1'>{player.attributes.mental.aggression}</span>
             </div>
             <div className='flex'>
-              <span>Bravery</span>
-              <Progress value={player.attributes.mental.bravery} max={20} />
-              <span>{player.attributes.mental.bravery}</span>
+              <span className='col-4'>Bravery</span>
+              <Progress className='col-6' value={player.attributes.mental.bravery} max={20} />
+              <span className='col-1'>{player.attributes.mental.bravery}</span>
             </div>
             <div className='flex'>
-              <span>Composure</span>
-              <Progress value={player.attributes.mental.composure} max={20} />
-              <span>{player.attributes.mental.composure}</span>
+              <span className='col-4'>Composure</span>
+              <Progress className='col-6' value={player.attributes.mental.composure} max={20} />
+              <span className='col-1'>{player.attributes.mental.composure}</span>
             </div>
             <div className='flex'>
-              <span>Concentration</span>
-              <Progress value={player.attributes.mental.concentration} max={20} />
-              <span>{player.attributes.mental.concentration}</span>
+              <span className='col-4'>Concentration</span>
+              <Progress className='col-6' value={player.attributes.mental.concentration} max={20} />
+              <span className='col-1'>{player.attributes.mental.concentration}</span>
             </div>
             <div className='flex'>
-              <span>Leadership</span>
-              <Progress value={player.attributes.mental.leadership} max={20} />
-              <span>{player.attributes.mental.leadership}</span>
+              <span className='col-4'>Leadership</span>
+              <Progress className='col-6' value={player.attributes.mental.leadership} max={20} />
+              <span className='col-1'>{player.attributes.mental.leadership}</span>
             </div>
             <div className='flex'>
-              <span>Positioning</span>
-              <Progress value={player.attributes.mental.positioning} max={20} />
-              <span>{player.attributes.mental.positioning}</span>
+              <span className='col-4'>Positioning</span>
+              <Progress className='col-6' value={player.attributes.mental.positioning} max={20} />
+              <span className='col-1'>{player.attributes.mental.positioning}</span>
             </div>
             <div className='flex'>
-              <span>Team Work</span>
-              <Progress value={player.attributes.mental.teamWork} max={20} />
-              <span>{player.attributes.mental.teamWork}</span>
+              <span className='col-4'>Team Work</span>
+              <Progress className='col-6' value={player.attributes.mental.teamWork} max={20} />
+              <span className='col-1'>{player.attributes.mental.teamWork}</span>
             </div>
             <div className='flex'>
-              <span>Work Rate</span>
-              <Progress value={player.attributes.mental.workRate} max={20} />
-              <span>{player.attributes.mental.workRate}</span>
+              <span className='col-4'>Work Rate</span>
+              <Progress className='col-6' value={player.attributes.mental.workRate} max={20} />
+              <span className='col-1'>{player.attributes.mental.workRate}</span>
             </div>
 
             <p className='stats'>Physical</p>
             <div className='flex'>
-              <span>Balance</span>
-              <Progress value={player.attributes.physical.balance} max={20} />
-              <span>{player.attributes.physical.balance}</span>
+              <span className='col-4'>Balance</span>
+              <Progress className='col-6' value={player.attributes.physical.balance} max={20} />
+              <span className='col-1'>{player.attributes.physical.balance}</span>
             </div>
             <div className='flex'>
-              <span>Jumping</span>
-              <Progress value={player.attributes.physical.jumping} max={20} />
-              <span>{player.attributes.physical.jumping}</span>
+              <span className='col-4'>Jumping</span>
+              <Progress className='col-6' value={player.attributes.physical.jumping} max={20} />
+              <span className='col-1'>{player.attributes.physical.jumping}</span>
             </div>
             <div className='flex'>
-              <span>Speed</span>
-              <Progress value={player.attributes.physical.speed} max={20} />
-              <span>{player.attributes.physical.speed}</span>
+              <span className='col-4'>Speed</span>
+              <Progress className='col-6' value={player.attributes.physical.speed} max={20} />
+              <span className='col-1'>{player.attributes.physical.speed}</span>
             </div>
             <div className='flex'>
-              <span>Stamina</span>
-              <Progress value={player.attributes.physical.stamina} max={20} />
-              <span>{player.attributes.physical.stamina}</span>
+              <span className='col-4'>Stamina</span>
+              <Progress className='col-6' value={player.attributes.physical.stamina} max={20} />
+              <span className='col-1'>{player.attributes.physical.stamina}</span>
             </div>
             <div className='flex'>
-              <span>Strength</span>
-              <Progress value={player.attributes.physical.strength} max={20} />
-              <span>{player.attributes.physical.strength}</span>
+              <span className='col-4'>Strength</span>
+              <Progress className='col-6' value={player.attributes.physical.strength} max={20} />
+              <span className='col-1'>{player.attributes.physical.strength}</span>
             </div>
             <p className='stats'>Tecnical</p>
             <div className='flex'>
-              <span>Crossing</span>
-              <Progress value={player.attributes.tecnical.crossing} max={20} />
-              <span>{player.attributes.tecnical.crossing}</span>
+              <span className='col-4'>Crossing</span>
+              <Progress className='col-6' value={player.attributes.tecnical.crossing} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.crossing}</span>
             </div>
             <div className='flex'>
-              <span>Dribbling</span>
-              <Progress value={player.attributes.tecnical.dribbling} max={20} />
-              <span>{player.attributes.tecnical.dribbling}</span>
+              <span className='col-4'>Dribbling</span>
+              <Progress className='col-6' value={player.attributes.tecnical.dribbling} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.dribbling}</span>
             </div>
             <div className='flex'>
-              <span>Finishing</span>
-              <Progress value={player.attributes.tecnical.finishing} max={20} />
-              <span>{player.attributes.tecnical.finishing}</span>
+              <span className='col-4'>Finishing</span>
+              <Progress className='col-6' value={player.attributes.tecnical.finishing} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.finishing}</span>
             </div>
             <div className='flex'>
-              <span>Heading</span>
-              <Progress value={player.attributes.tecnical.heading} max={20} />
-              <span>{player.attributes.tecnical.heading}</span>
+              <span className='col-4'>Heading</span>
+              <Progress className='col-6' value={player.attributes.tecnical.heading} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.heading}</span>
             </div>
             <div className='flex'>
-              <span>Marking</span>
-              <Progress value={player.attributes.tecnical.marking} max={20} />
-              <span>{player.attributes.tecnical.marking}</span>
+              <span className='col-4'>Marking</span>
+              <Progress className='col-6' value={player.attributes.tecnical.marking} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.marking}</span>
             </div>
             <div className='flex'>
-              <span>Passing</span>
-              <Progress value={player.attributes.tecnical.passing} max={20} />
-              <span>{player.attributes.tecnical.passing}</span>
+              <span className='col-4'>Passing</span>
+              <Progress className='col-6' value={player.attributes.tecnical.passing} max={20} />
+              <span className='col-1'>{player.attributes.tecnical.passing}</span>
             </div>
           </div>
         )

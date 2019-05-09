@@ -1,5 +1,5 @@
 #root {
-  background-color: rgb(67, 161, 67);
+  background-color: #6db43a;
   min-height: 100vh;
   padding-bottom: 40px;
 }
@@ -14,7 +14,8 @@
 
 .progress {
   margin-top: 5px;
-  width: 53%;
+  padding-left: 0 !important;
+  /* width: 53%; */
 }
 
 .inline {
@@ -31,16 +32,15 @@
 .flex {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .flex span {
-  width: 33%;
   font-size: 85%;
 }
 
 .flex span:last-child {
   text-align: right;
-  width: 10%;
 }
 
 .progress-bar {
@@ -60,6 +60,10 @@
 .player-name {
   border-bottom: 1px solid lightgray;
   padding: 6px;
+}
+
+.player-name:hover {
+  color: blue;
 }
 
 .manager-info > * {
@@ -85,7 +89,7 @@
 }
 
 .card {
-  padding: 15px;
+  padding: 15px 20px 15px 5px;
 }
 
 label {
@@ -214,8 +218,30 @@ a {
 
 select.form-control{
   width: 80%;
+  margin: 0 auto;
 }
 
 .hidden {
   visibility: hidden;
+}
+
+.disabled {
+  cursor: default !important;
+  pointer-events: none;
+  background-color: #dfdfdf;
+  color: #9f9f9f;
+}
+
+button {
+  cursor: pointer;
+}
+
+.flex .col-1, .flex .col-3, .flex .col-4, .flex .col-5 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.flex .btn {
+  padding: 0 !important;
+  border-radius: 30% !important;
 }

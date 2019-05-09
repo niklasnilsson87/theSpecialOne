@@ -1,30 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Button, Input, Label, Form, FormGroup } from 'reactstrap'
+import { Button, Input, Form, FormGroup } from 'reactstrap'
 import { sendComments } from '../../../actions/CommentAction'
 
 class Comments extends Component {
   state = {
-    comment: ''
+    comment: '',
+    id: ''
   }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  componentDidMount() {
+    this.setState({ id: this.props.auth._id})
+  }
+
   onSubmit = (e) => {
     e.preventDefault()
     const { comment } = this.state
-    const { _id, teamName, name } = this.props.auth
+    let { teamName, name } = this.props.auth
 
-    this.props.sendComments(_id, comment, teamName, name)
+    if (this.props.param !== undefined) {
+      this.setState({ id: this.props.param },
+        () => this.props.sendComments(this.state.id, comment, teamName, name))
+    } else {
+      this.props.sendComments(this.state.id, comment, teamName, name)
+    }
+
     this.setState({ comment: ''})
-
   }
+
   render () {
     return (
-
       <div className='manager-card'>
         <h3 className='padd'>Send message</h3>
         <Form onSubmit={this.onSubmit}>
@@ -37,11 +47,9 @@ class Comments extends Component {
               onChange={this.onChange}
               value={this.state.comment}
             />
-            <Button
-              color='success'
-              style={{ marginTop: '2rem' }}
-              block
-            >Send</Button>
+            <button
+              className='btn-color'
+            >Send</button>
           </FormGroup>
         </Form>
       </div>
@@ -50,6 +58,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
+  
   sendComments: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired

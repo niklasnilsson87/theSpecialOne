@@ -5,6 +5,7 @@ import { updatePoints } from '../../../actions/editActions'
 import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 // import MatchesModal from './MatchesModal'
 import Counter from './Counter'
@@ -114,7 +115,9 @@ class Matches extends Component {
       users.map(user => {
         return (
           <div className='manager-card comment' key={user._id}>
+            <Link to={`/user/${user._id}`}>
               <h3 className='player-name'>{user.teamName}</h3>
+            </Link>
               <div className="player-contact">
                 <span>{user.name}</span>
               </div>

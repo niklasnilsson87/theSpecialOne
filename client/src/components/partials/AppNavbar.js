@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink, Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  Container
+  NavItem
 } from 'reactstrap'
 import Logout from '../pages/auth/Logout'
 
@@ -77,7 +76,7 @@ class AppNavbar extends Component {
     return (
     <div>
       <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
-          <NavbarBrand href="/">The Special One</NavbarBrand>
+          <NavbarBrand><Link to="/home">The Special One</Link></NavbarBrand>
           { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
           

@@ -27,6 +27,26 @@ export const getPlayers = ({ _id }) => dispatch => {
     })
 }
 
+export const updatePlayer = (trainplayer) => dispatch => {
+  dispatch(setPlayerLoading())
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  // Request body
+  const body = JSON.stringify(trainplayer)
+  // console.log(body)
+
+  return axios.post('/api/players/update', body, config)
+    .then(res => {
+      console.log(res)
+    })
+}
+
 export const setPlayerLoading = () => {
   return {
     type: PLAYER_LOADING

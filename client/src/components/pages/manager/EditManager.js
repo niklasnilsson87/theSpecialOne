@@ -43,13 +43,12 @@ class Manager extends Component {
   render () {
     return (
       <div>
-       <Button
-        color="success"
-        style={{marginBottom: '2rem'}}
+       <button
+        className='btn-color'
         onClick={this.toggle} 
       >
       Edit profile
-      </Button>
+      </button>
 
       <Modal
         isOpen={this.state.modal}

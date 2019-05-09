@@ -22,5 +22,20 @@ router.post('/', async (req, res) => {
   res.json(players)
 })
 
+router.post('/update', async (req, res) => {
+  const { _id } = req.body
+
+  const updatePlayer = req.body
+  console.log(updatePlayer)
+
+  try {
+    let update = await Player.replaceOne({ _id }, updatePlayer)
+    console.log(update)
+    await res.json(update)
+  } catch (error) {
+    console.log('error', error)
+  }
+})
+
 // Exports
 module.exports = router

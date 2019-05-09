@@ -1,39 +1,35 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
+import Manager from './Manager'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import EditManager from './EditManager'
 import Comments from './Comments'
 import { getComments } from '../../../actions/CommentAction'
-import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 
-class Manager extends Component {
+class viewManager extends Component {
   state = {
-    selectedFile: null,
-    params: ''
+    id: null,
+    user: []
   }
 
   componentDidMount() {
-    this.props.getComments(this.props.auth.user._id)
-    
-    console.log(this.props.match.params.name)
-    if (!this.props.match.params.name === undefined) {
-      this.setState({ params: this.props.match.params.name})
-    }
+    this.loadUser()
+    this.props.getComments(this.props.match.params.name)
   }
 
-  // fileSelectorHandler = e => {
-  //   console.log(e.target.files[0])
-  //   this.setState({
-  //     selectedFile: e.target.files[0]
-  //   })
+  // componentDidUpdate() {
+  //   console.log(this.state.user.name)
   // }
 
-  // fileUploadHandler = () => {
+  loadUser() {
+    axios.get('/api/edit').then(res => {
+      this.setState({ user: res.data.find(user => user._id === this.props.match.params.name)})
+    })
+  }
 
-  // }
   render () {
-    const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.props.auth.user
+    const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.state.user
     const { comments } = this.props.comment
     const commentCard = this.props.comment.comments ? (
       comments.map(comment => {
@@ -75,22 +71,17 @@ class Manager extends Component {
           </div>
         </div>
 
-        <div className='button' style={{ textAlign: 'center', marginTop: '20px' }}>
-          <EditManager>Change profile</EditManager>
-          {/* <input type='file' onChange={this.fileSelectorHandler}/>
-          <Button className='btn' onClick={this.fileUploadHandler}>Change Profile pic</Button> */}
-        </div>
         <div className="comments">
           <h2 className='mb-4 mt-4 text-center'>Comments</h2>
           {commentCard}
         </div>
-        <Comments params={this.props.match.params}/>
+        <Comments param={this.props.match.params.name}/>
       </Container>
     )
   }
 }
 
-Manager.propTypes = {
+viewManager.propTypes = {
   getComments: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired
@@ -101,4 +92,5 @@ const mapStateToProps = (state) => ({
   comment: state.comment
 })
 
-export default connect(mapStateToProps, { getComments })(Manager)
+
+export default connect(mapStateToProps, { getComments })(viewManager)

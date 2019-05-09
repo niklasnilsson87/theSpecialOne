@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import store from './store'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import PageNotFound from './components/pages/error/PageNotFound'
 import AppNavbar from './components/partials/AppNavbar'
 import Footer from './components/partials/Footer'
 import Home from './components/pages/Home'
 import Manager from './components/pages/manager/Manager'
+import viewManager from './components/pages/manager/viewManager'
 import Matches from './components/pages/matches/Matches'
 import Players from './components/pages/Players'
 import Training from './components/pages/Training'
@@ -15,8 +18,8 @@ import PrivateRoutes from './privateRoutes/PrivateRoutes'
 import { loadUser } from './actions/authActions'
 
 class App extends Component {
-  componentDidMount () {
-    store.dispatch(loadUser())
+  async componentDidMount () {
+    await store.dispatch(loadUser())
   }
 
   render () {
@@ -31,6 +34,8 @@ class App extends Component {
           <PrivateRoutes path='/training' component={Training} />
           <PrivateRoutes path='/player' component={Players} />
           <PrivateRoutes path='/home' component={Home} />
+          <PrivateRoutes path='/user/:name' component={viewManager} />
+          <Route component={PageNotFound} />
         </Switch>
         <Footer />
       </BrowserRouter>
