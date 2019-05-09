@@ -1,5 +1,6 @@
 export const GET_PLAYER = 'GET_PLAYER'
 export const PLAYER_LOADING = 'PLAYER_LOADING'
+export const FAILD_LOADING_PLAYER = 'FAILD_LOADING_PLAYER'
 export const USER_LOADING = 'USER_LOADING'
 export const USER_LOADED = 'USER_LOADED'
 export const AUTH_ERROR = 'AUTH_ERROR'

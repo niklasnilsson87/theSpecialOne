@@ -1,39 +1,30 @@
 const router = require('express').Router()
-// Player model
+const auth = require('../../middleware/authMiddleware')
 const Player = require('../../models/Player')
-
-// @Route  GET api/players
-// @desc   Get all players
-// access  Public
-// router.get('/', (req, res) => {
-//   Player.find()
-//     .then(players => res.json(players))
-// })
 
 // @Route  POST api/players
 // @desc   Create a player
 // access  Public
-
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { _id } = req.body
 
-  const players = await Player.find({ owner: _id })
-
-  res.json(players)
+  try {
+    const players = await Player.find({ owner: _id })
+    await res.json(players)
+  } catch (error) {
+    await res.status(400).json({ msg: 'Could not find any players' })
+  }
 })
 
-router.post('/update', async (req, res) => {
+router.post('/update', auth, async (req, res) => {
   const { _id } = req.body
-
   const updatePlayer = req.body
-  console.log(updatePlayer)
 
   try {
     let update = await Player.replaceOne({ _id }, updatePlayer)
-    console.log(update)
     await res.json(update)
   } catch (error) {
-    console.log('error', error)
+    await res.status(400).json({ msg: 'Could not update player..' })
   }
 })
 

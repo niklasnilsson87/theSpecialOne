@@ -1,10 +1,10 @@
 const router = require('express').Router()
-// const auth = require('../../middleware/authMiddleware')
+const auth = require('../../middleware/authMiddleware')
 
 // User Model
 const User = require('../../models/User')
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { desc, favPlayer, favTeam, email } = req.body
 
   const userUpdate = await User.findOne({ email }).select('-password')
@@ -15,12 +15,11 @@ router.post('/', async (req, res) => {
   res.json(userUpdate)
 })
 
-router.post('/points', async (req, res) => {
+router.post('/points', auth, async (req, res) => {
   const { point, _id } = req.body
 
   const userUpdate = await User.findById({ _id }).select('-password')
   userUpdate.totalPoints = userUpdate.totalPoints + point
-  console.log(userUpdate)
   await userUpdate.save()
   res.json(userUpdate)
 })

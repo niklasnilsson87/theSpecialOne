@@ -31,7 +31,6 @@ app.use('/api/signup', require('./routes/api/signup'))
 app.use('/api/login', require('./routes/api/login'))
 app.use('/api/edit', require('./routes/api/edit'))
 app.use('/api/comment', require('./routes/api/comment'))
-app.use('/api/getComment', require('./routes/api/getComment'))
 
 const port = process.env.PORT
 

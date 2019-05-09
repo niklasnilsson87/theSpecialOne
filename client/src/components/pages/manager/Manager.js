@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import EditManager from './EditManager'
 import Comments from './Comments'
 import { getComments } from '../../../actions/CommentAction'
-import { Redirect } from 'react-router-dom'
 
 class Manager extends Component {
   state = {
@@ -15,8 +14,7 @@ class Manager extends Component {
 
   componentDidMount() {
     this.props.getComments(this.props.auth.user._id)
-    
-    console.log(this.props.match.params.name)
+
     if (!this.props.match.params.name === undefined) {
       this.setState({ params: this.props.match.params.name})
     }

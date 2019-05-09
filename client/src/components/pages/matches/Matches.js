@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import MatchesModal from './MatchesModal'
+import { tokenConfig } from '../../../actions/authActions'
 import Counter from './Counter'
 
 
@@ -60,7 +60,6 @@ class Matches extends Component {
   onClick = (e) => {
     e.preventDefault()
     const _id = e.target.value
-    
     // Headers
     const config = {
       headers: {

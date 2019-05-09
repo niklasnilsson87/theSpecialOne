@@ -1,47 +1,30 @@
-import { GET_PLAYER, PLAYER_LOADING, GET_ERRORS } from './types'
+import { GET_PLAYER, PLAYER_LOADING, FAILD_LOADING_PLAYER } from './types'
 import { returnErrors } from './errorActions'
+import { tokenConfig } from './authActions'
 import axios from 'axios'
 
-export const getPlayers = ({ _id }) => dispatch => {
+export const getPlayers = ({ _id }) => (dispatch, getState) => {
   dispatch(setPlayerLoading())
 
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-
-  // Request body
   const body = JSON.stringify({ _id })
 
-  return axios.post('/api/players', body, config)
+  return axios.post('/api/players', body, tokenConfig(getState))
     .then(res => {
       dispatch({ type: GET_PLAYER, payload: res.data })
-    })
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'))
+    }).catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'FAILD_LOADING_PLAYER'))
       dispatch({
-        type: GET_ERRORS
+        type: FAILD_LOADING_PLAYER
       })
     })
 }
 
-export const updatePlayer = (trainplayer) => dispatch => {
+export const updatePlayer = (trainplayer) => (dispatch, getState) => {
   dispatch(setPlayerLoading())
 
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-
-  // Request body
   const body = JSON.stringify(trainplayer)
-  // console.log(body)
 
-  return axios.post('/api/players/update', body, config)
+  return axios.post('/api/players/update', body, tokenConfig(getState))
     .then(res => {
       console.log(res)
     })
