@@ -29,7 +29,7 @@ router.post('/', (res, req) => {
         favPlayer: 'N/A',
         favTeam: 'N/A',
         totalPoints: 0,
-        lastPlayed: ''
+        lastPlayed: '0'
       })
 
       saltAndHash(newUser)

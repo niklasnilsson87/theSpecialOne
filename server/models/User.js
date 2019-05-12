@@ -35,7 +35,8 @@ const userSchema = new mongoose.Schema({
     type: Number
   },
   lastPlayed: {
-    type: Date
+    type: Number,
+    default: 0
   }
 })
 
