@@ -22,11 +22,6 @@ class Training extends Component {
     }
   }
 
-  componentDidUpdate() {
-    // console.log(this.state.trainPlayer)
-    // console.log(this.state.copyPlayer)
-  }
-
   onChange = e => {
     const playerToTrain = this.props.player.players.find(p => p._id === e.target.value)
     this.setState({
@@ -57,8 +52,6 @@ class Training extends Component {
   onMinus = (e) => {
     const arr = e.target.name.split('.')
     let targetValue = Number(e.target.value)
-    console.log(this.state.trainPlayer)
-    console.log(this.state.constPlayer)
 
     if (targetValue > this.state.constPlayer[arr[0]][arr[1]][arr[2]]) {
       let trainPlayer = {...this.state.trainPlayer}
@@ -74,16 +67,12 @@ class Training extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const { trainPlayer } = this.state
-
-    console.log(trainPlayer)
     this.props.updatePlayer(trainPlayer)
     this.setState({ isChange: false, isDisabled: true })
   }
 
   render () {
-
     const showButton = <button type='submit' className={this.state.isChange ? 'btn-color' : 'btn-color hidden'} onClick={this.onSubmit}>send skills</button>
-
     const { players } = this.props.player
     const selectPlayer = 
       players.map(player => {

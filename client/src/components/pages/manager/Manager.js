@@ -5,38 +5,47 @@ import PropTypes from 'prop-types'
 import EditManager from './EditManager'
 import Comments from './Comments'
 import { getComments } from '../../../actions/CommentAction'
+import { loadUser } from '../../../actions/helpers/helperAction'
 
 class Manager extends Component {
   state = {
     selectedFile: null,
-    params: ''
+    isParamsUndefined: this.props.match.params.name === undefined,
+    isOwner: true,
+    path: this.props.path,
+    user: []
   }
 
   componentDidMount() {
-    this.props.getComments(this.props.auth.user._id)
-
-    if (!this.props.match.params.name === undefined) {
-      this.setState({ params: this.props.match.params.name})
+    if (this.state.isParamsUndefined) {
+      this.setState({ user: this.props.auth.user}, () => this.props.getComments(this.state.user._id))
+    } else {
+      loadUser(this.props.match.params.name).then((userObj) => {
+      this.setState({ user: userObj, isOwner: false}, () => this.props.getComments(this.state.user._id))
+      })
     }
   }
 
-  // fileSelectorHandler = e => {
-  //   console.log(e.target.files[0])
-  //   this.setState({
-  //     selectedFile: e.target.files[0]
-  //   })
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.path !== this.state.path) {
+      this.setState({ user: this.props.auth.user, isOwner: true }, () => this.props.getComments(this.state.user._id))
+    }
+  }
 
-  // fileUploadHandler = () => {
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.match.path !== prevState.path && !undefined){
+      return {path: nextProps.match.path};
+    }
+    else return null;
+  }
 
-  // }
   render () {
-    const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.props.auth.user
+    const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.state.user
     const { comments } = this.props.comment
     const commentCard = this.props.comment.comments ? (
       comments.map(comment => {
         return (
-          <div className='manager-card comment' key={comment._id}>
+          <div className={this.state.isOwner ? 'manager-card comment' : 'visit-card comment'} key={comment._id}>
             <h3 className='player-name'>{comment.user}</h3>
             <div className="player-contact">
               <span>{comment.date.substring(0, 10)}</span>
@@ -53,7 +62,7 @@ class Manager extends Component {
         <p className='center'>no comments yet</p>
     return (
       <Container>
-        <div className='manager-card' >
+        <div className={this.state.isOwner ? 'manager-card comment' : 'visit-card comment'} >
           <h2 className='player-name'>{name}</h2>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>
             <div className='img' style={{ display: 'inline-block', width: '100px', border: '2px solid', textAlign: 'center', borderRadius: '6px', height: '150px' }}>Image</div>
@@ -74,15 +83,13 @@ class Manager extends Component {
         </div>
 
         <div className='button' style={{ textAlign: 'center', marginTop: '20px' }}>
-          <EditManager>Change profile</EditManager>
-          {/* <input type='file' onChange={this.fileSelectorHandler}/>
-          <Button className='btn' onClick={this.fileUploadHandler}>Change Profile pic</Button> */}
+          <EditManager isOwner={this.state.isOwner}>Change profile</EditManager>
         </div>
         <div className="comments">
           <h2 className='mb-4 mt-4 text-center'>Comments</h2>
           {commentCard}
         </div>
-        <Comments params={this.props.match.params}/>
+        <Comments params={this.props.match.params} isOwner={this.state.isOwner} />
       </Container>
     )
   }
@@ -90,6 +97,7 @@ class Manager extends Component {
 
 Manager.propTypes = {
   getComments: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired
 }
@@ -99,4 +107,4 @@ const mapStateToProps = (state) => ({
   comment: state.comment
 })
 
-export default connect(mapStateToProps, { getComments })(Manager)
+export default connect(mapStateToProps, { getComments, loadUser })(Manager)

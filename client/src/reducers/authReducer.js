@@ -33,6 +33,7 @@ export default function (state = initialState, action) {
       }
     case DESCRIPTION_SUCCESS:
     case UPDATEPOINT_SUCCESS:
+      state.user.lastPlayed = action.payload.lastPlayed
       state.user.totalPoints = action.payload.totalPoints
       state.user.description = action.payload.description
       state.user.favPlayer = action.payload.favPlayer

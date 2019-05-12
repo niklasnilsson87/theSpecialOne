@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { tokenConfig } from '../../../actions/authActions'
 import Counter from './Counter'
 
 
@@ -19,6 +18,7 @@ class Matches extends Component {
       homeTeamValue: '',
       awayTeamValue: '',
       decider: '',
+      lastGame: this.props.auth.user.lastPlayed,
       users: []
     }
 }
@@ -31,6 +31,21 @@ class Matches extends Component {
   }
 
   componentDidMount(){
+  
+    let dateNow = new Date()
+    dateNow.setHours(dateNow.getHours() + 4)
+    
+    let newDate = dateNow.toISOString()
+
+    console.log(newDate)
+    console.log(this.state.lastGame)
+
+    if (newDate < this.props.auth.user.lastPlayed) {
+      console.log('yes')
+    } else {
+      console.log('no')
+    }
+
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
@@ -60,14 +75,27 @@ class Matches extends Component {
   onClick = (e) => {
     e.preventDefault()
     const _id = e.target.value
-    // Headers
+    
+    this.sendPost(_id)
+  
+    this.toggle()
+  }
+
+  gamefinished() {
+    //
+  }
+
+  sendPost = (_id) => {
     const config = {
       headers: {
       'Content-Type': 'application/json'
       }
     }
 
-    // Request body
+    if (this.props.auth.token) {
+      config.headers['x-auth-token'] = this.props.auth.token
+    }
+
     const body = JSON.stringify({ _id })
 
     axios.post('/api/players', body, config)
@@ -75,16 +103,15 @@ class Matches extends Component {
         this.setState({ awayTeamValue: this.setValue(res.data)})
       })
       .then(() => {
-        console.log(_id)
         this.winLose()
       })
-      this.toggle()
   }
 
    winLose = () => {
     if (this.state.awayTeamValue !== '') {
     if (this.state.homeTeamValue > this.state.awayTeamValue) {
-      this.props.updatePoints(3, this.props.auth.user)
+      const lastGame = new Date().toISOString()
+      this.props.updatePoints(lastGame, 3, this.props.auth.user)
       this.setState({
         awayTeamValue: '', 
         decider: 'You Win!'
@@ -108,7 +135,6 @@ class Matches extends Component {
 }
 
   render () {
-    // dont tuch
     const { users } = this.state
     const userCard = this.state.users ? (
       users.map(user => {

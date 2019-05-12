@@ -41,15 +41,11 @@ class Manager extends Component {
   }
 
   render () {
-    return (
-      <div>
-       <button
-        className='btn-color'
-        onClick={this.toggle} 
-      >
-      Edit profile
-      </button>
+    const editButton = this.props.isOwner ? <button className='btn-color' onClick={this.toggle}>Edit profile</button> : null
 
+    return (       
+      <div>
+        {editButton}
       <Modal
         isOpen={this.state.modal}
         toggle={this.toggle}

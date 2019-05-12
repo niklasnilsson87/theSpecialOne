@@ -62,9 +62,9 @@
   padding: 6px;
 }
 
-.player-name:hover {
+/* .player-name:hover {
   color: blue;
-}
+} */
 
 .manager-info > * {
   margin-left: 7px;
@@ -72,7 +72,13 @@
 }
 
 .manager-card {
-  background-color: lightblue;
+  background-color: #86C5D8;
+  border-radius: 4px;
+  box-shadow: 3px 2px 9px #aaaaa3;
+}
+
+.visit-card {
+  background-color: #C5D1EB;
   border-radius: 4px;
   box-shadow: 3px 2px 9px #aaaaa3;
 }

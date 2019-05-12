@@ -39,7 +39,8 @@ router.post('/', (res, req) => {
                   description: user.description,
                   favTeam: user.favTeam,
                   favPlayer: user.favPlayer,
-                  totalPoints: user.totalPoints
+                  totalPoints: user.totalPoints,
+                  lastPlayed: user.lastPlayed
                 } })
             })
         })

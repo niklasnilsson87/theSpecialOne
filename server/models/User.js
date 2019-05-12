@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema({
   },
   totalPoints: {
     type: Number
+  },
+  lastPlayed: {
+    type: Date
   }
 })
 

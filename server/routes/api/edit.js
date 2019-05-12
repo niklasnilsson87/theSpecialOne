@@ -16,10 +16,11 @@ router.post('/', auth, async (req, res) => {
 })
 
 router.post('/points', auth, async (req, res) => {
-  const { point, _id } = req.body
+  const { lastGame, point, _id } = req.body
 
   const userUpdate = await User.findById({ _id }).select('-password')
   userUpdate.totalPoints = userUpdate.totalPoints + point
+  userUpdate.lastPlayed = lastGame
   await userUpdate.save()
   res.json(userUpdate)
 })

@@ -35,7 +35,7 @@ class Comments extends Component {
 
   render () {
     return (
-      <div className='manager-card'>
+      <div className={this.props.isOwner ? 'manager-card comment' : 'visit-card comment'}>
         <h3 className='padd'>Send message</h3>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
@@ -58,7 +58,6 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-  
   sendComments: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired

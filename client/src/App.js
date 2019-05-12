@@ -8,7 +8,7 @@ import AppNavbar from './components/partials/AppNavbar'
 import Footer from './components/partials/Footer'
 import Home from './components/pages/Home'
 import Manager from './components/pages/manager/Manager'
-import viewManager from './components/pages/manager/viewManager'
+// import viewManager from './components/pages/manager/viewManager'
 import Matches from './components/pages/matches/Matches'
 import Players from './components/pages/Players'
 import Training from './components/pages/Training'
@@ -34,7 +34,7 @@ class App extends Component {
           <PrivateRoutes path='/training' component={Training} />
           <PrivateRoutes path='/player' component={Players} />
           <PrivateRoutes path='/home' component={Home} />
-          <PrivateRoutes path='/user/:name' component={viewManager} />
+          <PrivateRoutes path='/user/:name' component={Manager} />
           <Route component={PageNotFound} />
         </Switch>
         <Footer />
