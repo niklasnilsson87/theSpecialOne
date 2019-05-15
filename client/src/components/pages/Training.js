@@ -27,7 +27,7 @@ class Training extends Component {
     this.setState({
       playerID: e.target.value,
       trainPlayer: playerToTrain,
-    }, () => this.setState({ constPlayer: JSON.parse(JSON.stringify(this.state.trainPlayer))}))
+    }, () => this.setState({ constPlayer: JSON.parse(JSON.stringify(this.state.trainPlayer)) }))
 
   }
 
@@ -72,7 +72,7 @@ class Training extends Component {
   }
 
   render () {
-    const showButton = <button type='submit' className={this.state.isChange ? 'btn-color' : 'btn-color hidden'} onClick={this.onSubmit}>send skills</button>
+    const showButton = <button type='submit' className={this.state.isChange ? 'btn-color' : 'btn-color hidden'} onClick={this.onSubmit}>Send skills</button>
     const { players } = this.props.player
     const selectPlayer = 
       players.map(player => {
@@ -238,6 +238,7 @@ class Training extends Component {
       )
     return (
       <Container>
+        <h1 className="text-center">Training</h1>
           <div className='text-center mb-5'>
             <h2>Training Points {this.state.traningPoints}</h2>
           </div>

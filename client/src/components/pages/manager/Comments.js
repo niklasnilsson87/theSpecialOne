@@ -16,6 +16,7 @@ class Comments extends Component {
 
   componentDidMount() {
     this.setState({ id: this.props.auth._id})
+    console.log(this.props.params.name)
   }
 
   onSubmit = (e) => {
@@ -23,8 +24,8 @@ class Comments extends Component {
     const { comment } = this.state
     let { teamName, name } = this.props.auth
 
-    if (this.props.param !== undefined) {
-      this.setState({ id: this.props.param },
+    if (this.props.params.name !== undefined) {
+      this.setState({ id: this.props.params.name },
         () => this.props.sendComments(this.state.id, comment, teamName, name))
     } else {
       this.props.sendComments(this.state.id, comment, teamName, name)
@@ -36,7 +37,7 @@ class Comments extends Component {
   render () {
     return (
       <div className={this.props.isOwner ? 'manager-card comment' : 'visit-card comment'}>
-        <h3 className='padd'>Send message</h3>
+        <h3>Send message</h3>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
             <Input

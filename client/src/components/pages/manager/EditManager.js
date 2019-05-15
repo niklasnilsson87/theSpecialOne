@@ -85,11 +85,11 @@ class Manager extends Component {
                 onChange={this.descChange}
                 value={this.state.description}
               />
-              <Button
-                color="success"
+              <button
+                className='btn-color'
                 style={{marginTop: '2rem'}}
                 block
-              >Submit</Button>
+              >Submit</button>
             </FormGroup>
           </Form>
         </ModalBody>

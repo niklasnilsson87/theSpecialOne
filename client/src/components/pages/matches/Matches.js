@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Counter from './Counter'
+import GameEngine from './gameEngine/GameEngine'
 
 
 class Matches extends Component {
@@ -16,38 +16,30 @@ class Matches extends Component {
     this.state = {
       modal: false,
       homeTeamValue: '',
+      homeTeamPlayers: [],
+      homeTeamManager: this.props.auth.user,
       awayTeamValue: '',
+      awayTeamPlayers: [],
+      awayTeamManager: [],
       decider: '',
       lastGameDate: this.props.auth.user.lastPlayed,
       newGameDate: Date.now(), 
-      canIPlay: false,
+      canIPlay: true,
       users: []
     }
 }
 
   toggle = () => {
     this.setState({
-      modal: !this.state.modal,
-      awayTeamValue: ''
+      modal: !this.state.modal
     })
   }
 
-  componentDidUpdate() {
-    console.log('new date: ', this.state.newGameDate)
-    console.log('last GAme: ', this.state.lastGameDate)
-  }
+  componentDidMount() {
 
-  componentDidMount(){
-  
-    // let dateNow = new Date()
-    // dateNow.setHours(dateNow.getHours() + 4)
-    // let newDate = dateNow.toISOString()
-
-    this.setState({ newGameDate: this.state.lastGameDate + 4*3600*1000})
-
-    if (this.state.lastGameDate === 0 || this.state.lastGameDate > this.state.newGameDate) {
-      this.setState({ canIPlay: true})
-    }
+    // if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 4*3600*1000 < this.state.newGameDate)) {
+    //   this.setState({ canIPlay: true})
+    // }
 
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
@@ -73,24 +65,30 @@ class Matches extends Component {
   countValues = () => {
     const { players } = this.props.player
 
-    this.setState({ homeTeamValue: this.setValue(players)})
+    this.setState({
+      homeTeamPlayers: players,
+      homeTeamValue: this.setValue(players)})
   }
 
   onClick = (e) => {
     e.preventDefault()
     const _id = e.target.value
     
-    this.sendPost(_id)
-  
-    this.toggle()
-    this.setState({ lastGame: Date.now()})
+    this.setState({ awayTeamManager: this.state.users.find(user => user._id === e.target.value) })
+
+    this.getAwayTeamPlayers(_id).then(data => {
+    this.setState({
+      lastGameDate: Date.now(),
+      awayTeamPlayers: data,
+      awayTeamValue: this.setValue(data)
+      }, () => this.toggle())
+      
+    })
+
+      
   }
 
-  gamefinished() {
-    //
-  }
-
-  sendPost = (_id) => {
+  getAwayTeamPlayers = (_id) => {
     const config = {
       headers: {
       'Content-Type': 'application/json'
@@ -103,16 +101,14 @@ class Matches extends Component {
 
     const body = JSON.stringify({ _id })
 
-    axios.post('/api/players', body, config)
-      .then(res => {
-        this.setState({ awayTeamValue: this.setValue(res.data)})
-      })
-      .then(() => {
-        this.winLose()
-      })
+    return axios.post('/api/players', body, config)
+      .then(res => res.data)
+      // .then(() => {
+      //   this.winLose(_id)
+      // })
   }
 
-   winLose = () => {
+   winLose = (id) => {
     if (this.state.awayTeamValue !== '') {
     if (this.state.homeTeamValue > this.state.awayTeamValue) {
       const lastGame = Date.now()
@@ -129,9 +125,12 @@ class Matches extends Component {
         canIPlay: false
       })
     } else {
+      const lastGame = Date.now()
+      this.props.updatePoints(lastGame, 3, {_id: id})
       this.setState({
         awayTeamValue: '', 
         decider: 'You Lose!',
+        canIPlay: false
       })
     }
   } else {
@@ -143,7 +142,6 @@ class Matches extends Component {
 
   render () {
     const { users, canIPlay } = this.state
-    // const canIPlay = canIPlay ? <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button> : <button className='btn-color'>Wait</button>
     const userCard = this.state.users ? (
       users.map(user => {
         return (
@@ -166,7 +164,7 @@ class Matches extends Component {
       )
     return (
       <Container>
-        <h1>Matches</h1>
+        <h1 className="text-center">Matches</h1>
         {userCard}
       <Modal
         isOpen={this.state.modal}
@@ -179,7 +177,7 @@ class Matches extends Component {
         </ModalHeader>
         <ModalBody>
         <div className="manager-card">
-        <Counter onUpdate={this.state} />
+        <GameEngine stateFromManager={this.state}/>
           <h3 className="decider text-center">{this.state.decider}</h3>
         </div>
         </ModalBody>

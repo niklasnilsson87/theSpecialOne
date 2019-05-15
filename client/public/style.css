@@ -1,5 +1,5 @@
 #root {
-  background-color: #6db43a;
+  background-color: #58922f;
   min-height: 100vh;
   padding-bottom: 40px;
 }
@@ -12,10 +12,13 @@
   background-attachment: fixed;
 }
 
+h1, h2, h3 {
+  color: whitesmoke;
+}
+
 .progress {
   margin-top: 5px;
   padding-left: 0 !important;
-  /* width: 53%; */
 }
 
 .inline {
@@ -62,9 +65,10 @@
   padding: 6px;
 }
 
-/* .player-name:hover {
-  color: blue;
-} */
+.brand-logo {
+  font-size: 25px;
+  font-weight: 700;
+}
 
 .manager-info > * {
   margin-left: 7px;
@@ -72,13 +76,14 @@
 }
 
 .manager-card {
-  background-color: #86C5D8;
+  background-color: #6eb63b;
   border-radius: 4px;
   box-shadow: 3px 2px 9px #aaaaa3;
+  padding: 1rem;
 }
 
 .visit-card {
-  background-color: #C5D1EB;
+  background-color: #9eb7ec;
   border-radius: 4px;
   box-shadow: 3px 2px 9px #aaaaa3;
 }

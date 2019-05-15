@@ -34,7 +34,7 @@ class Manager extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.match.path !== prevState.path && !undefined){
-      return {path: nextProps.match.path};
+      return { path: nextProps.match.path }
     }
     else return null;
   }
@@ -62,6 +62,7 @@ class Manager extends Component {
         <p className='center'>no comments yet</p>
     return (
       <Container>
+        <h1 className="text-center">Manager</h1>
         <div className={this.state.isOwner ? 'manager-card comment' : 'visit-card comment'} >
           <h2 className='player-name'>{name}</h2>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>

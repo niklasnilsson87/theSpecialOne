@@ -76,7 +76,7 @@ class AppNavbar extends Component {
     return (
     <div>
       <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
-          <NavbarBrand><Link to="/home">The Special One</Link></NavbarBrand>
+        <Link className='brand-logo' to="/home">The Special One</Link>
           { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
           

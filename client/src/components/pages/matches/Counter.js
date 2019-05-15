@@ -23,19 +23,16 @@ class Counter extends Component {
     if(this.state.counter < this.state.countend) {
       this.setState({counter : this.state.counter + 1})
     }
-  }
-
-  randomEvent = () => {
-    return Math.floor((Math.random() * 50) + 1)
+    this.props.onCounterUpdate({ counter: this.state.counter })
   }
   
   count = () => {
-    console.log(this.state.counter)
-    console.log(this.randomEvent)
-    console.log(this.randomEvent)
-    if (this.state.counter === this.randomEvent) {
-      console.log('random event at:', this.state.counter)
-    }
+    // console.log(this.state.counter)
+    // console.log(this.randomEvent)
+    // console.log(this.randomEvent)
+    // if (this.state.counter === this.randomEvent) {
+    //   console.log('random event at:', this.state.counter)
+    // }
     this.counter()
   }
 

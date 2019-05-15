@@ -131,7 +131,7 @@ class Player extends Component {
     )
     return (
       <Container>
-        <h1 className='mb-5'>Players</h1>
+        <h1 className='mb-5 text-center'>Players</h1>
         {playerCard}
       </Container>
     )

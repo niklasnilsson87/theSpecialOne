@@ -21,6 +21,7 @@ router.post('/points', auth, async (req, res) => {
   const userUpdate = await User.findById({ _id }).select('-password')
   userUpdate.totalPoints = userUpdate.totalPoints + point
   userUpdate.lastPlayed = lastGame
+  console.log(userUpdate)
   await userUpdate.save()
   res.json(userUpdate)
 })
