@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import Counter from '../Counter'
 import uuid from 'uuid'
 
@@ -11,6 +12,10 @@ class GameEngine extends Component {
     events: ['Game started!'],
     counter: 0,
     awayTeamPlayers: []
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom()
   }
 
   componentDidMount() {
@@ -49,9 +54,9 @@ class GameEngine extends Component {
 
   engine = (hp, ap, homeTeamValue, awayTeamValue) => {
 
-    let event1 = this.randomEvents(120)
+    let event1 = this.randomEvents(90)
     let event2 = this.randomEvents(90)
-    let event3 = this.randomEvents(150)
+    let event3 = this.randomEvents(200)
     let event4 = this.randomEvents(140)
     let event5 = this.randomEvents(90)
 
@@ -118,6 +123,12 @@ class GameEngine extends Component {
     }
   }
 
+ scrollToBottom = () => {
+  const container = ReactDOM.findDOMNode(this.messageContainer)
+
+  container.scrollTop = container.scrollHeight
+  }
+
   render () {
     const { events } = this.state
     let event = events.map(e => {
@@ -130,15 +141,17 @@ class GameEngine extends Component {
     const { homeTeamManager, awayTeamManager } = this.props.stateFromManager
     return (
       <div>
-        <Counter onCounterUpdate={this.counter}/>
-        <div className='flex'>
-          <span className='col-5'>{homeTeamManager.teamName}</span>
-          <span className='col-0.5'>{this.state.homeGoals}</span>
+        <div className="game-board">
+          <Counter onCounterUpdate={this.counter}/>
+        <div className='flex text-center'>
+          <span className='col-4'>{homeTeamManager.teamName}</span>
+          <span className='col-1'>{this.state.homeGoals}</span>
           <span className='col-1'>:</span>
-          <span className='col-0.5'>{this.state.awayGoals}</span>
-          <span className='col-5'>{awayTeamManager.teamName}</span>
+          <span className='col-1'>{this.state.awayGoals}</span>
+          <span className='col-4'>{awayTeamManager.teamName}</span>
         </div>
-        <div>
+        </div>
+        <div className="game-event" ref={(el) => this.messageContainer = el}>
           {event}
         </div>
       </div>

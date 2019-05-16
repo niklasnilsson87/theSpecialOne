@@ -16,6 +16,10 @@ h1, h2, h3 {
   color: whitesmoke;
 }
 
+.manager-card h1, .manager-card h2, .manager-card h3 {
+  color: #333;
+}
+
 .progress {
   margin-top: 5px;
   padding-left: 0 !important;
@@ -60,9 +64,14 @@ h1, h2, h3 {
   margin-right: 6px
 }
 
-.player-name {
+.team-name {
   border-bottom: 1px solid lightgray;
+}
+
+.player-name {
+  display: inline-block;
   padding: 6px;
+  color: #333;
 }
 
 .brand-logo {
@@ -76,16 +85,11 @@ h1, h2, h3 {
 }
 
 .manager-card {
-  background-color: #6eb63b;
+  background-color: #eee;
   border-radius: 4px;
   box-shadow: 3px 2px 9px #aaaaa3;
   padding: 1rem;
-}
-
-.visit-card {
-  background-color: #9eb7ec;
-  border-radius: 4px;
-  box-shadow: 3px 2px 9px #aaaaa3;
+  overflow: hidden;
 }
 
 .modal-content {
@@ -110,15 +114,11 @@ label {
 
 .comment {
   margin: 15px 2px;
+  padding: 0.5rem;
 }
 
 .padd {
   padding: 20px;
-}
-
-#comment {
-  width: 95%;
-  margin: auto;
 }
 
 .visit-player {
@@ -179,13 +179,12 @@ html {
   background-color: #b5d99c;
 }
 
-.lightblue {
-  background-color: lightblue !important;
+.player-card-color {
+  background-color: #b5d99c !important;
 }
 
-.red {
-  border: 2px solid red !important;
-  /* background-color: red !important; */
+.bar-color .progress-bar {
+  background-color: rgb(243, 203, 26) !important;
 }
 
 .text-dec {
@@ -227,6 +226,12 @@ a {
   }
 }
 
+@media (min-width: 600px) {
+  .modal-dialog.matches-modal {
+    max-width: 800px !important;
+  }
+}
+
 select.form-control{
   width: 80%;
   margin: 0 auto;
@@ -255,4 +260,59 @@ button {
 .flex .btn {
   padding: 0 !important;
   border-radius: 30% !important;
+}
+
+
+.game-board {
+  background: #333;
+  padding: 30px 15px;
+}
+
+.game-board p, .game-board h1, .game-board span {
+  color: white;
+}
+
+.game-board span {
+  font-size: 1.25rem;
+}
+
+.game-event {
+  background: #eee;
+  padding: 10px 2px;
+  margin-top: 10px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.game-event > div {
+  margin: 5px;
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+}
+
+.matches-modal .modal-content {
+  height: 80vh;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.submit-comment {
+  background: #b5d99c;
+  margin: 15px 2px;
+}
+
+.comment-area {
+  padding: 10px 20px;
+  font-style: italic;
+}
+
+.matches-modal .manager-card {
+  background: transparent;
 }

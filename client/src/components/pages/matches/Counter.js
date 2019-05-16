@@ -27,18 +27,12 @@ class Counter extends Component {
   }
   
   count = () => {
-    // console.log(this.state.counter)
-    // console.log(this.randomEvent)
-    // console.log(this.randomEvent)
-    // if (this.state.counter === this.randomEvent) {
-    //   console.log('random event at:', this.state.counter)
-    // }
     this.counter()
   }
 
   render() {
     return (
-      <div>
+      <div className="flex text-center" style={{justifyContent: 'center'}}>
         <h1 className='text-center'>
           {this.state.counter}
         </h1>

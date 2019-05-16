@@ -146,9 +146,11 @@ class Matches extends Component {
       users.map(user => {
         return (
           <div className='manager-card comment' key={user._id}>
-            <Link to={`/user/${user._id}`}>
-              <h3 className='player-name'>{user.teamName}</h3>
-            </Link>
+            <div className="team-name">
+              <Link to={`/user/${user._id}`}>
+                <h3 className='player-name'>{user.teamName}</h3>
+              </Link>
+            </div>
               <div className="player-contact">
                 <span>{user.name}</span>
               </div>
@@ -164,11 +166,12 @@ class Matches extends Component {
       )
     return (
       <Container>
-        <h1 className="text-center">Matches</h1>
+        <h1 className="mb-5 text-center">Matches</h1>
         {userCard}
       <Modal
         isOpen={this.state.modal}
         toggle={this.toggle}
+        className="matches-modal"
       >
         <ModalHeader
           toggle={this.toggle}

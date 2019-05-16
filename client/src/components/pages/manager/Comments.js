@@ -36,7 +36,7 @@ class Comments extends Component {
 
   render () {
     return (
-      <div className={this.props.isOwner ? 'manager-card comment' : 'visit-card comment'}>
+      <div className='manager-card submit-comment'>
         <h3>Send message</h3>
         <Form onSubmit={this.onSubmit}>
           <FormGroup>

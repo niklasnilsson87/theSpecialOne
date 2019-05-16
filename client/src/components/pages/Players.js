@@ -15,7 +15,7 @@ class Player extends Component {
     const playerCard = this.props.player ? (
       players.map(player => {
         return (
-          <div className='card mb-5' style={{ backgroundColor: 'lightBlue' }} key={player._id}>
+          <div className='card mb-5' style={{ backgroundColor: '#b5d99c' }} key={player._id}>
             <h4 className='player-name'>{player.firstname} {player.lastname}</h4>
             <div className='player-contact'>
               <span>Age: {player.age}</span>

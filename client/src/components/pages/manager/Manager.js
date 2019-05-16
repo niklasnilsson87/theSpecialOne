@@ -45,14 +45,14 @@ class Manager extends Component {
     const commentCard = this.props.comment.comments ? (
       comments.map(comment => {
         return (
-          <div className={this.state.isOwner ? 'manager-card comment' : 'visit-card comment'} key={comment._id}>
-            <h3 className='player-name'>{comment.user}</h3>
+          <div className='manager-card comment' key={comment._id}>
+            <h4 className='player-name'>{comment.user}</h4>
             <div className="player-contact">
               <span>{comment.date.substring(0, 10)}</span>
               <span>{comment.date.substring(11, 16)}</span>
               <span>{comment.teamName}</span>
             </div>
-            <div className='padd'>
+            <div className='comment-area'>
               <p>{comment.comment}</p>
             </div>
           </div>
@@ -62,8 +62,9 @@ class Manager extends Component {
         <p className='center'>no comments yet</p>
     return (
       <Container>
-        <h1 className="text-center">Manager</h1>
-        <div className={this.state.isOwner ? 'manager-card comment' : 'visit-card comment'} >
+        <div className="manager">
+        <h1 className="mb-5 text-center">Manager</h1>
+        <div className='manager-card'>
           <h2 className='player-name'>{name}</h2>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>
             <div className='img' style={{ display: 'inline-block', width: '100px', border: '2px solid', textAlign: 'center', borderRadius: '6px', height: '150px' }}>Image</div>
@@ -85,6 +86,7 @@ class Manager extends Component {
 
         <div className='button' style={{ textAlign: 'center', marginTop: '20px' }}>
           <EditManager isOwner={this.state.isOwner}>Change profile</EditManager>
+        </div>
         </div>
         <div className="comments">
           <h2 className='mb-4 mt-4 text-center'>Comments</h2>
