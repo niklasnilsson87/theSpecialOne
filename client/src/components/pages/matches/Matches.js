@@ -24,7 +24,7 @@ class Matches extends Component {
       decider: '',
       lastGameDate: this.props.auth.user.lastPlayed,
       newGameDate: Date.now(), 
-      canIPlay: true,
+      canIPlay: false,
       users: []
     }
 }
@@ -36,10 +36,11 @@ class Matches extends Component {
   }
 
   componentDidMount() {
-
-    // if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 4*3600*1000 < this.state.newGameDate)) {
-    //   this.setState({ canIPlay: true})
-    // }
+    if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 120000 /*4*3600*1000*/ < this.state.newGameDate)) {
+      this.setState({ canIPlay: true})
+    } else {
+      console.log('time left', this.state.lastGameDate - this.state.newGameDate * 1000)
+    }
 
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
@@ -67,7 +68,8 @@ class Matches extends Component {
 
     this.setState({
       homeTeamPlayers: players,
-      homeTeamValue: this.setValue(players)})
+      homeTeamValue: this.setValue(players)
+    })
   }
 
   onClick = (e) => {
@@ -80,12 +82,10 @@ class Matches extends Component {
     this.setState({
       lastGameDate: Date.now(),
       awayTeamPlayers: data,
+      canIPlay: false,
       awayTeamValue: this.setValue(data)
       }, () => this.toggle())
-      
     })
-
-      
   }
 
   getAwayTeamPlayers = (_id) => {
@@ -103,42 +103,35 @@ class Matches extends Component {
 
     return axios.post('/api/players', body, config)
       .then(res => res.data)
-      // .then(() => {
-      //   this.winLose(_id)
-      // })
   }
 
-   winLose = (id) => {
-    if (this.state.awayTeamValue !== '') {
-    if (this.state.homeTeamValue > this.state.awayTeamValue) {
-      const lastGame = Date.now()
-      this.props.updatePoints(lastGame, 3, this.props.auth.user)
-      this.setState({
-        awayTeamValue: '', 
-        decider: 'You Win!',
-        canIPlay: false
-      })
-    } else if (this.state.homeTeamValue === this.state.awayTeamValue) {
-      this.setState({ 
-        awayTeamValue: '',
-        decider: 'Its a Draw!',
-        canIPlay: false
-      })
-    } else {
-      const lastGame = Date.now()
-      this.props.updatePoints(lastGame, 3, {_id: id})
-      this.setState({
-        awayTeamValue: '', 
-        decider: 'You Lose!',
-        canIPlay: false
-      })
-    }
-  } else {
-    return (
-    <p className="no"></p>
-    )
-  }
-}
+//    winLose = (id) => {
+//     if (this.state.awayTeamValue !== '') {
+//     if (this.state.homeTeamValue > this.state.awayTeamValue) {
+//       const lastGame = Date.now()
+//       this.props.updatePoints(lastGame, 3, this.props.auth.user)
+//       this.setState({
+//         awayTeamValue: '', 
+//         decider: 'You Win!',
+//         canIPlay: false
+//       })
+//     } else if (this.state.homeTeamValue === this.state.awayTeamValue) {
+//       this.setState({ 
+//         awayTeamValue: '',
+//         decider: 'Its a Draw!',
+//         canIPlay: false
+//       })
+//     } else {
+//       const lastGame = Date.now()
+//       this.props.updatePoints(lastGame, 3, {_id: id})
+//       this.setState({
+//         awayTeamValue: '', 
+//         decider: 'You Lose!',
+//         canIPlay: false
+//       })
+//     }
+//   }
+// }
 
   render () {
     const { users, canIPlay } = this.state
@@ -156,7 +149,6 @@ class Matches extends Component {
               </div>
               <div className='mb-2 button-div'>
               { canIPlay ? <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button> : <button className='btn-color'>Wait</button> }
-                
               </div>
           </div>
           )

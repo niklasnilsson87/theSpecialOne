@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import Counter from '../Counter'
 import uuid from 'uuid'
+import { updatePoints } from '../../../../actions/editActions'
+import PropTypes from 'prop-types'
 
 
 class GameEngine extends Component {
@@ -20,20 +23,18 @@ class GameEngine extends Component {
 
   componentDidMount() {
     const { homeTeamPlayers, awayTeamPlayers, homeTeamValue, awayTeamValue } = this.props.stateFromManager
-    // console.log('homePlayer: ', homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)].totalValue)
-    // console.log('awayPlayer: ', awayTeamPlayers[this.randomEvents(awayTeamPlayers.length - 1)].totalValue)
-
+    const { _id } = this.props.stateFromManager.awayTeamManager
     this.match = setInterval(() => {
       let hp = homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)]
       let ap = awayTeamPlayers[this.randomEvents(awayTeamPlayers.length - 1)]
       
       if (this.state.counter === 90 ) {
         this.setState({
-          events: [...this.state.events, `${this.state.counter}' phhhyyy phhhyyy phhhyyy!! Game ended ${hp.team} ${this.state.homeGoals} - ${this.state.awayGoals} ${ap.team}.`] })
+          events: [...this.state.events, `${this.state.counter}' phhhyyy phhhyyy phhhyyy!! Game ended ${hp.team} ${this.state.homeGoals} - ${this.state.awayGoals} ${ap.team}.`] }, () => {
+            this.winLose(_id)
+          })
         clearInterval(this.match)
       }
-
-
 
       this.engine(hp, ap, homeTeamValue, awayTeamValue)
 
@@ -54,14 +55,14 @@ class GameEngine extends Component {
 
   engine = (hp, ap, homeTeamValue, awayTeamValue) => {
 
-    let event1 = this.randomEvents(90)
-    let event2 = this.randomEvents(90)
-    let event3 = this.randomEvents(200)
-    let event4 = this.randomEvents(140)
-    let event5 = this.randomEvents(90)
+    let playerTotalValueEvent = this.randomEvents(90)
+    let teamTotalValueEvent = this.randomEvents(200)
+    let awayTeamAttackingEvent = this.randomEvents(90)
+    let homeTeamAttackingEvent = this.randomEvents(90)
+    let fireworksEvent = this.randomEvents(140)
 
 
-    if (event1 === this.state.counter) {
+    if (playerTotalValueEvent === this.state.counter) {
       if (hp.totalValue > ap.totalValue) {
         this.setState({ 
           homeGoals: this.state.homeGoals += 1,
@@ -74,7 +75,7 @@ class GameEngine extends Component {
       }
     }
 
-    if (event2 === this.state.counter) {
+    if (awayTeamAttackingEvent === this.state.counter) {
       if(ap.attributes.tecnical.dribbling > hp.attributes.mental.positioning) {
       this.setState({ events: [...this.state.events, `${this.state.counter} ${ap.firstname} ${ap.lastname} goes through the defense and fires...`] })
         if(ap.attributes.tecnical.finishing + ap.attributes.mental.concentration + ap.attributes.physical.speed > hp.attributes.mental.aggression + hp.attributes.tecnical.marking + hp.attributes.mental.concentration) {
@@ -90,7 +91,7 @@ class GameEngine extends Component {
       }
     }
 
-    if (event3 === this.state.counter) {
+    if (teamTotalValueEvent === this.state.counter) {
       if (homeTeamValue > awayTeamValue) {
         this.setState({
           homeGoals: this.state.homeGoals += 1,
@@ -102,12 +103,12 @@ class GameEngine extends Component {
       }
     }
 
-    if (event4 === this.state.counter) {
+    if (fireworksEvent === this.state.counter) {
       this.setState({
         events: [...this.state.events, `${this.state.counter}' The home crowd is singing and sets of fireworks to cheer for there team ${hp.team}.`] })
     }
 
-    if (event5 === this.state.counter) {
+    if (homeTeamAttackingEvent === this.state.counter) {
       if (hp.attributes.mental.teamWork > ap.attributes.mental.workRate) {
         this.setState({ events: [...this.state.events, `${this.state.counter}' ${hp.firstname} ${hp.lastname} is really showing his intelligence to set up his teammates with smart and simple passes`] })
         if (hp.attributes.tecnical.passing + hp.attributes.mental.composure + hp.attributes.physical.stamina > ap.attributes.physical.balance + ap.attributes.mental.bravery + ap.attributes.physical.strength) {
@@ -128,6 +129,18 @@ class GameEngine extends Component {
 
   container.scrollTop = container.scrollHeight
   }
+
+  winLose = (id) => {
+    const lastGame = Date.now()
+    console.log(lastGame)
+    if (this.state.homeGoals > this.state.awayGoals) {
+      this.props.updatePoints(lastGame, 3, this.props.auth.user)
+    } else if (this.state.homeGoals === this.state.awayGoals) {
+      console.log('Lika')
+    } else {
+      this.props.updatePoints(lastGame, 3, {_id: id})
+    }
+}
 
   render () {
     const { events } = this.state
@@ -159,4 +172,12 @@ class GameEngine extends Component {
   }
 }
 
-export default GameEngine
+GameEngine.propTypes = {
+  updatePoints: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { updatePoints })(GameEngine)
