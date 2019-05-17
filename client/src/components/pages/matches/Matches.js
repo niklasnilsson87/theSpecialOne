@@ -21,9 +21,9 @@ class Matches extends Component {
       awayTeamValue: '',
       awayTeamPlayers: [],
       awayTeamManager: [],
-      decider: '',
       lastGameDate: this.props.auth.user.lastPlayed,
-      newGameDate: Date.now(), 
+      newGameDate: Date.now(),
+      toPlayTime: '',
       canIPlay: false,
       users: []
     }
@@ -39,15 +39,24 @@ class Matches extends Component {
     if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 120000 /*4*3600*1000*/ < this.state.newGameDate)) {
       this.setState({ canIPlay: true})
     } else {
-      console.log('time left', this.state.lastGameDate - this.state.newGameDate * 1000)
+        const ms = (this.state.lastGameDate + 120000) - this.state.newGameDate
+        this.msToHMS(ms)
     }
-
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
-     this.loadUsers()
-     
+    this.loadUsers() 
   }
+
+  msToHMS(ms) {
+    let seconds = Math.floor(ms / 1000)
+    let minute = Math.floor(seconds / 60)
+    seconds = seconds % 60
+    let hour = Math.floor(minute / 60)
+    minute = minute % 60
+    hour = hour % 24
+    this.setState({ toPlayTime: `${hour}:${minute}:${seconds}`})
+}
 
   loadUsers() {
     axios.get('/api/edit').then(res => {
@@ -105,34 +114,6 @@ class Matches extends Component {
       .then(res => res.data)
   }
 
-//    winLose = (id) => {
-//     if (this.state.awayTeamValue !== '') {
-//     if (this.state.homeTeamValue > this.state.awayTeamValue) {
-//       const lastGame = Date.now()
-//       this.props.updatePoints(lastGame, 3, this.props.auth.user)
-//       this.setState({
-//         awayTeamValue: '', 
-//         decider: 'You Win!',
-//         canIPlay: false
-//       })
-//     } else if (this.state.homeTeamValue === this.state.awayTeamValue) {
-//       this.setState({ 
-//         awayTeamValue: '',
-//         decider: 'Its a Draw!',
-//         canIPlay: false
-//       })
-//     } else {
-//       const lastGame = Date.now()
-//       this.props.updatePoints(lastGame, 3, {_id: id})
-//       this.setState({
-//         awayTeamValue: '', 
-//         decider: 'You Lose!',
-//         canIPlay: false
-//       })
-//     }
-//   }
-// }
-
   render () {
     const { users, canIPlay } = this.state
     const userCard = this.state.users ? (
@@ -148,7 +129,7 @@ class Matches extends Component {
                 <span>{user.name}</span>
               </div>
               <div className='mb-2 button-div'>
-              { canIPlay ? <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button> : <button className='btn-color'>Wait</button> }
+              { canIPlay ? <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button> : <button className='btn-color'>Time to play {this.state.toPlayTime}</button> }
               </div>
           </div>
           )

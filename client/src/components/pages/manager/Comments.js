@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Button, Input, Form, FormGroup } from 'reactstrap'
+import { Input, Form, FormGroup } from 'reactstrap'
 import { sendComments } from '../../../actions/CommentAction'
 
 class Comments extends Component {
   state = {
     comment: '',
-    id: ''
+    id: '',
+    visitingId: ''
   }
 
   onChange = (e) => {
@@ -25,10 +26,10 @@ class Comments extends Component {
     let { teamName, name } = this.props.auth
 
     if (this.props.params.name !== undefined) {
-      this.setState({ id: this.props.params.name },
-        () => this.props.sendComments(this.state.id, comment, teamName, name))
+      this.setState({ visitingId: this.props.params.name },
+        () => this.props.sendComments(this.state.visitingId, this.state.id, comment, teamName, name))
     } else {
-      this.props.sendComments(this.state.id, comment, teamName, name)
+      this.props.sendComments(this.state.id, this.state.id, comment, teamName, name)
     }
 
     this.setState({ comment: ''})

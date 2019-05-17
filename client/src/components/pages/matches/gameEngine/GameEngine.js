@@ -11,10 +11,16 @@ class GameEngine extends Component {
   state = {
     homeGoals: 0,
     awayGoals: 0,
-    randomEvents: [],
     events: ['Game started!'],
     counter: 0,
-    awayTeamPlayers: []
+    awayTeamPlayers: [],
+    randomEvents: [
+      `' The home crowd is singing and sets of fireworks to cheer for there team.`,
+      `' What is that? is that a cat running around on the pitch?`,
+      `' The camera spots Josè Mourinho in the audiens today. Maybe looking to replace the home team manager?`,
+      `' The away crowd is singing and creating a nice atmosphere in the stadium.`,
+      `' The ball boy behind the away goalkeeper is the home managers son. Is he going to try and manipulate the away team golie?`
+    ]
   }
 
   componentDidUpdate() {
@@ -23,7 +29,7 @@ class GameEngine extends Component {
 
   componentDidMount() {
     const { homeTeamPlayers, awayTeamPlayers, homeTeamValue, awayTeamValue } = this.props.stateFromManager
-    const { _id } = this.props.stateFromManager.awayTeamManager
+    const { awayTeamManager } = this.props.stateFromManager
     this.match = setInterval(() => {
       let hp = homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)]
       let ap = awayTeamPlayers[this.randomEvents(awayTeamPlayers.length - 1)]
@@ -31,7 +37,7 @@ class GameEngine extends Component {
       if (this.state.counter === 90 ) {
         this.setState({
           events: [...this.state.events, `${this.state.counter}' phhhyyy phhhyyy phhhyyy!! Game ended ${hp.team} ${this.state.homeGoals} - ${this.state.awayGoals} ${ap.team}.`] }, () => {
-            this.winLose(_id)
+            this.winLose(awayTeamManager)
           })
         clearInterval(this.match)
       }
@@ -55,12 +61,12 @@ class GameEngine extends Component {
 
   engine = (hp, ap, homeTeamValue, awayTeamValue) => {
 
-    let playerTotalValueEvent = this.randomEvents(90)
+    let playerTotalValueEvent = this.randomEvents(100)
     let teamTotalValueEvent = this.randomEvents(200)
-    let awayTeamAttackingEvent = this.randomEvents(90)
-    let homeTeamAttackingEvent = this.randomEvents(90)
-    let fireworksEvent = this.randomEvents(140)
-
+    let awayTeamAttackingEvent = this.randomEvents(100)
+    let homeTeamAttackingEvent = this.randomEvents(100)
+    let eventOccure = this.randomEvents(400)
+    let eventCollection = this.randomEvents(this.state.randomEvents.length -1)
 
     if (playerTotalValueEvent === this.state.counter) {
       if (hp.totalValue > ap.totalValue) {
@@ -103,9 +109,9 @@ class GameEngine extends Component {
       }
     }
 
-    if (fireworksEvent === this.state.counter) {
+    if (eventOccure === this.state.counter) {
       this.setState({
-        events: [...this.state.events, `${this.state.counter}' The home crowd is singing and sets of fireworks to cheer for there team ${hp.team}.`] })
+        events: [...this.state.events, this.state.counter + this.state.randomEvents[eventCollection]] })
     }
 
     if (homeTeamAttackingEvent === this.state.counter) {
@@ -125,20 +131,21 @@ class GameEngine extends Component {
   }
 
  scrollToBottom = () => {
-  const container = ReactDOM.findDOMNode(this.messageContainer)
-
-  container.scrollTop = container.scrollHeight
+  if (this.state.counter < 90) {
+    const container = ReactDOM.findDOMNode(this.messageContainer)
+    container.scrollTop = container.scrollHeight
+  }
   }
 
-  winLose = (id) => {
+  winLose = (awayTeamManager) => {
     const lastGame = Date.now()
     console.log(lastGame)
     if (this.state.homeGoals > this.state.awayGoals) {
-      this.props.updatePoints(lastGame, 3, this.props.auth.user)
+      this.props.updatePoints(this.props.auth.user, awayTeamManager, 3, lastGame, 'win')
     } else if (this.state.homeGoals === this.state.awayGoals) {
-      console.log('Lika')
+      this.props.updatePoints(this.props.auth.user, awayTeamManager, 1, lastGame, 'draw')
     } else {
-      this.props.updatePoints(lastGame, 3, {_id: id})
+      this.props.updatePoints(this.props.auth.user, awayTeamManager, 3, lastGame, 'lose')
     }
 }
 
@@ -155,11 +162,11 @@ class GameEngine extends Component {
     return (
       <div>
         <div className="game-board">
-          <Counter onCounterUpdate={this.counter}/>
+          
         <div className='flex text-center'>
           <span className='col-4'>{homeTeamManager.teamName}</span>
           <span className='col-1'>{this.state.homeGoals}</span>
-          <span className='col-1'>:</span>
+          <span className='col-1'><Counter onCounterUpdate={this.counter}/></span>
           <span className='col-1'>{this.state.awayGoals}</span>
           <span className='col-4'>{awayTeamManager.teamName}</span>
         </div>

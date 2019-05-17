@@ -6,13 +6,14 @@ import EditManager from './EditManager'
 import Comments from './Comments'
 import { getComments } from '../../../actions/CommentAction'
 import { loadUser } from '../../../actions/helpers/helperAction'
+import { Link } from 'react-router-dom'
 
 class Manager extends Component {
   state = {
     selectedFile: null,
     isParamsUndefined: this.props.match.params.name === undefined,
     isOwner: true,
-    path: this.props.path,
+    path: '',
     user: []
   }
 
@@ -39,6 +40,13 @@ class Manager extends Component {
     else return null;
   }
 
+  onclick = (id) => {
+    console.log(id)
+    loadUser(id).then((userObj) => {
+      this.setState({ user: userObj, isOwner: false}, () => this.props.getComments(this.state.user._id))
+    })
+  }
+
   render () {
     const { name, email, teamName, description, favPlayer, favTeam, totalPoints } = this.state.user
     const { comments } = this.props.comment
@@ -46,7 +54,9 @@ class Manager extends Component {
       comments.map(comment => {
         return (
           <div className='manager-card comment' key={comment._id}>
-            <h4 className='player-name'>{comment.user}</h4>
+            <Link to={`/user/${comment.userid}`}>
+              <h4 className='player-name' onClick={() => this.onclick(comment.userid)}>{comment.user}</h4>
+            </Link>
             <div className="player-contact">
               <span>{comment.date.substring(0, 10)}</span>
               <span>{comment.date.substring(11, 16)}</span>

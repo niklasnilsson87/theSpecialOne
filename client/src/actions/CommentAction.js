@@ -4,13 +4,6 @@ import { tokenConfig } from './authActions'
 import axios from 'axios'
 
 export const getComments = (id) => (dispatch, getState) => {
-  // Headers
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // }
-
   // Request body
   const body = JSON.stringify({ id })
 
@@ -20,8 +13,8 @@ export const getComments = (id) => (dispatch, getState) => {
     })
 }
 
-export const sendComments = (userid, comment, teamName, user) => (dispatch, getState) => {
-  const body = JSON.stringify({ userid, comment, teamName, user })
+export const sendComments = (sendTo, userid, comment, teamName, user) => (dispatch, getState) => {
+  const body = JSON.stringify({ sendTo, userid, comment, teamName, user })
 
   axios.post('/api/comment', body, tokenConfig(getState))
     .then(res => {

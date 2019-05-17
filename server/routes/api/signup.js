@@ -24,12 +24,7 @@ router.post('/', (res, req) => {
         name,
         email,
         password,
-        teamName,
-        description: 'no description',
-        favPlayer: 'N/A',
-        favTeam: 'N/A',
-        totalPoints: 0,
-        lastPlayed: '0'
+        teamName
       })
 
       saltAndHash(newUser)

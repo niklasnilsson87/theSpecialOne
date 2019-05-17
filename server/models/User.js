@@ -19,20 +19,24 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    default: 'Change description below'
   },
   favPlayer: {
-    type: String
+    type: String,
+    default: ''
   },
   favTeam: {
-    type: String
+    type: String,
+    default: ''
   },
   register_date: {
     type: Date,
     default: Date.now
   },
   totalPoints: {
-    type: Number
+    type: Number,
+    default: 10
   },
   lastPlayed: {
     type: Number,

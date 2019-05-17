@@ -17,8 +17,8 @@ export const updateDescription = (desc, favPlayer, favTeam, email) => (dispatch,
     })
 }
 
-export const updatePoints = (lastGame, point, { _id }) => (dispatch, getState) => {
-  const body = JSON.stringify({ lastGame, point, _id })
+export const updatePoints = (homeTeam, awayTeam, point, lastGame, decider) => (dispatch, getState) => {
+  const body = JSON.stringify({ homeTeam, awayTeam, lastGame, point, decider })
 
   return axios.post('/api/edit/points', body, tokenConfig(getState))
     .then(res => {

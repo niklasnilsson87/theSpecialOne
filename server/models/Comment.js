@@ -8,6 +8,9 @@ const CommentSchema = new mongoose.Schema({
   userid: {
     type: String
   },
+  sendTo: {
+    type: String
+  },
   teamName: {
     type: String
   },

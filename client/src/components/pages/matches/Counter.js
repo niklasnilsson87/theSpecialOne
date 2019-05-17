@@ -5,7 +5,7 @@ class Counter extends Component {
     super(props);
     this.state = {
       counter : 0 ,
-      countend : 90,
+      countend : 90
     }
     this.intervalID = 0
     this.randomEvent = Math.floor((Math.random() * 50) + 1)

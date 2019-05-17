@@ -5,12 +5,13 @@ const auth = require('../../middleware/authMiddleware')
 const Comment = require('../../models/Comment')
 
 router.post('/', auth, async (req, res) => {
-  const { userid, teamName, comment, user } = req.body
+  const { sendTo, userid, teamName, comment, user } = req.body
   console.log(req.body)
 
   const newComment = new Comment({
     user,
     userid,
+    sendTo,
     comment,
     teamName
   })
@@ -22,7 +23,7 @@ router.post('/getComment', auth, async (req, res) => {
   const { id } = req.body
   console.log(req.body)
 
-  const comment = await Comment.find({ userid: id })
+  const comment = await Comment.find({ sendTo: id })
     .sort({ date: -1 })
 
   res.json(comment)
