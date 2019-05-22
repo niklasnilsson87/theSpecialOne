@@ -17,7 +17,6 @@ class Comments extends Component {
 
   componentDidMount() {
     this.setState({ id: this.props.auth._id})
-    console.log(this.props.params.name)
   }
 
   onSubmit = (e) => {

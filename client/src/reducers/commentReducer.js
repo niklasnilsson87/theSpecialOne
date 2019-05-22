@@ -1,4 +1,4 @@
-import { GET_COMMENTS, ADD_COMMENTS, PLAYER_LOADING, FAILD_LOADING_PLAYER } from '../actions/types'
+import { GET_COMMENTS, ADD_COMMENTS, PLAYER_LOADING, FAILD_LOADING_PLAYER, COMMENT_FAIL } from '../actions/types'
 
 const initialState = {
   comments: [],
@@ -25,6 +25,7 @@ export default function (state = initialState, action) {
         loading: true
       }
     case FAILD_LOADING_PLAYER:
+    case COMMENT_FAIL:
       return {
         ...state
       }

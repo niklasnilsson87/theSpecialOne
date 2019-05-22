@@ -45,7 +45,7 @@ class Matches extends Component {
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
-    this.loadUsers() 
+    this.loadUsers()
   }
 
   msToHMS(ms) {

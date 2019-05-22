@@ -16,17 +16,18 @@ router.post('/', auth, async (req, res) => {
     teamName
   })
   await newComment.save()
-  res.json(newComment)
+  await res.json(newComment)
 })
 
 router.post('/getComment', auth, async (req, res) => {
   const { id } = req.body
-  console.log(req.body)
-
-  const comment = await Comment.find({ sendTo: id })
-    .sort({ date: -1 })
-
-  res.json(comment)
+  try {
+    const comment = await Comment.find({ sendTo: id })
+      .sort({ date: -1 })
+    await res.json(comment)
+  } catch (error) {
+    await res.json({ msg: 'no comments with this user ID' })
+  }
 })
 
 module.exports = router

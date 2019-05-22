@@ -60,33 +60,36 @@ class GameEngine extends Component {
   }
 
   engine = (hp, ap, homeTeamValue, awayTeamValue) => {
+    let { homeGoals, awayGoals } = this.state
 
-    let playerTotalValueEvent = this.randomEvents(100)
+    let playerTotalValueEvent = this.randomEvents(130)
     let teamTotalValueEvent = this.randomEvents(200)
-    let awayTeamAttackingEvent = this.randomEvents(100)
-    let homeTeamAttackingEvent = this.randomEvents(100)
+    let awayTeamAttackingEvent = this.randomEvents(130)
+    let homeTeamAttackingEvent = this.randomEvents(130)
     let eventOccure = this.randomEvents(400)
     let eventCollection = this.randomEvents(this.state.randomEvents.length -1)
 
     if (playerTotalValueEvent === this.state.counter) {
       if (hp.totalValue > ap.totalValue) {
         this.setState({ 
-          homeGoals: this.state.homeGoals += 1,
+          homeGoals: homeGoals += 1,
           events: [...this.state.events, `${this.state.counter}' GOOOOOOAAAALLL!!! ${hp.firstname} ${hp.lastname} scores the goal for ${hp.team}.`] })
       } else {
         this.setState({
-          awayGoals: this.state.awayGoals += 1,
+          awayGoals: awayGoals += 1,
           events: [...this.state.events, `${this.state.counter}' Very good tackle by ${ap.firstname} ${ap.lastname} he takes the ball dribbles in front of the ${hp.team}s penalty area and shoots and SCORES!!!! `]
         })
       }
     }
 
     if (awayTeamAttackingEvent === this.state.counter) {
-      if(ap.attributes.tecnical.dribbling > hp.attributes.mental.positioning) {
+      console.log(ap.attributes)
+      console.log(hp.attributes)
+      if (ap.attributes.tecnical.dribbling > hp.attributes.mental.positioning) {
       this.setState({ events: [...this.state.events, `${this.state.counter} ${ap.firstname} ${ap.lastname} goes through the defense and fires...`] })
         if(ap.attributes.tecnical.finishing + ap.attributes.mental.concentration + ap.attributes.physical.speed > hp.attributes.mental.aggression + hp.attributes.tecnical.marking + hp.attributes.mental.concentration) {
           this.setState({
-            awayGoals: this.state.awayGoals += 1,
+            awayGoals: awayGoals += 1,
             events: [...this.state.events, `${this.state.counter}' GOOOOAAAAALLLL!!! for ${ap.team} ${ap.lastname} scores with a wonderfull finish in the bottom right corner...`] })
         } else {
           this.setState({
@@ -100,11 +103,11 @@ class GameEngine extends Component {
     if (teamTotalValueEvent === this.state.counter) {
       if (homeTeamValue > awayTeamValue) {
         this.setState({
-          homeGoals: this.state.homeGoals += 1,
+          homeGoals: homeGoals += 1,
           events: [...this.state.events, `${this.state.counter}' GOOOOAAAAALLLL!!! ${hp.lastname} scores a banger from 30 yards just under the crossbar.`] })
       } else {
         this.setState({
-          awayGoals: this.state.awayGoals += 1,
+          awayGoals: awayGoals += 1,
           events: [...this.state.events, `${this.state.counter}' GOOOOAAAAALLLL!!! ${ap.lastname} scores a header from a corner.`] })
       }
     }
@@ -119,7 +122,7 @@ class GameEngine extends Component {
         this.setState({ events: [...this.state.events, `${this.state.counter}' ${hp.firstname} ${hp.lastname} is really showing his intelligence to set up his teammates with smart and simple passes`] })
         if (hp.attributes.tecnical.passing + hp.attributes.mental.composure + hp.attributes.physical.stamina > ap.attributes.physical.balance + ap.attributes.mental.bravery + ap.attributes.physical.strength) {
           this.setState({
-            homeGoals: this.state.homeGoals += 1,
+            homeGoals: homeGoals += 1,
             events: [...this.state.events, `${this.state.counter}' GOOOOOOAAAALLL!!! Magic play from ${hp.team} to set up ${hp.lastname} in a good position to let him do a tap-in goal 2 feet from the goal line!`] })
         } else {
           this.setState({ events: [...this.state.events, `${this.state.counter}' Turns out that ${ap.team} was not going to be fooled this time as ${ap.firstname} ${ap.lastname} made a great interception`] })

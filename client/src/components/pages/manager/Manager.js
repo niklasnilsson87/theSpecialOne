@@ -34,14 +34,13 @@ class Manager extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.match.path !== prevState.path && !undefined){
+    if (nextProps.match.path !== prevState.path && !undefined) {
       return { path: nextProps.match.path }
     }
     else return null;
   }
 
   onclick = (id) => {
-    console.log(id)
     loadUser(id).then((userObj) => {
       this.setState({ user: userObj, isOwner: false}, () => this.props.getComments(this.state.user._id))
     })

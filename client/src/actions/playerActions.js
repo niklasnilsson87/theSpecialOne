@@ -19,10 +19,10 @@ export const getPlayers = ({ _id }) => (dispatch, getState) => {
     })
 }
 
-export const updatePlayer = (trainplayer) => (dispatch, getState) => {
+export const updatePlayer = (user, trainplayer) => (dispatch, getState) => {
   dispatch(setPlayerLoading())
 
-  const body = JSON.stringify(trainplayer)
+  const body = JSON.stringify({ user, trainplayer })
 
   return axios.post('/api/players/update', body, tokenConfig(getState))
     .then(res => {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { updateDescription } from '../../../actions/editActions'
 
-class Manager extends Component {
+class EditManager extends Component {
   state = {
     modal: false,
     description: this.props.auth.description,
@@ -88,7 +88,6 @@ class Manager extends Component {
               <button
                 className='btn-color'
                 style={{marginTop: '2rem'}}
-                block
               >Submit</button>
             </FormGroup>
           </Form>
@@ -99,7 +98,7 @@ class Manager extends Component {
   }
 }
 
-Manager.propTypes = {
+EditManager.propTypes = {
   auth: PropTypes.object.isRequired,
   updateDescription: PropTypes.func.isRequired
 }
@@ -108,4 +107,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth.user
 })
 
-export default connect(mapStateToProps, { updateDescription })(Manager)
+export default connect(mapStateToProps, { updateDescription })(EditManager)
