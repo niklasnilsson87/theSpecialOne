@@ -4,6 +4,10 @@
   padding-bottom: 40px;
 }
 
+body {
+  font-size: 14px !important;
+}
+
 #root.backImg {
   background-image: url('./img/football-161132_1280.png');
   background-repeat: no-repeat;
@@ -14,6 +18,22 @@
 
 h1, h2, h3 {
   color: whitesmoke;
+}
+
+h1 {
+  font-size: 2rem !important;
+}
+
+h3 {
+  font-size: 1.25rem !important;
+}
+
+h2 {
+  font-size: 1.6rem !important;
+}
+
+h4 {
+  font-size: 1rem !important;
 }
 
 .manager-card h1, .manager-card h2, .manager-card h3 {
@@ -35,11 +55,15 @@ h1, h2, h3 {
   cursor: pointer;
 }
 
-
 .flex {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+}
+
+.match-card {
+  max-width: 400px;
+  margin: 10px auto;
 }
 
 .flex span {
@@ -68,6 +92,14 @@ h1, h2, h3 {
   border-bottom: 1px solid lightgray;
 }
 
+@media (max-width: 480px) {
+  .team-name .team-player-name {
+    max-width: 80%;
+    overflow-x: scroll;
+    white-space: pre;
+  }
+}
+
 .player-name {
   display: inline-block;
   padding: 6px;
@@ -75,7 +107,7 @@ h1, h2, h3 {
 }
 
 .brand-logo {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -169,6 +201,7 @@ html {
   text-align: center;
   display: block;
   max-width: 150px;
+  width: 150px;
   margin: 8px auto;
 }
 
@@ -199,13 +232,13 @@ a {
 .office {
   color: white;
   list-style-type: none;
-  margin-left: 60px;
+  margin-left: 40px;
   padding: 0;
 }
 
 .select-player {
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 480px) {
@@ -218,12 +251,14 @@ a {
   .form-div.container {
     width: 80% !important;
   }
+
+  .modal-body {
+    padding: 0 !important;
+  }
 }
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 600px !important;
-  }
+.container {
+  max-width: 500px !important;
 }
 
 @media (min-width: 600px) {
@@ -315,4 +350,10 @@ button {
 
 .matches-modal .manager-card {
   background: transparent;
+}
+
+.match-timer {
+  text-align: center;
+  font-size: 20px;
+  color: white;
 }

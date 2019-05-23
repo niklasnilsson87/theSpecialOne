@@ -2,9 +2,9 @@ const { describe, it } = require('mocha')
 const request = require('supertest')
 const { expect } = require('chai')
 
-const server = request.agent('http://localhost:3000')
 const backend = request.agent('http://localhost:5000')
 
+// Holds the token to send with post request.
 let token = ''
 
 describe('1.2 Testfall M.1 Login', () => {
@@ -102,8 +102,8 @@ describe('1.2 Testfall M.1 Login', () => {
             'teamName': 'Janglers IF',
             'favTeam': 'Manchester',
             'favPlayer': 'Christiano Ronaldo',
-            'totalPoints': 58,
-            'lastPlayed': 1558100400404 })
+            'totalPoints': 3,
+            'lastPlayed': 1558367700349 })
         done()
       })
   })
@@ -111,7 +111,7 @@ describe('1.2 Testfall M.1 Login', () => {
 
 // *************************************************************************************************************************
 
-describe('Calling api/comment/getComment', () => {
+describe('Calling api/comment/', () => {
   it('Get 200 response on api/getComment', (done) => {
     backend
       .post('/api/comment/getComment')
@@ -128,7 +128,7 @@ describe('Calling api/comment/getComment', () => {
       })
   })
 
-  it('should return an array of comments to user ID 5cde7e4d4394a8537872a8e7', (done) => {
+  it('Should return an array of comments to user ID 5cde7e4d4394a8537872a8e7', (done) => {
     backend
       .post('/api/comment/getComment')
       .expect(200)
@@ -147,29 +147,69 @@ describe('Calling api/comment/getComment', () => {
 
   it('Should return empty object if no comments found', (done) => {
     backend
-      .post('/api/getComment')
+      .post('/api/comment/getComment')
+      .set({
+        'x-auth-token': token
+      })
       .send({
         id: 'sadj329ujeasdasdasdasdasdasd'
       })
       .end((err, res) => {
         if (err) console.log('api/comment/getComment:', err)
-        expect(res.body).to.be.an('object').that.is.empty
+        expect(res.body).to.be.an('array').that.is.empty
         done()
       })
   })
-})
 
-describe(`Calling root ('/')`, () => {
-  it('GET 200 response on root', (done) => {
-    server
-      .get('/')
-      .expect(200)
+  it(`Should respond with a message 'did you forget to write something?' if comments are typed`, (done) => {
+    let MockComment = {
+      sendTo: '5cde7e4d4394a8537872a8e7',
+      userid: '5cde7eac4394a8537872a8ed',
+      comment: '',
+      teamName: 'Kobojsarna Från Söder',
+      user: 'Kalle Karlsson' }
+
+    backend
+      .post('/api/comment/')
+      .set({
+        'x-auth-token': token
+      })
+      .send(MockComment)
       .end((err, res) => {
-        if (err) console.log(err)
-        expect(res.status).to.equal(200)
+        if (err) console.log('api/comment/getComment:', err)
+        expect(res.body).to.deep.equal({ msg: 'did you forget to write something?' })
         done()
       })
   })
+
+  // it('Should create new comment save it and send back to client', (done) => {
+  //   let comment = {
+  //     sendTo: '5cde7e4d4394a8537872a8e7',
+  //     userid: '5cde7eac4394a8537872a8ed',
+  //     comment: 'Server TESTING COMMENT!',
+  //     teamName: 'Kobojsarna Från Söder',
+  //     user: 'Kalle Karlsson' }
+
+  //   backend
+  //     .post('/api/comment')
+  //     .set({
+  //       'x-auth-token': token
+  //     })
+  //     .send(comment)
+  //     .end((err, res) => {
+  //       delete res.body.date
+  //       if (err) console.log('api/comment/getComment:', err)
+  //       delete res.body.__v
+  //       delete res.body._id
+  //       expect(res.body).to.deep.equal({
+  //         'user': 'Kalle Karlsson',
+  //         'userid': '5cde7eac4394a8537872a8ed',
+  //         'sendTo': '5cde7e4d4394a8537872a8e7',
+  //         'comment': 'Server TESTING COMMENT!',
+  //         'teamName': 'Kobojsarna Från Söder' })
+  //       done()
+  //     })
+  // })
 })
 
 describe('Calling api/players', () => {
@@ -201,27 +241,55 @@ describe('Calling api/players', () => {
         id: '5cde7e4d4394a8537872a8e7'
       })
       .end((err, res) => {
-        // console.log(res.body)
         if (err) console.log('api/getComment:', err)
         expect(res.body).to.be.an('array')
         done()
       })
   })
 
-  it('Should send 404 if players not found"', (done) => {
+  it('Should send empty object if no players found"', (done) => {
     backend
       .post('/api/players')
       .set({
         'x-auth-token': token
       })
-      .expect(400)
+      .expect(200)
       .send({
         id: '5cde7e4d4393414a8537872a8e7'
       })
       .end((err, res) => {
-        console.log(res.body)
         if (err) console.log(err)
-        expect(res.body).to.equal([])
+        expect(res.body).to.be.an('array').that.is.empty
+        done()
+      })
+  })
+})
+
+describe('Calling api/edit', () => {
+  it('Get 200 response on api/edit', (done) => {
+    backend
+      .get('/api/edit')
+      .set({
+        'x-auth-token': token
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) console.log('api/edit:', err)
+        expect(res.status).to.equal(200)
+        done()
+      })
+  })
+
+  it('Should respond with an array of all users in database', (done) => {
+    backend
+      .get('/api/edit')
+      .set({
+        'x-auth-token': token
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) console.log('api/edit:', err)
+        expect(res.body).to.be.an.instanceof(Array)
         done()
       })
   })

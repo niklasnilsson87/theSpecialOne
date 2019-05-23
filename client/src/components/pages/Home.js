@@ -15,7 +15,7 @@ class Home extends Component {
     const { user } = this.props.auth
     return (
       <Container>
-        <h1 className='mb-5 text-center'>Home</h1>
+        <h1 className='mb-3 text-center'>Home</h1>
         <div className="mb-4 manager-card padd">
           <h3>Welcome {user ? user.name : ''}!</h3>
           <p>Team: {user ? user.teamName : ''}</p>

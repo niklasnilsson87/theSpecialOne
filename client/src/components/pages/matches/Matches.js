@@ -35,17 +35,29 @@ class Matches extends Component {
     })
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   componentDidMount() {
     if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 120000 /*4*3600*1000*/ < this.state.newGameDate)) {
       this.setState({ canIPlay: true})
     } else {
-        const ms = (this.state.lastGameDate + 120000) - this.state.newGameDate
-        this.msToHMS(ms)
+        this.interval = setInterval(this.tick, 1000)
     }
     this.props.getPlayers(this.props.auth.user).then(() => {
       this.countValues()
     })
     this.loadUsers()
+  }
+
+  tick = () => {
+    if (this.state.toPlayTime === '00:00:01') {
+      clearInterval(this.interval)
+      this.setState({ canIPlay: true })
+    }
+    let counter = this.state.lastGameDate + 120000 - Date.now()
+    this.msToHMS(counter)
   }
 
   msToHMS(ms) {
@@ -55,7 +67,7 @@ class Matches extends Component {
     let hour = Math.floor(minute / 60)
     minute = minute % 60
     hour = hour % 24
-    this.setState({ toPlayTime: `${hour}:${minute}:${seconds}`})
+    this.setState({ toPlayTime: ((hour + '').length === 1 ? '0' + hour : hour) + ':' + ('0' + minute).substr(-2) + ':' + ('0' + seconds).substr(-2)})
 }
 
   loadUsers() {
@@ -119,17 +131,17 @@ class Matches extends Component {
     const userCard = this.state.users ? (
       users.map(user => {
         return (
-          <div className='manager-card comment' key={user._id}>
-            <div className="team-name">
-              <Link to={`/user/${user._id}`}>
+          <div className='manager-card match-card' key={user._id}>
+            <div className="team-name flex align-items-center">
+              <Link className="team-player-name" to={`/user/${user._id}`}>
                 <h3 className='player-name'>{user.teamName}</h3>
               </Link>
+              <div className='mb-2 button-div'>
+              { canIPlay && <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button>}
+              </div>
             </div>
               <div className="player-contact">
                 <span>{user.name}</span>
-              </div>
-              <div className='mb-2 button-div'>
-              { canIPlay ? <button type='submit' onClick={this.onClick} value={user._id} className='btn-color'>Play Game!</button> : <button className='btn-color'>Time to play {this.state.toPlayTime}</button> }
               </div>
           </div>
           )
@@ -139,7 +151,10 @@ class Matches extends Component {
       )
     return (
       <Container>
-        <h1 className="mb-5 text-center">Matches</h1>
+        <h1 className="mb-3 text-center">Matches</h1>
+          <div className="next-gae">
+            { !canIPlay && <p className='match-timer'>Time until next match: {this.state.toPlayTime}</p> }
+          </div>
         {userCard}
       <Modal
         isOpen={this.state.modal}

@@ -250,7 +250,7 @@ class Training extends Component {
       )
     return (
       <Container>
-        <h1 className="mb-5 text-center">Training</h1>
+        <h1 className="mb-3 text-center">Training</h1>
           <div className='text-center mb-5'>
             <h2>Training Points {this.state.traningPoints}</h2>
           </div>

@@ -12,7 +12,7 @@ class Counter extends Component {
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(this.count, 1000)
+    this.intervalID = setInterval(this.count, 100)
   }
 
   componentWillUnmount() {

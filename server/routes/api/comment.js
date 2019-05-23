@@ -8,6 +8,8 @@ router.post('/', auth, async (req, res) => {
   const { sendTo, userid, teamName, comment, user } = req.body
   console.log(req.body)
 
+  if (!comment) return res.status(400).json({ msg: 'did you forget to write something?' })
+
   const newComment = new Comment({
     user,
     userid,

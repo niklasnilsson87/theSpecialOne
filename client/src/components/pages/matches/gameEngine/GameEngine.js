@@ -166,7 +166,7 @@ class GameEngine extends Component {
       <div>
         <div className="game-board">
           
-        <div className='flex text-center'>
+        <div className='flex text-center align-items-center'>
           <span className='col-4'>{homeTeamManager.teamName}</span>
           <span className='col-1'>{this.state.homeGoals}</span>
           <span className='col-1'><Counter onCounterUpdate={this.counter}/></span>

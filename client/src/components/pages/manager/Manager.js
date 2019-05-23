@@ -71,10 +71,15 @@ class Manager extends Component {
         <p className='center'>no comments yet</p>
     return (
       <Container>
+        <h1 className="mb-3 text-center">Manager</h1>
         <div className="manager">
-        <h1 className="mb-5 text-center">Manager</h1>
         <div className='manager-card'>
+          <div className="flex align-items-center">
           <h2 className='player-name'>{name}</h2>
+          <div className='button' style={{ textAlign: 'center' }}>
+            <EditManager isOwner={this.state.isOwner}>Change profile</EditManager>
+          </div>
+          </div>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>
             <div className='img' style={{ display: 'inline-block', width: '100px', border: '2px solid', textAlign: 'center', borderRadius: '6px', height: '150px' }}>Image</div>
             <div className='manager-info'>
@@ -93,9 +98,6 @@ class Manager extends Component {
           </div>
         </div>
 
-        <div className='button' style={{ textAlign: 'center', marginTop: '20px' }}>
-          <EditManager isOwner={this.state.isOwner}>Change profile</EditManager>
-        </div>
         </div>
         <div className="comments">
           <h2 className='mb-4 mt-4 text-center'>Comments</h2>
