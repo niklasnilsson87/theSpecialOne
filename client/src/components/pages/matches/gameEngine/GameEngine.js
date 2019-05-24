@@ -29,6 +29,7 @@ class GameEngine extends Component {
 
   componentDidMount() {
     const { homeTeamPlayers, awayTeamPlayers, homeTeamValue, awayTeamValue } = this.props.stateFromManager
+    console.log(this.props)
     const { awayTeamManager } = this.props.stateFromManager
     this.match = setInterval(() => {
       let hp = homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)]

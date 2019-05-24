@@ -18,6 +18,7 @@ class Manager extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (this.state.isParamsUndefined) {
       this.setState({ user: this.props.auth.user}, () => this.props.getComments(this.state.user._id))
     } else {
@@ -29,11 +30,13 @@ class Manager extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.path !== this.state.path) {
+      window.scrollTo(0, 0)
       this.setState({ user: this.props.auth.user, isOwner: true }, () => this.props.getComments(this.state.user._id))
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
+  static getDerivedStateFromProps(nextProps, prevState) {
+    window.scrollTo(0, 0)
     if (nextProps.match.path !== prevState.path && !undefined) {
       return { path: nextProps.match.path }
     }

@@ -17,6 +17,7 @@ router.post('/', auth, async (req, res) => {
 })
 
 router.post('/update', auth, async (req, res) => {
+  console.log(req.body)
   const _id = req.body.trainplayer._id
   const updatePlayer = req.body.trainplayer
   const user = req.body.user

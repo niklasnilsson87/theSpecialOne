@@ -79,8 +79,8 @@ class Matches extends Component {
   setValue = (val) => {
     const arr = []
     val.map(v => arr.push(v.totalValue))
-
     const value = arr.reduce((a, b) => a + b, 0)
+
     return value
   }
 
@@ -96,16 +96,20 @@ class Matches extends Component {
   onClick = (e) => {
     e.preventDefault()
     const _id = e.target.value
-    
+  
     this.setState({ awayTeamManager: this.state.users.find(user => user._id === e.target.value) })
-
     this.getAwayTeamPlayers(_id).then(data => {
     this.setState({
       lastGameDate: Date.now(),
       awayTeamPlayers: data,
       canIPlay: false,
       awayTeamValue: this.setValue(data)
-      }, () => this.toggle())
+      }, () => {
+        this.toggle()
+        let counter = this.state.lastGameDate + 210000 - Date.now()
+        this.interval = setInterval(this.tick, 1000)
+        this.msToHMS(counter)
+      })
     })
   }
 
@@ -168,7 +172,7 @@ class Matches extends Component {
         </ModalHeader>
         <ModalBody>
         <div className="manager-card">
-        <GameEngine stateFromManager={this.state}/>
+        <GameEngine stateFromManager={this.state} />
           <h3 className="decider text-center">{this.state.decider}</h3>
         </div>
         </ModalBody>

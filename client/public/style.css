@@ -43,6 +43,7 @@ h4 {
 .progress {
   margin-top: 5px;
   padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .inline {

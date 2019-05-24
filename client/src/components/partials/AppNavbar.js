@@ -72,6 +72,10 @@ class AppNavbar extends Component {
       </Fragment>
     )
 
+    const managerPoints = (
+        <NavItem className='office'>{ this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
+    )
+
     return (
     <div>
       <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">

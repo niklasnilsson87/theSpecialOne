@@ -100,9 +100,9 @@ describe('1.2 Testfall M.1 Login', () => {
             'name': 'Niklas Nilsson',
             'email': 'niklas@gmail.com',
             'teamName': 'Janglers IF',
-            'favTeam': 'Manchester',
-            'favPlayer': 'Christiano Ronaldo',
-            'totalPoints': 3,
+            'favTeam': 'Örebro SK',
+            'favPlayer': 'Thiago',
+            'totalPoints': 61,
             'lastPlayed': 1558367700349 })
         done()
       })
@@ -111,7 +111,7 @@ describe('1.2 Testfall M.1 Login', () => {
 
 // *************************************************************************************************************************
 
-describe('Calling api/comment/', () => {
+describe('3.1 Testfall C.17 Server api/comment/', () => {
   it('Get 200 response on api/getComment', (done) => {
     backend
       .post('/api/comment/getComment')
@@ -182,37 +182,37 @@ describe('Calling api/comment/', () => {
       })
   })
 
-  // it('Should create new comment save it and send back to client', (done) => {
-  //   let comment = {
-  //     sendTo: '5cde7e4d4394a8537872a8e7',
-  //     userid: '5cde7eac4394a8537872a8ed',
-  //     comment: 'Server TESTING COMMENT!',
-  //     teamName: 'Kobojsarna Från Söder',
-  //     user: 'Kalle Karlsson' }
+  it('Should create new comment save it and send back to client', (done) => {
+    let comment = {
+      sendTo: '5cde7e4d4394a8537872a8e7',
+      userid: '5cde7eac4394a8537872a8ed',
+      comment: 'Server TESTING COMMENT!',
+      teamName: 'Kobojsarna Från Söder',
+      user: 'Kalle Karlsson' }
 
-  //   backend
-  //     .post('/api/comment')
-  //     .set({
-  //       'x-auth-token': token
-  //     })
-  //     .send(comment)
-  //     .end((err, res) => {
-  //       delete res.body.date
-  //       if (err) console.log('api/comment/getComment:', err)
-  //       delete res.body.__v
-  //       delete res.body._id
-  //       expect(res.body).to.deep.equal({
-  //         'user': 'Kalle Karlsson',
-  //         'userid': '5cde7eac4394a8537872a8ed',
-  //         'sendTo': '5cde7e4d4394a8537872a8e7',
-  //         'comment': 'Server TESTING COMMENT!',
-  //         'teamName': 'Kobojsarna Från Söder' })
-  //       done()
-  //     })
-  // })
+    backend
+      .post('/api/comment')
+      .set({
+        'x-auth-token': token
+      })
+      .send(comment)
+      .end((err, res) => {
+        delete res.body.date
+        if (err) console.log('api/comment/getComment:', err)
+        delete res.body.__v
+        delete res.body._id
+        expect(res.body).to.deep.equal({
+          'user': 'Kalle Karlsson',
+          'userid': '5cde7eac4394a8537872a8ed',
+          'sendTo': '5cde7e4d4394a8537872a8e7',
+          'comment': 'Server TESTING COMMENT!',
+          'teamName': 'Kobojsarna Från Söder' })
+        done()
+      })
+  })
 })
 
-describe('Calling api/players', () => {
+describe('2.1 Testfall M.2 Server api/players', () => {
   it('Get 200 response on api/players', (done) => {
     backend
       .post('/api/players')
@@ -265,7 +265,7 @@ describe('Calling api/players', () => {
   })
 })
 
-describe('Calling api/edit', () => {
+describe('4.1 Testfall M.3 Server api/edit', () => {
   it('Get 200 response on api/edit', (done) => {
     backend
       .get('/api/edit')
@@ -292,5 +292,32 @@ describe('Calling api/edit', () => {
         expect(res.body).to.be.an.instanceof(Array)
         done()
       })
+  })
+  describe('4.2 Testfall M.12 edit manager', () => {
+    it('Should respond edited info about user', (done) => {
+      const MockEditUser = {
+        desc: 'Välkomen test',
+        favPlayer: 'Thiago',
+        favTeam: 'Örebro SK',
+        email: 'niklas@gmail.com'
+      }
+      backend
+        .post('/api/edit')
+        .set({
+          'x-auth-token': token
+        })
+        .expect(200)
+        .send(MockEditUser)
+        .end((err, res) => {
+          if (err) console.log('api/edit:', err)
+          expect(res.body).to.include({
+            description: 'Välkomen test',
+            favPlayer: 'Thiago',
+            favTeam: 'Örebro SK',
+            email: 'niklas@gmail.com'
+          })
+          done()
+        })
+    })
   })
 })
