@@ -68,7 +68,7 @@ class Login extends Component {
             <Label for='examplePassword'>Password</Label>
             <Input type='password' name='password' className='mb-1' onChange={this.onChange} placeholder='Enter your password here...' />
           </FormGroup>
-          <button type='submit' className='btn-color'>Login</button>
+          <button type='submit' name='login' className='btn-color'>Login</button>
         </Form>
         <button type='submit' className='btn-color text-dec'><NavLink to="/register">Register a team</NavLink></button>
       </Container>

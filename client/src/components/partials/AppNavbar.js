@@ -38,7 +38,7 @@ class AppNavbar extends Component {
           <RRNavLink className="nav-link" to="/manager">Manager</RRNavLink>
         </NavItem>
         <NavItem>
-          <RRNavLink className="nav-link" to="/player">Players</RRNavLink>
+          <RRNavLink name="player" className="nav-link" to="/player">Players</RRNavLink>
         </NavItem>
         <NavItem>
           <RRNavLink className="nav-link" to="/matches">Matches</RRNavLink>

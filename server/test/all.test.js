@@ -296,7 +296,7 @@ describe('4.1 Testfall M.3 Server api/edit', () => {
   describe('4.2 Testfall M.12 edit manager', () => {
     it('Should respond edited info about user', (done) => {
       const MockEditUser = {
-        desc: 'Välkomen test',
+        desc: 'Välkommen test',
         favPlayer: 'Thiago',
         favTeam: 'Örebro SK',
         email: 'niklas@gmail.com'
@@ -311,7 +311,7 @@ describe('4.1 Testfall M.3 Server api/edit', () => {
         .end((err, res) => {
           if (err) console.log('api/edit:', err)
           expect(res.body).to.include({
-            description: 'Välkomen test',
+            description: 'Välkommen test',
             favPlayer: 'Thiago',
             favTeam: 'Örebro SK',
             email: 'niklas@gmail.com'
