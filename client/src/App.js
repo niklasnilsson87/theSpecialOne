@@ -34,7 +34,8 @@ class App extends Component {
           <PrivateRoutes path='/player' component={Players} />
           <PrivateRoutes path='/home' component={Home} />
           <PrivateRoutes path='/user/:name' component={Manager} />
-          <Route component={PageNotFound} />
+          {/* <PrivateRoutes path='/user' component={PageNotFound} /> */}
+          <Route path='/user' component={PageNotFound} />
         </Switch>
         <Footer />
       </BrowserRouter>

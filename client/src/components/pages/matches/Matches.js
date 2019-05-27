@@ -40,23 +40,23 @@ class Matches extends Component {
   }
 
   componentDidMount() {
-    if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 120000 /*4*3600*1000*/ < this.state.newGameDate)) {
+    if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 14400000 < this.state.newGameDate)) {
       this.setState({ canIPlay: true})
     } else {
-        this.interval = setInterval(this.tick, 1000)
+      let time = 14400000
+      this.interval = setInterval(this.tick, 1000, time)
     }
-    this.props.getPlayers(this.props.auth.user).then(() => {
-      this.countValues()
-    })
+    this.props.getPlayers(this.props.auth.user)
+      .then(() => this.countValues())
     this.loadUsers()
   }
 
-  tick = () => {
+  tick = (time) => {
     if (this.state.toPlayTime === '00:00:01') {
       clearInterval(this.interval)
       this.setState({ canIPlay: true })
     }
-    let counter = this.state.lastGameDate + 120000 - Date.now()
+    let counter = (this.state.lastGameDate + time) - Date.now()
     this.msToHMS(counter)
   }
 
@@ -106,9 +106,8 @@ class Matches extends Component {
       awayTeamValue: this.setValue(data)
       }, () => {
         this.toggle()
-        let counter = this.state.lastGameDate + 210000 - Date.now()
-        this.interval = setInterval(this.tick, 1000)
-        this.msToHMS(counter)
+        let time = this.state.lastGameDate + 14421000 - Date.now()
+        this.interval = setInterval(this.tick, 1000, time)
       })
     })
   }
