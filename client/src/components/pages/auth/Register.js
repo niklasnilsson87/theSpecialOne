@@ -81,11 +81,11 @@ class Register extends Component {
           </FormGroup>
           <FormGroup>
             <Label for='teamName'>Team Name</Label>
-            <Input type='text' name='teamName' className='mb-1' onChange={this.onChange} placeholder='Enter your password here...' />
+            <Input type='text' name='teamName' minlength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 characters...' />
           </FormGroup>
           <button type='submit' className='btn-color'>Register</button>
         </Form>
-        <button type='submit' className='btn-color'><NavLink to="/">login</NavLink></button>
+        <button type='submit' className='btn-color'><NavLink to="/">Back to login</NavLink></button>
       </Container>
     )
   }

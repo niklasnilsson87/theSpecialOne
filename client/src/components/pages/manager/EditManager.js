@@ -41,7 +41,7 @@ class EditManager extends Component {
   }
 
   render () {
-    const editButton = this.props.isOwner ? <button className='btn-color' onClick={this.toggle}>Edit profile</button> : null
+    const editButton = this.props.isOwner ? <button name="edit-profile" className='btn-color' onClick={this.toggle}>Edit profile</button> : null
 
     return (       
       <div>

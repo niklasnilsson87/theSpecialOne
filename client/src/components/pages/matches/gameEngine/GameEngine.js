@@ -29,7 +29,6 @@ class GameEngine extends Component {
 
   componentDidMount() {
     const { homeTeamPlayers, awayTeamPlayers, homeTeamValue, awayTeamValue } = this.props.stateFromManager
-    console.log(this.props)
     const { awayTeamManager } = this.props.stateFromManager
     this.match = setInterval(() => {
       let hp = homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)]
@@ -84,8 +83,6 @@ class GameEngine extends Component {
     }
 
     if (awayTeamAttackingEvent === this.state.counter) {
-      console.log(ap.attributes)
-      console.log(hp.attributes)
       if (ap.attributes.tecnical.dribbling > hp.attributes.mental.positioning) {
       this.setState({ events: [...this.state.events, `${this.state.counter} ${ap.firstname} ${ap.lastname} goes through the defense and fires...`] })
         if(ap.attributes.tecnical.finishing + ap.attributes.mental.concentration + ap.attributes.physical.speed > hp.attributes.mental.aggression + hp.attributes.tecnical.marking + hp.attributes.mental.concentration) {
@@ -143,7 +140,6 @@ class GameEngine extends Component {
 
   winLose = (awayTeamManager) => {
     const lastGame = Date.now()
-    console.log(lastGame)
     if (this.state.homeGoals > this.state.awayGoals) {
       this.props.updatePoints(this.props.auth.user, awayTeamManager, 3, lastGame, 'win')
     } else if (this.state.homeGoals === this.state.awayGoals) {

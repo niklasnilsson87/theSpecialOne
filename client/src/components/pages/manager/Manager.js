@@ -65,7 +65,7 @@ class Manager extends Component {
               <span>{comment.teamName}</span>
             </div>
             <div className='comment-area'>
-              <p>{comment.comment}</p>
+              <p className="comment-text">{comment.comment}</p>
             </div>
           </div>
           )
@@ -78,7 +78,7 @@ class Manager extends Component {
         <div className="manager">
         <div className='manager-card'>
           <div className="flex align-items-center">
-          <h2 className='player-name'>{name}</h2>
+          <h2 className='player-name' name="owner">{name}</h2>
           <div className='button' style={{ textAlign: 'center' }}>
             <EditManager isOwner={this.state.isOwner}>Change profile</EditManager>
           </div>

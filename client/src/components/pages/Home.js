@@ -17,7 +17,7 @@ class Home extends Component {
       <Container>
         <h1 className='mb-3 text-center'>Home</h1>
         <div className="mb-4 manager-card padd">
-          <h3>Welcome {user ? user.name : ''}!</h3>
+          <h3 name="manager-name">Welcome {user ? user.name : ''}!</h3>
           <p>Team: {user ? user.teamName : ''}</p>
           <p className="rules">Welcome to the game of the search for a new Special One Manager</p>
         </div>

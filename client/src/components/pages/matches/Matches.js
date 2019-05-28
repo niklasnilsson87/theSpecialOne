@@ -106,7 +106,7 @@ class Matches extends Component {
       awayTeamValue: this.setValue(data)
       }, () => {
         this.toggle()
-        let time = this.state.lastGameDate + 14421000 - Date.now()
+        let time = this.state.lastGameDate + 14490000 - Date.now()
         this.interval = setInterval(this.tick, 1000, time)
       })
     })

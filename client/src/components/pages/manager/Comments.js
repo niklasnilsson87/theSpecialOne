@@ -49,6 +49,7 @@ class Comments extends Component {
               value={this.state.comment}
             />
             <button
+              name="send-comment"
               className='btn-color'
             >Send</button>
           </FormGroup>

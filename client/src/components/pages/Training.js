@@ -90,7 +90,7 @@ class Training extends Component {
       players.map(player => {
         return (
           <React.Fragment key={player._id}>
-            <option value={player._id}>{player.firstname} {player.lastname}</option>
+            <option className="option" value={player._id}>{player.firstname} {player.lastname}</option>
           </React.Fragment>
         )
       })
@@ -252,7 +252,7 @@ class Training extends Component {
       <Container>
         <h1 className="mb-3 text-center">Training</h1>
           <div className='text-center mb-5'>
-            <h2>Training Points {this.state.traningPoints}</h2>
+            <h2 name="training-points">Training Points {this.state.traningPoints}</h2>
           </div>
           <div className='select-player text-center'>
             <span className='select-player'>Select Player:</span>

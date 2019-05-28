@@ -32,19 +32,19 @@ class AppNavbar extends Component {
     const privateLinks = (
       <Fragment>
         <NavItem>
-          <RRNavLink className="nav-link" to="/home">Home</RRNavLink>
+          <RRNavLink name="home" className="nav-link" to="/home">Home</RRNavLink>
         </NavItem>
         <NavItem>
-          <RRNavLink className="nav-link" to="/manager">Manager</RRNavLink>
+          <RRNavLink name="manager" className="nav-link" to="/manager">Manager</RRNavLink>
         </NavItem>
         <NavItem>
           <RRNavLink name="player" className="nav-link" to="/player">Players</RRNavLink>
         </NavItem>
         <NavItem>
-          <RRNavLink className="nav-link" to="/matches">Matches</RRNavLink>
+          <RRNavLink name="matches" className="nav-link" to="/matches">Matches</RRNavLink>
         </NavItem>
         <NavItem>
-          <RRNavLink className="nav-link" to="/training">Training</RRNavLink>
+          <RRNavLink name="training" className="nav-link" to="/training">Training</RRNavLink>
         </NavItem>
         <NavItem style={{color: "white"}}>
           |
