@@ -9,7 +9,7 @@ const app = express()
 app.use(bodyParser.json())
 
 // connect to the database
-mongoose.connect().catch(error => {
+let conn = mongoose.connect().catch(error => {
   console.error(error)
   process.exit(1)
 })
@@ -18,6 +18,7 @@ app.use('/api/players', require('./routes/api/players'))
 app.use('/api/signup', require('./routes/api/signup'))
 app.use('/api/login', require('./routes/api/login'))
 app.use('/api/edit', require('./routes/api/edit'))
+app.use('/api/delete', require('./routes/api/delete'))
 app.use('/api/comment', require('./routes/api/comment'))
 
 // Serve static assets if in production
@@ -35,3 +36,4 @@ const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Server started on port ${port}`))
 
 module.exports = app
+module.exports = conn

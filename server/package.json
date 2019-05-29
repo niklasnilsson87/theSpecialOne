@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "cd .. && cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha -t 5000"
   },
   "keywords": [
     "express",
