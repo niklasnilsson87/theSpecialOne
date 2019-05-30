@@ -1,5 +1,5 @@
 #root {
-  background-color: #58922f;
+  background-color: #3b9b31;
   min-height: 100vh;
   padding-bottom: 40px;
 }
@@ -12,8 +12,18 @@ body {
   background-image: url('./img/football-161132_1280.png');
   background-repeat: no-repeat;
   background-position-x: -800px;
-  background-position-y: 100px;
+  background-position-y: 70px;
   background-attachment: fixed;
+}
+
+.larger-btn {
+  min-width: 100%;
+  background: green;
+  min-height: 50px;
+}
+
+.logo img {
+  width: 100%;
 }
 
 h1, h2, h3 {
@@ -53,6 +63,10 @@ h4 {
 
 .nav-item.a {
   text-decoration: none;
+  cursor: pointer;
+}
+
+.pointer {
   cursor: pointer;
 }
 
@@ -120,7 +134,7 @@ h4 {
 .manager-card {
   background-color: #eee;
   border-radius: 4px;
-  box-shadow: 3px 5px 11px 12px rgb(74, 122, 41);
+  box-shadow: 3px 5px 11px 12px rgb(19, 127, 41);
   padding: 1rem;
   overflow: hidden;
 }
@@ -209,7 +223,6 @@ html {
 
 .form-div {
   padding: 20px;
-  width: 300px;
   border-radius: 20px;
   background-color: #b5d99c;
 }

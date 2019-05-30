@@ -56,21 +56,25 @@ class Login extends Component {
 
   render () {
     return (
-      <Container className='form-div'>
-        <h2 className="text-center mb-2">Login</h2>
-        { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
-        <Form expand='sm' onSubmit={this.onSubmit}>
-          <FormGroup>
-            <Label for='exampleEmail'>Email</Label>
-            <Input type='email' name='email' className='login-form' onChange={this.onChange} placeholder='Enter your username here...' />
-          </FormGroup>
-          <FormGroup>
-            <Label for='examplePassword'>Password</Label>
-            <Input type='password' name='password' className='mb-1' onChange={this.onChange} placeholder='Enter your password here...' />
-          </FormGroup>
-          <button type='submit' name='login' className='btn-color'>Login</button>
-        </Form>
-        <button type='submit' className='btn-color text-dec'><NavLink to="/register">Register a team</NavLink></button>
+      <Container>
+        <div className="form-div">
+          <h2 className="pb-2 text-dark mb-2">Login</h2>
+          { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
+          <Form expand='sm' onSubmit={this.onSubmit}>
+              <div className="d-flex justify-content-between">
+            <FormGroup>
+              <Label for='exampleEmail'>Email</Label>
+                <Input type='email' name='email' className='login-form' onChange={this.onChange} placeholder='Username...' />
+            </FormGroup>
+            <FormGroup>
+              <Label for='examplePassword'>Password</Label>
+                <Input type='password' name='password' className='mb-1' onChange={this.onChange} placeholder='Password...' />
+            </FormGroup>
+              </div>
+            <button type='submit' name='login' className='larger-btn btn-color'>Login</button>
+          </Form>
+          <NavLink className="text-dark" to="/register">Not registered?</NavLink>
+        </div>
       </Container>
     )
   }

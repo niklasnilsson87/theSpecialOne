@@ -64,7 +64,7 @@ class Register extends Component {
   render () {
     return (
       <Container className='form-div'>
-        <h2>Register new team</h2>
+        <h2 className="pb-2 text-dark mb-2">Register new team</h2>
         { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
         <Form expand='sm' onSubmit={this.onSubmit}>
           <FormGroup>
@@ -77,15 +77,14 @@ class Register extends Component {
           </FormGroup>
           <FormGroup>
             <Label for='password'>Password</Label>
-            <Input type='password' name='password' className='mb-1' onChange={this.onChange} placeholder='Enter your password here...' />
+            <Input type='password' name='password' minLength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 lenght...' />
           </FormGroup>
           <FormGroup>
             <Label for='teamName'>Team Name</Label>
-            <Input type='text' name='teamName' minlength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 characters...' />
+            <Input type='text' name='teamName' className='mb-1' onChange={this.onChange} placeholder='Select your team name...' />
           </FormGroup>
-          <button type='submit' className='btn-color'>Register</button>
+          <button type='submit' className='larger-btn btn-color'>Register</button>
         </Form>
-        <button type='submit' className='btn-color'><NavLink to="/">Back to login</NavLink></button>
       </Container>
     )
   }

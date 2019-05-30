@@ -79,6 +79,9 @@ class AppNavbar extends Component {
     return (
     <div>
       <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
+        <NavItem style={{listStyleType: 'none'}}>
+        <img src='/img/TSO-Logo2.png' style={{width: '70px'}} alt='Logo' />
+        </NavItem>
         <Link className='brand-logo' to="/home">The Special One</Link>
           { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />

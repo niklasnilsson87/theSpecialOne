@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import PageNotFound from './components/pages/error/PageNotFound'
 import AppNavbar from './components/partials/AppNavbar'
 import Footer from './components/partials/Footer'
+import Dashboard from './components/pages/Dashboard'
 import Home from './components/pages/Home'
 import Manager from './components/pages/manager/Manager'
 import Matches from './components/pages/matches/Matches'
 import Players from './components/pages/Players'
 import Training from './components/pages/Training'
-import Login from './components/pages/auth/Login'
 import Register from './components/pages/auth/Register'
 import PrivateRoutes from './privateRoutes/PrivateRoutes'
 import { loadUser } from './actions/authActions'
@@ -26,7 +26,7 @@ class App extends Component {
       <BrowserRouter>
         <AppNavbar />
         <Switch>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/' component={Dashboard} />
           <Route path='/register' component={Register} />
           <PrivateRoutes path='/manager' component={Manager} />
           <PrivateRoutes path='/matches' component={Matches} />
@@ -34,7 +34,7 @@ class App extends Component {
           <PrivateRoutes path='/player' component={Players} />
           <PrivateRoutes path='/home' component={Home} />
           <PrivateRoutes path='/user/:name' component={Manager} />
-          {/* <PrivateRoutes path='/user' component={PageNotFound} /> */}
+          <PrivateRoutes component={PageNotFound} />
           <Route path='/user' component={PageNotFound} />
         </Switch>
         <Footer />

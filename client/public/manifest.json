@@ -3,12 +3,12 @@
   "name": "The Special One",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/img/TSO-Logo",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon.ico",
+      "src": "/img/TSO-Logo",
       "type": "image/png",
       "sizes": "512x512"
     }
