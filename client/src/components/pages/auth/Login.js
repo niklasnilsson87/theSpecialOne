@@ -30,9 +30,6 @@ class Login extends Component {
         this.setState({ msg: null })
       }
     }
-    if (isAuthenticated) {
-      this.props.history.push('/home')
-    }
   }
 
   onChange = e => {

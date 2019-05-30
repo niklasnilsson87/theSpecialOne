@@ -3,10 +3,15 @@ import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import PropTypes from 'prop-types'
 
 class Dashboard extends Component {
   state = {
     isLogin: true
+  }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool
   }
 
   onClick = (e) => {
@@ -18,6 +23,13 @@ class Dashboard extends Component {
     this.setState({
       isLogin: false
     })
+  }
+
+  componentDidUpdate() {
+  const { isAuthenticated } = this.props
+     if (isAuthenticated) {
+      this.props.history.push('/home')
+    }
   }
 
   render () {
@@ -44,7 +56,6 @@ class Dashboard extends Component {
           </div>
         </div>
         {this.state.isLogin ? <Login /> : <Register />}
-        {/* <Login /> */}
       </Container>
     )
   }
