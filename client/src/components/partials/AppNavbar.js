@@ -31,8 +31,8 @@ class AppNavbar extends Component {
 
     const privateLinks = (
       <Fragment>
-        <NavItem className='nav-item text-light font-weight-bold'>Points { this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
-        <NavItem style={{color: "white"}}>|</NavItem>
+        <NavItem className='nav-item text-light font-weight-bold nav-point'>Points { this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
+        <NavItem className="d-none d-sm-inline-block" style={{color: "white"}}>|</NavItem>
         <NavItem>
           <RRNavLink name="home" className="nav-link" to="/home">Home</RRNavLink>
         </NavItem>

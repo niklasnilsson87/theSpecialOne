@@ -156,7 +156,7 @@ h4 {
 
 .card {
   padding: 15px 20px 15px 5px;
-  box-shadow: 3px 5px 11px 12px rgb(74, 122, 41);
+  box-shadow: 3px 5px 11px 12px rgb(19, 127, 41);
 }
 
 label {
@@ -265,8 +265,29 @@ a {
     width: 80% !important;
   }
 
+  .nav-point {
+    width: 100%;
+    text-align: center;
+  }
+
+  .game-board {
+    padding: 30px 5px !important;
+  }
+
+  .game-board span {
+    font-size: 1rem !important;
+}
+
   .modal-body {
     padding: 0 !important;
+  }
+
+  .manager-card {
+    box-shadow: 3px 5px 5px 3px rgb(19, 127, 41)
+  }
+  
+  .card {
+    box-shadow: 3px 5px 5px 3px rgb(19, 127, 41)
   }
 }
 
@@ -363,6 +384,7 @@ button {
 
 .matches-modal .manager-card {
   background: transparent;
+  box-shadow: 0 0 0;
 }
 
 .match-timer {

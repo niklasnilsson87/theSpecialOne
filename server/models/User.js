@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    default: 'Change description below'
+    default: 'Edit profile to change description'
   },
   favPlayer: {
     type: String,

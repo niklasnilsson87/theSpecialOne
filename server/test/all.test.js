@@ -165,7 +165,6 @@ describe('3.1 Testfall C.17 Server api/comment/', () => {
     let MockComment = {
       sendTo: '5cde7e4d4394a8537872a8e7',
       userid: '5ced5bee3138fa15c89116d3',
-      comment: '',
       teamName: 'Real Madrid',
       user: 'Christiano Ronaldo' }
 

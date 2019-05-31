@@ -3,11 +3,11 @@ const webdriver = require('selenium-webdriver')
 const driver = new webdriver.Builder().forBrowser('chrome').build()
 const By = webdriver.By
 const until = webdriver.until
-const url = 'http://localhost:3000/'
+const url = 'https://www.thespecialone.se/'
 
 const login = async () => {
   await driver.navigate().to(url)
-  await driver.findElement(By.name('email')).sendKeys('kalle@gmail.com')
+  await driver.findElement(By.name('email')).sendKeys('ronaldo@gmail.com')
   await driver.findElement(By.name('password')).sendKeys('pgebxn')
   return driver.findElement(By.name('login')).click()
 }
@@ -24,15 +24,15 @@ const shouldVisitHomePage = () => {
     })
     .then(() => findElements('nav-item'))
     .then(navs => {
-      navs.length === 2
-        ? console.log('Test Success! - Should be 2 nav links')
-        : console.log('Test Failed! - Should be 2 nav links')
-      navs[0] === 'Login'
-        ? console.log('Test Success! - Navlink 1 should be Login')
-        : console.log('Test Failed! - Navlink 1 should be Login')
-      navs[1] === 'Register'
-        ? console.log('Test Success! - Navlink 2 should be Register')
-        : console.log('Test Failed! - Navlink 2 should be Register')
+      navs.length === 3
+        ? console.log('Test Success! - Should be 3 nav links')
+        : console.log('Test Failed! - Should be 3 nav links')
+      navs[1] === 'Login'
+        ? console.log('Test Success! - Navlink 2 should be Login')
+        : console.log('Test Failed! - Navlink 2 should be Login')
+      navs[2] === 'Register'
+        ? console.log('Test Success! - Navlink 3 should be Register')
+        : console.log('Test Failed! - Navlink 3 should be Register')
     })
 }
 
@@ -48,9 +48,9 @@ function testingRoutes () {
     })
     .then(() => gethTag('manager-name', 'h3'))
     .then(text => {
-      text === 'Welcome Kalle Karlsson!'
-        ? console.log('Test Success! - Logged in user should be Kalle Karlsson')
-        : console.log('Test Failed! - Logged in user should be Kalle Karlsson')
+      text === 'Welcome Christiano Ronaldo!'
+        ? console.log('Test Success! - Logged in user should be Christiano Ronaldo')
+        : console.log('Test Failed! - Logged in user should be Christiano Ronaldo')
     })
     .then(() => findElements('nav-link'))
     .then(navs => {
@@ -94,12 +94,12 @@ function testingRoutes () {
     })
     .then(() => findElements('player-name'))
     .then(players => {
-      players[0] === 'Ivan Logan'
-        ? console.log('Test Success! - First player name on page should be Ivan Logan')
-        : console.log('Test Failed! - First player name on page should be Ivan Logan')
-      players[1] === 'Landon Falsini'
-        ? console.log('Test Success! - Second players name on page should be Landon Falsini')
-        : console.log('Test Failed! - Second player name on page should be Landon Falsini')
+      players[0] === 'Cole Moran'
+        ? console.log('Test Success! - First player name on page should be Cole Moran')
+        : console.log('Test Failed! - First player name on page should be Cole Moran')
+      players[1] === 'Gerald Risaliti'
+        ? console.log('Test Success! - Second players name on page should be Gerald Risaliti')
+        : console.log('Test Failed! - Second player name on page should be Gerald Risaliti')
     })
     .then(() => gethTag('manager', 'h1'))
     .then(text => {
@@ -110,9 +110,9 @@ function testingRoutes () {
     })
     .then(() => findText('owner'))
     .then(text => {
-      text === 'Kalle Karlsson'
-        ? console.log('Test Success! - Should have a manager card with Kalle Karlssons name as h2')
-        : console.log('Test Failed! - Should have a manager card with Kalle Karlssons name as h2')
+      text === 'Christiano Ronaldo'
+        ? console.log('Test Success! - Should have a manager card with Christiano Ronaldo name as h2')
+        : console.log('Test Failed! - Should have a manager card with Christiano Ronaldo name as h2')
     })
     .then(() => findText('edit-profile'))
     .then(text => {
@@ -147,9 +147,9 @@ function testingRoutes () {
       Array.isArray(text)
         ? console.log('Test Success! - Should show a list of players')
         : console.log('Test Failed! - Should show a list of players')
-      text[0] === 'Ivan Logan'
-        ? console.log('Test Success! - Should show a list of players where the first name is Ivan Logan')
-        : console.log('Test Failed! - Should show a list of players where the first name is Ivan Logan')
+      text[0] === 'Cole Moran'
+        ? console.log('Test Success! - Should show a list of players where the first name is Cole Moran')
+        : console.log('Test Failed! - Should show a list of players where the first name is Cole Moran')
     })
     .then(() => gethTag('matches', 'h1'))
     .then(text => {
@@ -164,12 +164,12 @@ function testingRoutes () {
         ? console.log('Test Success! - Should show a list of teams')
         : console.log('Test Failed! - Should show a list of teams')
       const team = text[0].split('\n')
-      team[0] === 'Janglers IF'
-        ? console.log('Test Success! - Should show a list of teams where the first team name is "Janglers IF"')
-        : console.log('Test Failed! - Should show a list of teams where the first team name is "Janglers IF"')
-      team[1] === 'Niklas Nilsson'
-        ? console.log('Test Success! - Should show a list of teams where the first username is "Niklas Nilsson"')
-        : console.log('Test Failed! - Should show a list of teams where the first username is "Niklas Nilsson"')
+      team[0] === 'Maradona FC'
+        ? console.log('Test Success! - Should show a list of teams where the first team name is "Maradona FC"')
+        : console.log('Test Failed! - Should show a list of teams where the first team name is "Maradona FC"')
+      team[2] === 'Diego Maradona'
+        ? console.log('Test Success! - Should show a list of teams where the first username is "Diego Maradona"')
+        : console.log('Test Failed! - Should show a list of teams where the first username is "Diego Maradona"')
     })
     .then(() => driver.quit())
 }

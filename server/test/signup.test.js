@@ -31,7 +31,7 @@ describe('Registrering', () => {
             { 'name': 'TEST',
               'email': 'TEST@gmail.com',
               'teamName': 'TEST IF',
-              'description': 'Change description below',
+              'description': 'Edit profile to change description',
               'favTeam': '',
               'favPlayer': '',
               'totalPoints': 10,
@@ -62,7 +62,7 @@ describe('Registrering', () => {
         .post('/api/signup')
         .send({
           name: 'TEST',
-          email: 'jeppe@gmail.com',
+          email: 'ronaldo@gmail.com',
           password: '12345678',
           teamName: 'Skutt IF'
         })
@@ -95,14 +95,17 @@ describe('Registrering', () => {
           expect(token).to.be.a('string')
         })
     })
-    it('Should remove user', () => {
+
+    it('Should remove user', (done) => {
       backend
         .post('/api/delete')
         .send({ id: _id })
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) console.log('error on removing:', err)
+          expect(res.text).to.equal('{"Success":true}')
         })
+      done()
     })
   })
 })
