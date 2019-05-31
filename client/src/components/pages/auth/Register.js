@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Form, Label, FormGroup, Input, Alert } from 'reactstrap'
-import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { register } from '../../../actions/authActions'
 import { clearErrors } from '../../../actions/errorActions'

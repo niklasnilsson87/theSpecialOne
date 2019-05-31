@@ -21,7 +21,7 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props
+    const { error } = this.props
     if(error !== prevProps.error) {
       // Check for register error
       if (error.id === 'LOGIN_FAIL'){
@@ -59,7 +59,7 @@ class Login extends Component {
           { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
           <Form expand='sm' onSubmit={this.onSubmit}>
               <div className="d-flex justify-content-between">
-            <FormGroup>
+            <FormGroup className="mr-2">
               <Label for='exampleEmail'>Email</Label>
                 <Input type='email' name='email' className='login-form' onChange={this.onChange} placeholder='Username...' />
             </FormGroup>

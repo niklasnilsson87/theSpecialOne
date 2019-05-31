@@ -84,7 +84,9 @@ class Manager extends Component {
           </div>
           </div>
           <div className='mb-2' style={{ display: 'flex', padding: '7px' }}>
-            <div className='img' style={{ display: 'inline-block', width: '100px', border: '2px solid', textAlign: 'center', borderRadius: '6px', height: '150px' }}>Image</div>
+            <div>
+              <img src="/img/manager.png" alt="manager" className="mr-4 managerimg"/>
+            </div>
             <div className='manager-info'>
               <p>Email: {email}</p>
               <p>Team: {teamName}</p>
@@ -96,9 +98,9 @@ class Manager extends Component {
           <hr />
           <h5 className='ml-2'>Description</h5>
 
-          <div style={{ textAlign: 'center', padding: '8px' }}>
+          <p style={{ textAlign: 'center', padding: '8px' }}>
             {description}
-          </div>
+          </p>
         </div>
 
         </div>

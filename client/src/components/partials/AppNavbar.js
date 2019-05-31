@@ -31,6 +31,8 @@ class AppNavbar extends Component {
 
     const privateLinks = (
       <Fragment>
+        <NavItem className='nav-item text-light font-weight-bold'>Points { this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
+        <NavItem style={{color: "white"}}>|</NavItem>
         <NavItem>
           <RRNavLink name="home" className="nav-link" to="/home">Home</RRNavLink>
         </NavItem>
@@ -46,9 +48,7 @@ class AppNavbar extends Component {
         <NavItem>
           <RRNavLink name="training" className="nav-link" to="/training">Training</RRNavLink>
         </NavItem>
-        <NavItem style={{color: "white"}}>
-          |
-        </NavItem>
+        <NavItem style={{color: "white"}}>|</NavItem>
         <NavItem>
           <Logout />
         </NavItem>
@@ -66,15 +66,13 @@ class AppNavbar extends Component {
       </Fragment>
     )
 
-    const managerPoints = (
-        <NavItem className='office'>{ this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
-    )
-
     return (
     <div>
-      <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} className="mb-5">
+      <Navbar dark expand="sm" style={{backgroundColor: '#8a25e2'}} sticky="top" className="mb-5">
         <NavItem style={{listStyleType: 'none'}}>
-        <img src='/img/TSO-Logo2.png' style={{width: '70px'}} alt='Logo' />
+        <Link to="/home">
+          <img src='/img/TSO-Logo2.png' style={{width: '70px'}} alt='Logo' />
+        </Link>
         </NavItem>
         <Link className='brand-logo' to="/home">The Special One</Link>
           <NavbarToggler onClick={this.toggle} />

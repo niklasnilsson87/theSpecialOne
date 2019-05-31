@@ -38,6 +38,7 @@ class Dashboard extends Component {
         <div className='logo'>
           <img src='/img/TSO-Logo.png' alt='Logo' />
         </div>
+        <div className="dash-back">
         <h3 className='text-center'>Welcome to The Special One!</h3>
         <div>
           <div>
@@ -53,6 +54,7 @@ class Dashboard extends Component {
               So what are you wating for? Jump in to the fantasy of being a manager of your dreams.
               <span className='font-weight-bold pointer ml-1' onClick={this.onClick}>Login</span> in or create an <span className='font-weight-bold pointer' onClick={this.onClick}>account.</span>
             </p>
+          </div>
           </div>
         </div>
         {this.state.isLogin ? <Login /> : <Register />}
