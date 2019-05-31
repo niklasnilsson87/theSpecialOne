@@ -11,6 +11,10 @@ class Home extends Component {
     auth: PropTypes.object.isRequired
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render () {
     const { user } = this.props.auth
     return (
@@ -27,19 +31,24 @@ class Home extends Component {
           <h3>Manager</h3>
           <p>You can visit your own page and keep track of your points and edit your personal information
             and view messages send to you</p>
-            <button className='visit-player'><NavLink className="home-player" to="/manager">Visit Manager</NavLink></button>
+            <NavLink className="text-dark font-weight-bold home-player" to="/manager">Visit Manager</NavLink>
         </div>
 
         <div className="mb-4 manager-card padd">
           <h3>Players</h3>
-          <p>You have taken over some players that you can get to know</p>
-          <button className='visit-player'><NavLink className="home-player" to="/player">Visit players</NavLink></button>
+          <p>
+            Your scout has been busy to find players from around the world.
+          </p>
+          <NavLink className="text-dark font-weight-bold home-player" to="/player">Visit players</NavLink>
         </div>
         <div className="divider">
         <div className="mb-4 manager-card padd">
           <h3>Training</h3>
-          <p>You can train your players stats to help them perform better for you in games</p>
-          <button className='visit-player'><NavLink className="home-player" to="/training">Visit Training</NavLink></button>
+          <p>
+            You can train your players stats to help them perform better for you in games. You train your players
+            with your manager points that you earn from winning matches against other teams.
+            </p>
+          <NavLink className="text-dark font-weight-bold home-player" to="/training">Visit Training</NavLink>
         </div>
         </div>
       </Container>

@@ -66,12 +66,6 @@ class AppNavbar extends Component {
       </Fragment>
     )
 
-    const office = (
-      <Fragment>
-        <NavItem className="office hidden-md">Office</NavItem>
-      </Fragment>
-    )
-
     const managerPoints = (
         <NavItem className='office'>{ this.props.auth.user && (this.props.auth.user.totalPoints)}</NavItem>
     )
@@ -83,7 +77,6 @@ class AppNavbar extends Component {
         <img src='/img/TSO-Logo2.png' style={{width: '70px'}} alt='Logo' />
         </NavItem>
         <Link className='brand-logo' to="/home">The Special One</Link>
-          { isAuthenticated ? office : ''}
           <NavbarToggler onClick={this.toggle} />
           
           <Collapse isOpen={this.state.isOpen} navbar>

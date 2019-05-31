@@ -31,7 +31,7 @@ router.post('/', (res, req) => {
         .then(() => {
           newUser.save()
         })
-      for (let i = 0; i <= 1; i++) {
+      for (let i = 0; i <= 15; i++) {
         generatePlayer(newUser.id, newUser.teamName)
       }
       sign(newUser)
