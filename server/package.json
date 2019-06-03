@@ -4,7 +4,6 @@
   "description": "TheSpecialOne",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd .. && cd client && npm start",
