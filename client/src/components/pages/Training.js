@@ -70,7 +70,6 @@ class Training extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const { trainPlayer } = this.state
-    console.log(this.props.auth.user.totalPoints)
     this.props.updatePlayer(this.props.auth.user, trainPlayer)
     this.setState({ isChange: false, isDisabled: true })
   }

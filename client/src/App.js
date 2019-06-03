@@ -17,8 +17,8 @@ import PrivateRoutes from './privateRoutes/PrivateRoutes'
 import { loadUser } from './actions/authActions'
 
 class App extends Component {
-  async componentDidMount () {
-    await store.dispatch(loadUser())
+  componentDidMount () {
+    store.dispatch(loadUser())
   }
 
   render () {
