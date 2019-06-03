@@ -1,25 +1,25 @@
-import { GET_COMMENTS, ADD_COMMENTS, COMMENT_FAIL } from '../actions/types'
+import { GET_REPORT, SEND_REPORT, FAILD_REPORT } from '../actions/types'
 
 const initialState = {
-  comments: [],
+  reports: [],
   loading: false
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_COMMENTS:
+    case GET_REPORT:
       return {
         ...state,
-        comments: action.payload,
+        reports: action.payload,
         loading: false
       }
-    case ADD_COMMENTS:
+    case SEND_REPORT:
       return {
         ...state,
-        comments: [action.payload, ...state.comments],
+        reports: [action.payload, ...state.reports],
         loading: false
       }
-    case COMMENT_FAIL:
+    case FAILD_REPORT:
       return {
         ...state
       }

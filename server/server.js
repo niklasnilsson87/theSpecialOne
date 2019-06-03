@@ -20,6 +20,7 @@ app.use('/api/login', require('./routes/api/login'))
 app.use('/api/edit', require('./routes/api/edit'))
 app.use('/api/delete', require('./routes/api/delete'))
 app.use('/api/comment', require('./routes/api/comment'))
+app.use('/api/report', require('./routes/api/report'))
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

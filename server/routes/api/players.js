@@ -4,8 +4,8 @@ const Player = require('../../models/Player')
 const User = require('../../models/User')
 
 // @Route  POST api/players
-// @desc   Create a player
-// access  Public
+// @desc   Sends Managers Players
+// access  Private
 router.post('/', auth, async (req, res) => {
   const { _id } = req.body
   try {
@@ -16,8 +16,10 @@ router.post('/', auth, async (req, res) => {
   }
 })
 
+// @route   POST api/player/update
+// @desc    Update player training
+// @access  Private
 router.post('/update', auth, async (req, res) => {
-  console.log(req.body)
   const _id = req.body.trainplayer._id
   const updatePlayer = req.body.trainplayer
   const user = req.body.user

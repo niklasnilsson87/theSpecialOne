@@ -52,12 +52,20 @@ class Dashboard extends Component {
           <div>
             <p className='text-white'>
               So what are you wating for? Jump in to the fantasy of being a manager of your dreams.
-              <span className='font-weight-bold pointer ml-1' onClick={this.onClick}>Login</span> in or create an <span className='font-weight-bold pointer' onClick={this.onClick}>account.</span>
+              <span className='font-weight-bold pointer ml-1 mr-1' onClick={this.onClick}>
+                Login
+              </span>
+               in or create an 
+               <span className='font-weight-bold pointer ml-1 mr-1' onClick={this.onClick}>
+                 account.
+                </span>
             </p>
           </div>
           </div>
         </div>
-        {this.state.isLogin ? <Login /> : <Register />}
+        { this.state.isLogin 
+          ? <Login /> 
+          : <Register /> }
       </Container>
     )
   }

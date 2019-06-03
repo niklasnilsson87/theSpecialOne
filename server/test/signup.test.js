@@ -7,6 +7,7 @@ const backend = request.agent('http://localhost:5000')
 
 // id to pass into delete test.
 let _id = ''
+let token = ''
 
 describe('Registrering', () => {
   describe('1.1 Testfall M.1 Registrering', () => {
@@ -24,6 +25,7 @@ describe('Registrering', () => {
         .end((err, res) => {
           if (err) console.log('signup1:', err)
           _id = res.body.user._id
+          token = res.body.token
           delete res.body.token
           delete res.body.user._id
           expect(res.body).to.be.an('object').that.deep.include(
@@ -99,8 +101,11 @@ describe('Registrering', () => {
     it('Should remove user', (done) => {
       backend
         .post('/api/delete')
+        .set({
+          'Accept': 'application/json',
+          'x-auth-token': token
+        })
         .send({ id: _id })
-        .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) console.log('error on removing:', err)
           expect(res.text).to.equal('{"Success":true}')

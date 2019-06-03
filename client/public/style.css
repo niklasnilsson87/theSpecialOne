@@ -265,6 +265,10 @@ a {
     width: 80% !important;
   }
 
+  .game-event {
+    max-height: 42vh !important;
+  }
+
   .nav-point {
     width: 100%;
     text-align: center;
@@ -391,4 +395,29 @@ button {
   text-align: center;
   font-size: 20px;
   color: white;
+}
+
+.final-result {
+  padding: 20px;
+  font-size: 30px;
+}
+
+.results {
+  cursor: pointer;
+  color: white;
+}
+
+.results:hover {
+  color: rgb(216, 212, 212);
+}
+
+.report {
+  background-color: #fff;
+}
+
+.report-holder {
+  background-color: #007C01;
+  box-shadow: 3px 5px 5px 3px rgb(19, 127, 41);
+  border-radius: 5px;
+  margin-top: 25px;
 }

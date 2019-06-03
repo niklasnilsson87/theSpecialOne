@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 
 class Manager extends Component {
   state = {
-    selectedFile: null,
     isParamsUndefined: this.props.match.params.name === undefined,
     isOwner: true,
     path: '',
@@ -20,10 +19,12 @@ class Manager extends Component {
   componentDidMount() {
     window.scrollTo(0, 0)
     if (this.state.isParamsUndefined) {
-      this.setState({ user: this.props.auth.user}, () => this.props.getComments(this.state.user._id))
+      this.setState({ user: this.props.auth.user}, 
+        () => this.props.getComments(this.state.user._id))
     } else {
       loadUser(this.props.match.params.name).then((userObj) => {
-      this.setState({ user: userObj, isOwner: false}, () => this.props.getComments(this.state.user._id))
+      this.setState({ user: userObj, isOwner: false}, 
+        () => this.props.getComments(this.state.user._id))
       })
     }
   }
@@ -31,7 +32,8 @@ class Manager extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.path !== this.state.path) {
       window.scrollTo(0, 0)
-      this.setState({ user: this.props.auth.user, isOwner: true }, () => this.props.getComments(this.state.user._id))
+      this.setState({ user: this.props.auth.user, isOwner: true },
+         () => this.props.getComments(this.state.user._id))
     }
   }
 
@@ -45,7 +47,8 @@ class Manager extends Component {
 
   onclick = (id) => {
     loadUser(id).then((userObj) => {
-      this.setState({ user: userObj, isOwner: false}, () => this.props.getComments(this.state.user._id))
+      this.setState({ user: userObj, isOwner: false }, 
+        () => this.props.getComments(this.state.user._id))
     })
   }
 

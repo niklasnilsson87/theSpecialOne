@@ -1,17 +1,17 @@
 const router = require('express').Router()
 require('dotenv').config()
+
 const { sign, saltAndHash } = require('../../config/helper/jwt')
 const { generatePlayer } = require('../generatePlayers')
-// User Model
 const User = require('../../models/User')
 
-// @route   POST api/users
+// @route   POST api/signup
 // @desc    Register new user
 // @access  Public
 router.post('/', (res, req) => {
   const { name, email, password, teamName } = req.req.body
 
-  // simple validation
+  // validation
   if (!name || !email || !password || !teamName) {
     return res.res.status(400).json({ msg: 'Please enter all fields' })
   }
@@ -20,6 +20,7 @@ router.post('/', (res, req) => {
     .then(user => {
       if (user) return res.res.status(400).json({ msg: 'User already exist' })
 
+      // Creates new user
       const newUser = new User({
         name,
         email,
@@ -53,4 +54,5 @@ router.post('/', (res, req) => {
     })
 })
 
+// Exports
 module.exports = router

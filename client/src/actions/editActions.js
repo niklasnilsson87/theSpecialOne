@@ -22,7 +22,6 @@ export const updatePoints = (homeTeam, awayTeam, point, lastGame, decider) => (d
 
   return axios.post('/api/edit/points', body, tokenConfig(getState))
     .then(res => {
-      console.log(res.data)
       dispatch({ type: UPDATEPOINT_SUCCESS, payload: res.data })
     }).catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status, 'UPDATEPOINT_FAIL'))

@@ -2,7 +2,6 @@ import axios from 'axios'
 import { returnErrors } from './errorActions'
 import {
   USER_LOADED,
-  USER_LOADING,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -13,9 +12,6 @@ import {
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
-  // user loading
-  dispatch({ type: USER_LOADING })
-
   axios.get('/api/login/user', tokenConfig(getState))
     .then(res => dispatch({
       type: USER_LOADED,

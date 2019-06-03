@@ -1,13 +1,12 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
+
 const auth = require('../../middleware/authMiddleware')
 const { sign } = require('../../config/helper/jwt')
-
-// User Model
 const User = require('../../models/User')
 
-// @route   POST api/auth
+// @route   POST api/login
 // @desc    Authenticate user
 // @access  Public
 router.post('/', (res, req) => {
@@ -47,8 +46,8 @@ router.post('/', (res, req) => {
     })
 })
 
-// @route   GET api/auth/user
-// @desc    get user data
+// @route   GET api/user
+// @desc    Get user data
 // @access  Private
 router.get('/user', auth, (req, res) => {
   User.findById(req.user.id)

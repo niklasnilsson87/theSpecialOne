@@ -1,12 +1,9 @@
 const router = require('express').Router()
 const auth = require('../../middleware/authMiddleware')
-
-// User Model
 const Comment = require('../../models/Comment')
 
 router.post('/', auth, async (req, res) => {
   const { sendTo, userid, teamName, comment, user } = req.body
-  console.log(req.body)
 
   if (!comment) return res.status(400).json({ msg: 'did you forget to write something?' })
 
@@ -28,7 +25,7 @@ router.post('/getComment', auth, async (req, res) => {
       .sort({ date: -1 })
     await res.json(comment)
   } catch (error) {
-    await res.json({ msg: 'no comments with this user ID' })
+    await res.json({ msg: 'No comments with this user ID' })
   }
 })
 

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import GameEngine from './gameEngine/GameEngine'
+import Results from './Results'
 
 
 class Matches extends Component {
@@ -67,12 +68,16 @@ class Matches extends Component {
     let hour = Math.floor(minute / 60)
     minute = minute % 60
     hour = hour % 24
-    this.setState({ toPlayTime: ((hour + '').length === 1 ? '0' + hour : hour) + ':' + ('0' + minute).substr(-2) + ':' + ('0' + seconds).substr(-2)})
+    this.setState({
+      toPlayTime: ((hour + '').length === 1 ? '0' + hour : hour) + ':' + ('0' + minute).substr(-2) + ':' + ('0' + seconds).substr(-2)
+    })
 }
 
   loadUsers() {
     axios.get('/api/edit').then(res => {
-      this.setState({ users: res.data.filter(user => user._id !== this.props.auth.user._id)})
+      this.setState({
+        users: res.data.filter(user => user._id !== this.props.auth.user._id)
+      })
     })
   }
 
@@ -176,6 +181,7 @@ class Matches extends Component {
         </div>
         </ModalBody>
       </Modal>
+      <Results />
       </Container>
     )
   }

@@ -8,7 +8,6 @@ class Counter extends Component {
       countend : 90
     }
     this.intervalID = 0
-    this.randomEvent = Math.floor((Math.random() * 50) + 1)
   }
 
   componentDidMount() {
@@ -32,11 +31,11 @@ class Counter extends Component {
 
   render() {
     return (
-      <div className="flex text-center" style={{justifyContent: 'center'}}>
-        <h1 className='text-center'>
-          {this.state.counter}
-        </h1>
-      </div>
+        <span className='text-center'>
+          { this.state.counter < 10 
+            ? <span>0{this.state.counter}</span> 
+            : <span>{this.state.counter}</span> }
+        </span>
     )
   }
 }

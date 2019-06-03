@@ -1,11 +1,8 @@
 const router = require('express').Router()
 const auth = require('../../middleware/authMiddleware')
-
-// User Model
 const User = require('../../models/User')
 
 router.post('/', auth, async (req, res) => {
-  console.log(req.body)
   const { desc, favPlayer, favTeam, email } = req.body
 
   const userUpdate = await User.findOne({ email }).select('-password')
@@ -46,7 +43,6 @@ router.post('/points', auth, async (req, res) => {
     await homeTeamUpdate.save()
     await res.json(homeTeamUpdate)
   } catch (error) {
-    console.log('error from post: ', error)
     res.json(homeTeam)
   }
 })

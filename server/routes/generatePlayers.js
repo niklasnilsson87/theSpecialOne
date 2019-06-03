@@ -1,6 +1,12 @@
 const Player = require('../models/Player')
 const chance = require('chance').Chance()
 
+/**
+ * Creates a new random player.
+ *
+ * @param {String} owner id of manager that owns the player
+ * @param {String} team Team name of the player
+ */
 function generatePlayer (owner, team) {
   const birthday = chance.birthday({ year: chance.year({ min: 1979, max: 2004 }) })
   const newPlayer = new Player({
@@ -40,6 +46,7 @@ function generatePlayer (owner, team) {
     }
   })
 
+  // Counts the values of the players attributes.
   const tecnicalValues = Object.values(newPlayer.attributes.tecnical).reduce((a, b) => a + b)
   const mentalValues = Object.values(newPlayer.attributes.mental).reduce((a, b) => a + b)
   const physicalValues = Object.values(newPlayer.attributes.physical).reduce((a, b) => a + b)

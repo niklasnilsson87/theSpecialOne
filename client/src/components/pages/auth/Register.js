@@ -48,7 +48,6 @@ class Register extends Component {
 
     const { name, email, password, teamName } = this.state
 
-    // Create user obj
     const newUser = {
       name,
       email,
@@ -56,7 +55,6 @@ class Register extends Component {
       teamName
     }
     
-    // Attempt to register
     this.props.register(newUser)
   }
 

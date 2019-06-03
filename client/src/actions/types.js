@@ -1,3 +1,4 @@
+// Constants to send types with dispatch.
 export const GET_PLAYER = 'GET_PLAYER'
 export const PLAYER_LOADING = 'PLAYER_LOADING'
 export const FAILD_LOADING_PLAYER = 'FAILD_LOADING_PLAYER'
@@ -18,3 +19,6 @@ export const ADD_COMMENTS = 'ADD_COMMENTS'
 export const UPDATEPOINT_SUCCESS = 'UPDATEPOINT_SUCCESS'
 export const UPDATEPOINT_FAIL = 'UPDATEPOINT_FAIL'
 export const COMMENT_FAIL = 'COMMENT_FAIL'
+export const FAILD_REPORT = 'FAILD_REPORT'
+export const GET_REPORT = 'GET_REPORT'
+export const SEND_REPORT = 'SEND_REPORT'
