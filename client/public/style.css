@@ -420,4 +420,6 @@ button {
   box-shadow: 3px 5px 5px 3px rgb(19, 127, 41);
   border-radius: 5px;
   margin-top: 25px;
+  max-width: 400px;
+  margin: 0 auto;
 }

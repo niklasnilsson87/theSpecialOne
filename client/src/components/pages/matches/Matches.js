@@ -160,7 +160,7 @@ class Matches extends Component {
     return (
       <Container>
         <h1 className="mb-3 text-center">Matches</h1>
-          <div className="next-gae">
+          <div className="next-game">
             { !canIPlay && <p className='match-timer'>Time until next match: {this.state.toPlayTime}</p> }
           </div>
         {userCard}

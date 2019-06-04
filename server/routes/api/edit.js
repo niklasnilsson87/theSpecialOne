@@ -2,17 +2,26 @@ const router = require('express').Router()
 const auth = require('../../middleware/authMiddleware')
 const User = require('../../models/User')
 
+// @route   POST api/edit
+// @desc    Update manager description
+// @access  Private
 router.post('/', auth, async (req, res) => {
   const { desc, favPlayer, favTeam, email } = req.body
-
-  const userUpdate = await User.findOne({ email }).select('-password')
-  userUpdate.description = desc
-  userUpdate.favPlayer = favPlayer
-  userUpdate.favTeam = favTeam
-  await userUpdate.save()
-  res.json(userUpdate)
+  try {
+    const userUpdate = await User.findOne({ email }).select('-password')
+    userUpdate.description = desc
+    userUpdate.favPlayer = favPlayer
+    userUpdate.favTeam = favTeam
+    await userUpdate.save()
+    res.json(userUpdate)
+  } catch (error) {
+    res.json({ msg: 'Could not update player' })
+  }
 })
 
+// @route   GET api/edit
+// @desc    Sends all users
+// @access  Public
 router.get('/', async (req, res) => {
   try {
     const allUsers = await User.find({}).select('-password')
@@ -22,6 +31,9 @@ router.get('/', async (req, res) => {
   }
 })
 
+// @route   POST api/edit/points
+// @desc    Update manager points and last played game
+// @access  Private
 router.post('/points', auth, async (req, res) => {
   const { homeTeam, awayTeam, lastGame, point, decider } = req.body
   try {
@@ -43,8 +55,9 @@ router.post('/points', auth, async (req, res) => {
     await homeTeamUpdate.save()
     await res.json(homeTeamUpdate)
   } catch (error) {
-    res.json(homeTeam)
+    res.json({ msg: 'Could not update points' })
   }
 })
 
+// Exports
 module.exports = router

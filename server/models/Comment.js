@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+/**
+ *  Schema for Comment
+ */
 const CommentSchema = new mongoose.Schema({
   user: {
     type: String
@@ -23,6 +26,8 @@ const CommentSchema = new mongoose.Schema({
   }
 })
 
+// Creates a model for Comment
 const Comment = mongoose.model('Comment', CommentSchema)
 
+// Exports
 module.exports = Comment

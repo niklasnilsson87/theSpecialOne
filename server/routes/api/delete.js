@@ -3,6 +3,9 @@ const User = require('../../models/User')
 const Player = require('../../models/Player')
 const auth = require('../../middleware/authMiddleware')
 
+// @route   POST api/delete
+// @desc    Removing user and players thats been created from test.
+// @access  Private
 router.post('/', auth, async (req, res) => {
   try {
     await User.findByIdAndRemove({ _id: req.body.id })
@@ -13,4 +16,5 @@ router.post('/', auth, async (req, res) => {
   }
 })
 
+// Exports
 module.exports = router

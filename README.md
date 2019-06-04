@@ -8,7 +8,7 @@ Niklas Nilsson (nn222ia)
 
 ## Komma igång i utvecklingsläge
 
-* ladda ned repot på valfritt sätt
+* Ladda ned repot på valfritt sätt
 * Gå till mappen client
 * Skriv `npm install`
 * Gå till mappen server
@@ -24,7 +24,7 @@ Niklas Nilsson (nn222ia)
 
 ## Testning
 
-Testningen finns dokumenterad på Projektets wiki [testrapport](https://github.com/1dv430/nn222ia-project/wiki/Test-Rapport)
+Testningen finns dokumenterad på projektets wiki [testrapport](https://github.com/1dv430/nn222ia-project/wiki/Test-Rapport)
 
 Utför "Komma igång i utvecklingsläge" innan testningen på servern kan påbörjas
 

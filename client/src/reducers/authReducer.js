@@ -7,7 +7,9 @@ import {
   REGISTER_SUCCESS,
   DESCRIPTION_SUCCESS,
   REGISTER_FAIL,
-  UPDATEPOINT_SUCCESS } from '../actions/types'
+  UPDATEPOINT_SUCCESS,
+  UPDATE_MANAGER_POINT_SUCCESS
+} from '../actions/types'
 
 const initialState = {
   token: window.localStorage.getItem('token'),
@@ -32,6 +34,10 @@ export default function (state = initialState, action) {
       state.user.description = action.payload.description
       state.user.favPlayer = action.payload.favPlayer
       state.user.favTeam = action.payload.favTeam
+      return {
+        ...state
+      }
+    case UPDATE_MANAGER_POINT_SUCCESS:
       return {
         ...state
       }

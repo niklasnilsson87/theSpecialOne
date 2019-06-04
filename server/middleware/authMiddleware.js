@@ -1,6 +1,14 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+/**
+ * Middleware that checks and verify that its the
+ * right token that is passed in the header.
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @param {Next} next
+ */
 function auth (req, res, next) {
   const token = req.headers['x-auth-token']
 
@@ -19,4 +27,5 @@ function auth (req, res, next) {
   }
 }
 
+// Exports
 module.exports = auth

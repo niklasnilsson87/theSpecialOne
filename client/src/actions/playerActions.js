@@ -1,4 +1,8 @@
-import { GET_PLAYER, FAILD_LOADING_PLAYER } from './types'
+import {
+  GET_PLAYER,
+  FAILD_LOADING_PLAYER,
+  UPDATE_MANAGER_POINT_SUCCESS
+} from './types'
 import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 import axios from 'axios'
@@ -21,4 +25,9 @@ export const updatePlayer = (user, trainplayer) => (dispatch, getState) => {
   const body = JSON.stringify({ user, trainplayer })
 
   return axios.post('/api/players/update', body, tokenConfig(getState))
+    .then(res => {
+      dispatch({ type: UPDATE_MANAGER_POINT_SUCCESS, payload: res.data })
+    }).catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'UPDATE_MANAGER_POINT_FAIL'))
+    })
 }

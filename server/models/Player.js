@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+/**
+ * Schema for Player
+ */
 const playerSchema = new mongoose.Schema({
   owner: { type: String },
   team: { type: String },
@@ -40,6 +43,8 @@ const playerSchema = new mongoose.Schema({
   }
 })
 
+// Creates a model for Player
 const Player = mongoose.model('Player', playerSchema)
 
+// Exports
 module.exports = Player

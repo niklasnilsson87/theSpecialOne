@@ -2,6 +2,11 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const bcrypt = require('bcryptjs')
 
+/**
+ * Function that helps sign a JWT token.
+ *
+ * @param {String} user User Id
+ */
 const sign = user => {
   return new Promise((resolve, reject) => {
     jwt.sign(
@@ -16,6 +21,11 @@ const sign = user => {
   })
 }
 
+/**
+ * Salts and hash the password
+ *
+ * @param {String} user User Id
+ */
 const saltAndHash = user => {
   return new Promise((resolve, reject) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -29,6 +39,7 @@ const saltAndHash = user => {
   })
 }
 
+// Exports
 module.exports = {
   sign,
   saltAndHash

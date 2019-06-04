@@ -45,7 +45,6 @@ class Register extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-
     const { name, email, password, teamName } = this.state
 
     const newUser = {
@@ -74,11 +73,11 @@ class Register extends Component {
           </FormGroup>
           <FormGroup>
             <Label for='password'>Password</Label>
-            <Input type='password' name='password' minLength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 lenght...' />
+            <Input type='password' name='password' minLength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 length...' />
           </FormGroup>
           <FormGroup>
             <Label for='teamName'>Team Name</Label>
-            <Input type='text' name='teamName' className='mb-1' onChange={this.onChange} placeholder='Select your team name...' />
+            <Input type='text' name='teamName' className='mb-1' maxLength='15' onChange={this.onChange} placeholder='Select your team name max 15 length...' />
           </FormGroup>
           <button type='submit' className='larger-btn btn-color'>Register</button>
         </Form>

@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+/**
+ * Schema for User
+ */
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -44,6 +47,8 @@ const userSchema = new mongoose.Schema({
   }
 })
 
+// Creates a model for User
 const User = mongoose.model('User', userSchema)
 
+// Exports
 module.exports = User

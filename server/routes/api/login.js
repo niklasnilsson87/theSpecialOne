@@ -46,7 +46,7 @@ router.post('/', (res, req) => {
     })
 })
 
-// @route   GET api/user
+// @route   GET api/login/user
 // @desc    Get user data
 // @access  Private
 router.get('/user', auth, (req, res) => {
@@ -54,4 +54,6 @@ router.get('/user', auth, (req, res) => {
     .select('-password')
     .then(user => res.json(user))
 })
+
+// Exports
 module.exports = router

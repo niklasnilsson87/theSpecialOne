@@ -46,15 +46,19 @@ class Results extends Component {
       return (
         <div key={report._id} className="container">
         <div className="results d-flex flex-row justify-content-center">
-          <div onClick={this.onClick}>
-            <span name={report._id} className="p-2">{report.date.substring(0, 10)}</span>
-            <span name={report._id} className="p-2">{report.date.substring(11, 16)}</span>
-            <span name={report._id} className="p-2">{report.homeTeam}</span>
-            <span name={report._id} className="p-2"> - </span>
-            <span name={report._id} className="p-2">{report.awayTeam}</span>
-            <span name={report._id} className="p-2">{report.homeTeamGoals}</span>
-            <span name={report._id} className="p-2">-</span>
-            <span name={report._id} className="p-2">{report.awayTeamGoals}</span>
+          <div name={report._id} onClick={this.onClick} className='d-flex flex-column align-items-center'>
+            <div className="time-stamp">
+              <span name={report._id} className="pr-3 date-format">{report.date.substring(0, 10)}</span>
+              <span name={report._id} className="pr-1">{report.date.substring(11, 16)}</span>
+            </div>
+            <div className="report-format">
+              <span name={report._id} className="pr-1">{report.homeTeam}</span>
+              <span name={report._id} className="pr-1">-</span>
+              <span name={report._id} className="pr-1">{report.awayTeam}</span>
+              <span name={report._id} className="pr-1">{report.homeTeamGoals}</span>
+              <span name={report._id} className="pr-1">-</span>
+              <span name={report._id} className="pr-1">{report.awayTeamGoals}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -66,7 +70,7 @@ class Results extends Component {
     return (
       <div className='report-holder'>
         <span>{report}</span>
-        <div className="report">
+        <div className='report'>
         { this.state.showReport && this.state.report[0].report.map(event => {
             return (
                 <div key={uuid()}>

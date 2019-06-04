@@ -25,13 +25,13 @@ router.post('/update', auth, async (req, res) => {
   const user = req.body.user
 
   try {
-    let update = await Player.replaceOne({ _id }, updatePlayer)
+    await Player.replaceOne({ _id }, updatePlayer)
     await User.updateOne({ _id: user._id }, {
       $set: { totalPoints: user.totalPoints }
     })
-    await res.json(update)
+    await res.json(user.totalPoints)
   } catch (error) {
-    await res.status(404).json({ msg: 'Could not update player..' })
+    await res.status(400).json({ msg: 'Could not update player..' })
   }
 })
 

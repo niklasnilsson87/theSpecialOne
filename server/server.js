@@ -9,11 +9,12 @@ const app = express()
 app.use(bodyParser.json())
 
 // connect to the database
-let conn = mongoose.connect().catch(error => {
+mongoose.connect().catch(error => {
   console.error(error)
   process.exit(1)
 })
 
+// Routes
 app.use('/api/players', require('./routes/api/players'))
 app.use('/api/signup', require('./routes/api/signup'))
 app.use('/api/login', require('./routes/api/login'))
@@ -35,6 +36,3 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 5000
 
 app.listen(port, () => console.log(`Server started on port ${port}`))
-
-module.exports = app
-module.exports = conn
