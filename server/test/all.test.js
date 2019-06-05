@@ -161,7 +161,7 @@ describe('3.1 Testfall C.17 Server api/comment/', () => {
       })
   })
 
-  it(`Should respond with a message 'did you forget to write something?' if comments are typed`, (done) => {
+  it(`Should respond with a message 'Did you forget to write something?' if comments are typed`, (done) => {
     let MockComment = {
       sendTo: '5cde7e4d4394a8537872a8e7',
       userid: '5ced5bee3138fa15c89116d3',
@@ -176,7 +176,7 @@ describe('3.1 Testfall C.17 Server api/comment/', () => {
       .send(MockComment)
       .end((err, res) => {
         if (err) console.log('api/comment/getComment:', err)
-        expect(res.body).to.deep.equal({ msg: 'did you forget to write something?' })
+        expect(res.body).to.deep.equal({ msg: 'Did you forget to write something?' })
         done()
       })
   })

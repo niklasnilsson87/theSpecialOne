@@ -97,9 +97,9 @@ function testingRoutes () {
       players[0] === 'Cole Moran'
         ? console.log('Test Success! - First player name on page should be Cole Moran')
         : console.log('Test Failed! - First player name on page should be Cole Moran')
-      players[1] === 'Gerald Risaliti'
-        ? console.log('Test Success! - Second players name on page should be Gerald Risaliti')
-        : console.log('Test Failed! - Second player name on page should be Gerald Risaliti')
+      players[1] === 'George Lanini'
+        ? console.log('Test Success! - Second players name on page should be George Lanini')
+        : console.log('Test Failed! - Second player name on page should be George Lanini')
     })
     .then(() => gethTag('manager', 'h1'))
     .then(text => {
