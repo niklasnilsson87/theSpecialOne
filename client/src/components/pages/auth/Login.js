@@ -55,7 +55,7 @@ class Login extends Component {
       <Container>
         <div className="form-div">
           <h2 className="pb-2 text-dark mb-2">Login</h2>
-          { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
+          { this.state.msg ? (<Alert className='alert bg-danger text-white'>{this.state.msg}</Alert>) : null}
           <Form expand='sm' onSubmit={this.onSubmit}>
               <div className="d-flex justify-content-between">
             <FormGroup className="mr-2">

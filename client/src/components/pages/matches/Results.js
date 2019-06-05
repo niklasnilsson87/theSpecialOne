@@ -47,11 +47,11 @@ class Results extends Component {
         <div key={report._id} className="container">
         <div className="results d-flex flex-row justify-content-center">
           <div name={report._id} onClick={this.onClick} className='d-flex flex-column align-items-center'>
-            <div className="time-stamp">
+            <div name={report._id} className="time-stamp">
               <span name={report._id} className="pr-3 date-format">{report.date.substring(0, 10)}</span>
               <span name={report._id} className="pr-1">{report.date.substring(11, 16)}</span>
             </div>
-            <div className="report-format">
+            <div name={report._id} className="report-format">
               <span name={report._id} className="pr-1">{report.homeTeam}</span>
               <span name={report._id} className="pr-1">-</span>
               <span name={report._id} className="pr-1">{report.awayTeam}</span>

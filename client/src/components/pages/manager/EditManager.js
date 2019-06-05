@@ -63,6 +63,7 @@ class EditManager extends Component {
                 type="text"
                 name="favTeam"
                 id="favTeam"
+                maxLength="35"
                 placeholder="Add favorit Team..."
                 onChange={this.teamChange}
                 value={this.state.favTeam}
@@ -72,6 +73,7 @@ class EditManager extends Component {
                 type="text"
                 name="favPlayer"
                 id="favPlayer"
+                maxLength="35"
                 placeholder="Add favorit player..."
                 onChange={this.playerChange}
                 value={this.state.favPlayer}
@@ -79,6 +81,7 @@ class EditManager extends Component {
               <Label for="description">Description</Label>
               <Input
                 type="textarea"
+                maxLength="600"
                 name="description"
                 id="description"
                 placeholder="Add description..."

@@ -10,6 +10,7 @@ class Register extends Component {
     name: '',
     email: '',
     password: '',
+    validatePassword: '',
     teamName: '',
     msg: null
   }
@@ -26,7 +27,7 @@ class Register extends Component {
     if(error !== prevProps.error) {
       // Check for register error
       if(error.id === 'REGISTER_FAIL'){
-        this.setState({ msg: error.msg.msg})
+        this.setState({ msg: error.msg.msg })
       } else {
         this.setState({ msg: null })
       }
@@ -41,12 +42,14 @@ class Register extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+    console.log(e.target.name, e.target.value)
   }
 
   onSubmit = e => {
     e.preventDefault()
-    const { name, email, password, teamName } = this.state
+    const { name, email, password, validatePassword, teamName } = this.state
 
+    if (password === validatePassword) {
     const newUser = {
       name,
       email,
@@ -55,17 +58,20 @@ class Register extends Component {
     }
     
     this.props.register(newUser)
+    } else {
+      this.setState({ msg: 'Password does not match' })
+    }
   }
 
   render () {
     return (
       <Container className='form-div'>
         <h2 className="pb-2 text-dark mb-2">Register new team</h2>
-        { this.state.msg ? (<Alert color='danger'>{this.state.msg}</Alert>) : null}
+        { this.state.msg ? (<Alert className='alert bg-danger text-white'>{this.state.msg}</Alert>) : null}
         <Form expand='sm' onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for='name'>Full name</Label>
-            <Input type='name' name='name' className='login-form' onChange={this.onChange} placeholder='Enter your username here...' />
+            <Input type='name' name='name' className='login-form' maxLength='12' onChange={this.onChange} placeholder='Enter your username here...' />
           </FormGroup>
           <FormGroup>
             <Label for='email'>Email</Label>
@@ -74,6 +80,10 @@ class Register extends Component {
           <FormGroup>
             <Label for='password'>Password</Label>
             <Input type='password' name='password' minLength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password here min 8 length...' />
+          </FormGroup>
+          <FormGroup>
+            <Label for='validatePassword'>Verify Password</Label>
+            <Input type='password' name='validatePassword' minLength='8' className='mb-1' onChange={this.onChange} placeholder='Enter your password again...' />
           </FormGroup>
           <FormGroup>
             <Label for='teamName'>Team Name</Label>

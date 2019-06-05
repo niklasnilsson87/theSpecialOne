@@ -9,7 +9,7 @@ import {
 
 class Training extends Component {
   state = {
-    traningPoints: this.props.auth.user.totalPoints,
+    traningPoints: null,
     playerID: '',
     trainPlayer: null,
     constPlayer: null,
@@ -19,6 +19,13 @@ class Training extends Component {
   componentDidMount () {
     if (this.props.auth.isAuthenticated) {
       this.props.getPlayers(this.props.auth.user)
+      this.setState({ traningPoints: this.props.auth.user.totalPoints })
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.traningPoints !== this.props.auth.user.totalPoints) {
+      this.setState({ traningPoints: this.props.auth.user.totalPoints })
     }
   }
 
@@ -31,24 +38,25 @@ class Training extends Component {
   }
 
   onPlus = (e) => {
-    const { totalPoints } = this.props.auth.user
+    const { traningPoints } = this.state
     this.setState({ isChange: true, isDisabled: false })
     const arr = e.target.name.split('.')
     let trainPlayer = {...this.state.trainPlayer}
     let targetValue = Number(e.target.value)
-    if (totalPoints > 0) {
+    if (traningPoints > 0) {
       if (targetValue < 20) {
         let update = targetValue + 1
         trainPlayer[arr[0]][arr[1]][arr[2]] = update
         this.setState({ 
           trainPlayer,
-          traningPoints: this.props.auth.user.totalPoints -= 1
+          traningPoints: traningPoints - 1
         })
       }
   }
   }
 
   onMinus = (e) => {
+    const { traningPoints } = this.state
     const arr = e.target.name.split('.')
     let targetValue = Number(e.target.value)
 
@@ -58,7 +66,7 @@ class Training extends Component {
       trainPlayer[arr[0]][arr[1]][arr[2]] = update
       this.setState({ 
         trainPlayer,
-        traningPoints: this.props.auth.user.totalPoints += 1
+        traningPoints: traningPoints + 1
        })
     }
 
@@ -255,7 +263,7 @@ class Training extends Component {
           </div>
           <div className='select-player text-center'>
             <span className='select-player'>Select Player:</span>
-            <select className='form-control' name='traning' defaultValue='1' onChange={this.onChange}>
+            <select disabled={!this.state.isDisabled} className={this.state.isDisabled ? 'form-control' : 'form-control bg-secondary'} name='traning' defaultValue='1' onChange={this.onChange}>
               <option disabled hidden value='1'>Choose player</option>
               {selectPlayer}
             </select>

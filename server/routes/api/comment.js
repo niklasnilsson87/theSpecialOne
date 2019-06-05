@@ -8,7 +8,7 @@ const Comment = require('../../models/Comment')
 router.post('/', auth, async (req, res) => {
   const { sendTo, userid, teamName, comment, user } = req.body
 
-  if (!comment) return res.status(400).json({ msg: 'did you forget to write something?' })
+  if (!comment) return res.status(400).json({ msg: 'Did you forget to write something?' })
 
   const newComment = new Comment({
     user,

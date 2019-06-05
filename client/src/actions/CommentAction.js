@@ -25,7 +25,7 @@ export const sendComments = (sendTo, userid, comment, teamName, user) => (dispat
     .then(res => {
       dispatch({ type: ADD_COMMENTS, payload: res.data })
     }).catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status, 'DESCRIPTION_FAIL'))
+      dispatch(returnErrors(err.response.data, err.response.status, 'COMMENT_FAIL'))
       dispatch({
         type: COMMENT_FAIL
       })
