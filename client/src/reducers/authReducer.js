@@ -38,6 +38,7 @@ export default function (state = initialState, action) {
         ...state
       }
     case UPDATE_MANAGER_POINT_SUCCESS:
+      state.user.totalPoints = action.payload
       return {
         ...state
       }
