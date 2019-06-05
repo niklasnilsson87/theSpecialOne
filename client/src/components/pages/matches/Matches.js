@@ -180,6 +180,7 @@ class Matches extends Component {
         </div>
         </ModalBody>
       </Modal>
+      <h2 className='text-center m-3'>Previous Matches</h2>
       <Results />
       </Container>
     )

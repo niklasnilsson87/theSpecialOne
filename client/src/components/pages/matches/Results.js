@@ -70,7 +70,7 @@ class Results extends Component {
     return (
       <div className='report-holder'>
         <span>{report}</span>
-        <div className='report'>
+        <div className='report m-3'>
         { this.state.showReport && this.state.report[0].report.map(event => {
             return (
                 <div key={uuid()}>
