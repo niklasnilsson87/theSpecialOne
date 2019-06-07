@@ -71,7 +71,7 @@ class Register extends Component {
         <Form expand='sm' onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for='name'>Full name</Label>
-            <Input type='name' name='name' className='login-form' maxLength='12' onChange={this.onChange} placeholder='Enter your username here...' />
+            <Input type='name' name='name' className='login-form' maxLength='30' onChange={this.onChange} placeholder='Enter your username here...' />
           </FormGroup>
           <FormGroup>
             <Label for='email'>Email</Label>
