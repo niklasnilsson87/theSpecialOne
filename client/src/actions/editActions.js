@@ -3,6 +3,7 @@ import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 import axios from 'axios'
 
+// Updates Description.
 export const updateDescription = (desc, favPlayer, favTeam, email) => (dispatch, getState) => {
   const body = JSON.stringify({ desc, favPlayer, favTeam, email })
 
@@ -17,6 +18,7 @@ export const updateDescription = (desc, favPlayer, favTeam, email) => (dispatch,
     })
 }
 
+// Updates Points and last played game.
 export const updatePoints = (homeTeam, awayTeam, point, lastGame, decider) => (dispatch, getState) => {
   const body = JSON.stringify({ homeTeam, awayTeam, lastGame, point, decider })
 

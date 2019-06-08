@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { updateDescription } from '../../../actions/editActions'
 
+/**
+ * Component for EditManager.
+ *
+ * @class EditManager
+ * @extends {Component}
+ */
 class EditManager extends Component {
   state = {
     modal: false,
@@ -35,6 +41,7 @@ class EditManager extends Component {
     const { description, favPlayer, favTeam } = this.state
     const { email } = this.props.auth
 
+    // action to send and update description.
     this.props.updateDescription(description, favPlayer, favTeam, email)
 
     this.toggle()
@@ -106,6 +113,7 @@ EditManager.propTypes = {
   updateDescription: PropTypes.func.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = (state) => ({
   auth: state.auth.user
 })

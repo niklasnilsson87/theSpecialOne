@@ -5,6 +5,7 @@ import authReducer from './authReducer'
 import commentReducer from './commentReducer'
 import reportReducer from './reportReducer'
 
+// Combining all global states.
 export default combineReducers({
   player: playerReducer,
   auth: authReducer,

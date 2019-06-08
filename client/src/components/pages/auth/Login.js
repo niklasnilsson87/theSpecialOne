@@ -6,6 +6,12 @@ import PropTypes from 'prop-types'
 import { login } from '../../../actions/authActions'
 import { clearErrors } from '../../../actions/errorActions'
 
+/**
+ * Component Login
+ *
+ * @class Login
+ * @extends {Component}
+ */
 class Login extends Component {
   state = {
     email: '',
@@ -76,6 +82,7 @@ class Login extends Component {
   }
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error

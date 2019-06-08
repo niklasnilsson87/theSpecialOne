@@ -7,6 +7,7 @@ import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 import axios from 'axios'
 
+// Gets players.
 export const getPlayers = ({ _id }) => (dispatch, getState) => {
   const body = JSON.stringify({ _id })
 
@@ -21,6 +22,7 @@ export const getPlayers = ({ _id }) => (dispatch, getState) => {
     })
 }
 
+// Update player.
 export const updatePlayer = (user, trainplayer, traningPoints) => (dispatch, getState) => {
   const body = JSON.stringify({ user, trainplayer, traningPoints })
 

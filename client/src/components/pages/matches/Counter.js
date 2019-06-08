@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+/**
+ * Components for Counter.
+ *
+ * @class Counter
+ * @extends {Component}
+ */
 class Counter extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +17,7 @@ class Counter extends Component {
   }
 
   componentDidMount() {
+    // Updates counter to tick one second.
     this.intervalID = setInterval(this.count, 1000)
   }
 

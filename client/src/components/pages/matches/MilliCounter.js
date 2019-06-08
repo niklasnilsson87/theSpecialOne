@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+/**
+ * Component for MilliCounter
+ *
+ * @class MilliCounter
+ * @extends {Component}
+ */
 class MilliCounter extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +17,7 @@ class MilliCounter extends Component {
   }
 
   componentDidMount() {
+    // Updates milisec counter.
     this.intervalID = setInterval(this.milliCount, 10)
     setTimeout(() => {
       clearInterval(this.intervalID)

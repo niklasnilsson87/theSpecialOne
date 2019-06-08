@@ -9,6 +9,12 @@ import PropTypes from 'prop-types'
 import { sendReport } from '../../../../actions/reportActions'
 
 
+/**
+ * Component for GameEngine.
+ *
+ * @class GameEngine
+ * @extends {Component}
+ */
 class GameEngine extends Component {
   state = {
     isEnd: false,
@@ -34,6 +40,8 @@ class GameEngine extends Component {
   componentDidMount() {
     const { homeTeamPlayers, awayTeamPlayers, homeTeamValue, awayTeamValue } = this.props.stateFromManager
     const { awayTeamManager, homeTeamManager } = this.props.stateFromManager
+
+    // Set match interval.
     this.match = setInterval(() => {
       let hp = homeTeamPlayers[this.randomEvents(homeTeamPlayers.length - 1)]
       let ap = awayTeamPlayers[this.randomEvents(awayTeamPlayers.length - 1)]
@@ -75,6 +83,12 @@ class GameEngine extends Component {
     this.setState({ counter: e.counter })
   }
 
+  /**
+   * Creates Events from randomEvents func.
+   * When random event is hit then it adds it to the event array.
+   *
+   * @memberof GameEngine
+   */
   engine = (hp, ap, homeTeamValue, awayTeamValue) => {
     let { homeGoals, awayGoals } = this.state
 
@@ -211,6 +225,7 @@ class GameEngine extends Component {
     }
   }
 
+ // Push scroll to bottom on new event.
  scrollToBottom = () => {
   if (this.state.counter < 90) {
     const container = ReactDOM.findDOMNode(this.messageContainer)
@@ -218,7 +233,12 @@ class GameEngine extends Component {
   }
 }
 
-  winLose = (awayTeamManager) => {
+ /**
+  * Sends iformation to server to update points.
+  *
+  * @memberof GameEngine
+  */
+ winLose = (awayTeamManager) => {
     const lastGame = Date.now()
     if (this.state.homeGoals > this.state.awayGoals) {
       this.props.updatePoints(this.props.auth.user, awayTeamManager, 3, lastGame, 'win')
@@ -229,7 +249,7 @@ class GameEngine extends Component {
     }
 }
 
-  render () {
+render () {
     const { homeTeamManager, awayTeamManager } = this.props.stateFromManager
     const { events, isEnd, homeGoals, awayGoals } = this.state
     let event = events.map(e => {
@@ -240,6 +260,7 @@ class GameEngine extends Component {
       )
     })
 
+    
     const whoWins = (
       <React.Fragment>
         <p className="text-center final-result">{homeTeamManager.teamName} {homeGoals} - {awayGoals} {awayTeamManager.teamName}</p>
@@ -286,6 +307,7 @@ GameEngine.propTypes = {
   sendReport: PropTypes.func.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   auth: state.auth
 })

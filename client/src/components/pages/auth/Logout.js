@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 import { logout } from '../../../actions/authActions'
 import PropTypes from 'prop-types'
 
+/**
+ * Component Logout.
+ *
+ * @class Logout
+ * @extends {Component}
+ */
 class Logout extends Component {
 
   static propTypes = {

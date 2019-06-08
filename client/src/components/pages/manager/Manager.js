@@ -8,6 +8,12 @@ import { getComments } from '../../../actions/CommentAction'
 import { loadUser } from '../../../actions/helpers/helperAction'
 import { Link } from 'react-router-dom'
 
+/**
+ * Component for Manager.
+ *
+ * @class Manager
+ * @extends {Component}
+ */
 class Manager extends Component {
   state = {
     isParamsUndefined: this.props.match.params.name === undefined,
@@ -29,6 +35,7 @@ class Manager extends Component {
     }
   }
 
+  // Checks if it is a visiting page or the authenticaded user.
   componentDidUpdate(prevProps, prevState) {
     if (prevState.path !== this.state.path) {
       window.scrollTo(0, 0)
@@ -37,6 +44,7 @@ class Manager extends Component {
     }
   }
 
+  // Checks if it is a visiting page or the authenticaded user.
   static getDerivedStateFromProps(nextProps, prevState) {
     window.scrollTo(0, 0)
     if (nextProps.match.path !== prevState.path && !undefined) {
@@ -124,6 +132,7 @@ Manager.propTypes = {
   comment: PropTypes.object.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = (state) => ({
   auth: state.auth,
   comment: state.comment

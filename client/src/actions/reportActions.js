@@ -3,6 +3,7 @@ import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 import axios from 'axios'
 
+// Gets Match reports.
 export const getReports = () => dispatch => {
   return axios.get('/api/report')
     .then(res => {
@@ -15,6 +16,7 @@ export const getReports = () => dispatch => {
     })
 }
 
+// Sending Match reports.
 export const sendReport = (report) => (dispatch, getState) => {
   const body = JSON.stringify(report)
 

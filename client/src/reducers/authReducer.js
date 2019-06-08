@@ -11,6 +11,7 @@ import {
   UPDATE_MANAGER_POINT_SUCCESS
 } from '../actions/types'
 
+// Global state for User.
 const initialState = {
   token: window.localStorage.getItem('token'),
   isAuthenticated: null,

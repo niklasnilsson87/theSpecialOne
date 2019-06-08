@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+// Component Page Not Found.
 const PageNotFound = props => (
   <div>
     <h1 className='text-center'>404</h1>

@@ -56,6 +56,7 @@ function generatePlayer (owner, team) {
   return newPlayer.save()
 }
 
+// Exports
 module.exports = {
   generatePlayer
 }

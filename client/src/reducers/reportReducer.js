@@ -1,5 +1,6 @@
 import { GET_REPORT, SEND_REPORT, FAILD_REPORT } from '../actions/types'
 
+// Global state for match-reports
 const initialState = {
   reports: [],
   loading: false

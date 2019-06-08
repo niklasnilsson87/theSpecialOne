@@ -4,10 +4,17 @@ import { connect } from 'react-redux'
 import { getPlayers } from '../../actions/playerActions'
 import PropTypes from 'prop-types'
 
+/**
+ * Component for Player.
+ *
+ * @class Player
+ * @extends {Component}
+ */
 class Player extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)
     if (this.props.auth.isAuthenticated) {
+      // Gets users players.
       this.props.getPlayers(this.props.auth.user)
     }
   }
@@ -145,6 +152,7 @@ Player.propTypes = {
   auth: PropTypes.object.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = (state) => ({
   auth: state.auth,
   player: state.player

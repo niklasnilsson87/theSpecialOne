@@ -4,7 +4,12 @@ import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-
+/**
+ * Component for Home.
+ *
+ * @class Home
+ * @extends {Component}
+ */
 class Home extends Component {
 
   static propTypes = {
@@ -75,6 +80,7 @@ class Home extends Component {
   }
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   auth: state.auth
 })

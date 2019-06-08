@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+/**
+ * Component Footer.
+ *
+ * @class Footer
+ * @extends {Component}
+ */
 class Footer extends Component {
   render () {
     return (

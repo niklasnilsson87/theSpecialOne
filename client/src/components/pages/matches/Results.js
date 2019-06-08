@@ -4,7 +4,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import uuid from 'uuid' 
 
-
+/**
+ * Component for Results.
+ *
+ * @class Results
+ * @extends {Component}
+ */
 class Results extends Component {
   state = {
     showReport: false,
@@ -90,6 +95,7 @@ Results.propTypes = {
   getReports: PropTypes.func.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   auth: state.auth,
   player: state.player,

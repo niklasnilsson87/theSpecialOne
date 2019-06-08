@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 import { Input, Form, FormGroup, Alert } from 'reactstrap'
 import { sendComments } from '../../../actions/CommentAction'
 
+/**
+ * Component for Comments.
+ *
+ * @class Comments
+ * @extends {Component}
+ */
 class Comments extends Component {
   state = {
     comment: '',
@@ -36,8 +42,7 @@ class Comments extends Component {
     const { comment } = this.state
     let { teamName, name } = this.props.auth
 
-    // if ()
-
+    // Checks if it is a visitor or the authenticated user.
     if (this.props.params.name !== undefined) {
       this.setState({ visitingId: this.props.params.name },
         () => this.props.sendComments(this.state.visitingId, this.state.id, comment.trim(), teamName, name))
@@ -82,6 +87,7 @@ Comments.propTypes = {
   error: PropTypes.object.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = (state) => ({
   auth: state.auth.user,
   comment: state.comment,

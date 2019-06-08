@@ -1,5 +1,6 @@
 import { GET_ERRORS, CLEAR_ERRORS } from '../actions/types'
 
+// Global state for errors.
 const initialState = {
   msg: {},
   status: null,

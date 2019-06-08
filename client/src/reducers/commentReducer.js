@@ -1,5 +1,6 @@
 import { GET_COMMENTS, ADD_COMMENTS, COMMENT_FAIL } from '../actions/types'
 
+// Global state for comments.
 const initialState = {
   comments: [],
   loading: false

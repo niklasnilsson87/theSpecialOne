@@ -5,6 +5,12 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import PropTypes from 'prop-types'
 
+/**
+ * Component for Dashboard.
+ *
+ * @class Dashboard
+ * @extends {Component}
+ */
 class Dashboard extends Component {
   state = {
     isLogin: true
@@ -71,6 +77,7 @@ class Dashboard extends Component {
   }
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error

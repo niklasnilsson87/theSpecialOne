@@ -1,5 +1,6 @@
 import { GET_PLAYER, PLAYER_LOADING } from '../actions/types'
 
+// Global state for players.
 const initialState = {
   players: [],
   loading: false

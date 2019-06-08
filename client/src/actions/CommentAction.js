@@ -3,6 +3,7 @@ import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 import axios from 'axios'
 
+// Gets comments.
 export const getComments = (id) => (dispatch, getState) => {
   // Request body
   const body = JSON.stringify({ id })
@@ -18,6 +19,7 @@ export const getComments = (id) => (dispatch, getState) => {
     })
 }
 
+// Sends comments.
 export const sendComments = (sendTo, userid, comment, teamName, user) => (dispatch, getState) => {
   const body = JSON.stringify({ sendTo, userid, comment, teamName, user })
 

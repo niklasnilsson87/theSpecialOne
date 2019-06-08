@@ -7,6 +7,12 @@ import {
   Progress
 } from 'reactstrap'
 
+/**
+ * Component for Training.
+ *
+ * @class Training
+ * @extends {Component}
+ */
 class Training extends Component {
   state = {
     traningPoints: null,
@@ -16,6 +22,7 @@ class Training extends Component {
     isChange: false,
     isDisabled: true,
   }
+
   componentDidMount () {
     if (this.props.auth.isAuthenticated) {
       this.props.getPlayers(this.props.auth.user)
@@ -286,6 +293,7 @@ Training.propTypes = {
   auth: PropTypes.object.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = (state) => ({
   auth: state.auth,
   player: state.player

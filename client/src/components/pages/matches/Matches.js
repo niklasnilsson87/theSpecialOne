@@ -10,6 +10,12 @@ import axios from 'axios'
 import GameEngine from './gameEngine/GameEngine'
 import Results from './Results'
 
+/**
+ * Component for Matches.
+ *
+ * @class Matches
+ * @extends {Component}
+ */
 class Matches extends Component {
   constructor(props) {
     super(props)
@@ -40,14 +46,17 @@ class Matches extends Component {
   }
 
   componentDidMount() {
+    // Checks if the users last played match is 4 hours ago.
     if ((this.state.lastGameDate === 0) || (this.state.lastGameDate + 14400000 < this.state.newGameDate)) {
       this.setState({ canIPlay: true})
     } else {
       let time = 14400000
       this.interval = setInterval(this.tick, 1000, time)
     }
+    // Get users players and loads values.
     this.props.getPlayers(this.props.auth.user)
       .then(() => this.countValues())
+    // Get all users from DB.
     this.loadUsers()
   }
 
@@ -80,6 +89,7 @@ class Matches extends Component {
     })
   }
 
+  // Sets total value from players.
   setValue = (val) => {
     const arr = []
     val.map(v => arr.push(v.totalValue))
@@ -97,6 +107,7 @@ class Matches extends Component {
     })
   }
 
+  // Starts the GameEnigne.
   onClick = (e) => {
     e.preventDefault()
     const _id = e.target.value
@@ -116,6 +127,7 @@ class Matches extends Component {
     })
   }
 
+  // Get away team players.
   getAwayTeamPlayers = (_id) => {
     const config = {
       headers: {
@@ -194,6 +206,7 @@ Matches.propTypes = {
   auth: PropTypes.object.isRequired
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   auth: state.auth,
   player: state.player

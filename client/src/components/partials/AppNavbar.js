@@ -11,6 +11,13 @@ import {
 } from 'reactstrap'
 import Logout from '../pages/auth/Logout'
 
+
+/**
+ * Component Navigation bar. 
+ *
+ * @class AppNavbar
+ * @extends {Component}
+ */
 class AppNavbar extends Component {
   state = {
     isOpen: false

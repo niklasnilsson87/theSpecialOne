@@ -5,6 +5,12 @@ import PropTypes from 'prop-types'
 import { register } from '../../../actions/authActions'
 import { clearErrors } from '../../../actions/errorActions'
 
+/**
+ * Component Register.
+ *
+ * @class Register
+ * @extends {Component}
+ */
 class Register extends Component {
   state = {
     name: '',
@@ -96,6 +102,7 @@ class Register extends Component {
   }
 }
 
+// Function to get states for global store.
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error
