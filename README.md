@@ -14,10 +14,10 @@ Niklas Nilsson (nn222ia)
 * Gå till mappen server
 * Skapa en .env fil och lägg till variablarna
 
-   * DB_PATH=< lägg till din query sträng från mongoAtlas >
-   * PORT=5000
-   * JWT_SECRET=< lägg till din hemliga sträng >
-   * NODE_ENV=development
+   `DB_PATH=< lägg till din query sträng från mongoAtlas >`  
+    `PORT=5000`  
+    `JWT_SECRET=< lägg till din hemliga sträng >`  
+    `NODE_ENV=development`
 
 * Skriv `npm install`
 * Skriv `npm run dev` för att starta både server och klient
